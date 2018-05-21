@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.blogss.mapper.FarmMapper">
+    <sql id="columns">farmId,farmImg,farmName</sql>
+
+    <!--后台农资分类添加-->
+    <insert id="farmAdd" parameterType="Farm">
+        insert into farm(farmName,farmImg) values
+        (#{farmName},#{farmImg})
+    </insert>
+    
+    <!--总记录数-->
+    <select id="totRecord" resultType="int">
+        SELECT count(*) from  farm
+    </select>
+
+    <!--后台农资分类查看,分页-->
+    <select id="farmSelectAll" parameterType="int" resultType="Farm">
+        select <include refid="columns"></include>
+        from farm limit #{pageNow},5
+    </select>
+
+    <!--后台农资分类查看所有-->
+    <select id="farmSelectAll2"  resultType="Farm">
+        select <include refid="columns"></include>
+        from farm
+    </select>
+
+    <!--后台农资分类删除-->
+    <delete id="farmDelete" parameterType="int">
+        delete from farm
+        where farmId = #{farmId}
+    </delete>
+
+    <!--后台农资分类修改-->
+    <update id="farmModify">
+        update farm
+        <set>
+            <if test="farmName != null">
+                farmName = #{farmName,jdbcType=VARCHAR},
+            </if>
+            <if test="farmImg != null">
+                farmImg = #{farmImg,jdbcType=INTEGER},
+            </if>
+        </set>
+        WHERE  farmId = #{farmId}
+    </update>
+</mapper>

@@ -1,0 +1,40 @@
+body{
+	width: 1400px;
+	margin: 0 auto;
+}
+
+.navbar-brand{
+	color: #fff !important;
+}
+
+a{
+	display: inline-block;
+	font-size: 14px;
+	color: #6b6b6b;
+}
+
+.list-group-item a:hover {
+    color: #f26929;
+}
+
+.panel-title{
+	line-height: 25px;
+}
+
+table{
+	text-align: center;
+}
+
+table th{
+	text-align: center;
+}
+
+table td a{
+	color: #f26929;
+}
+
+table td>img{
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+}

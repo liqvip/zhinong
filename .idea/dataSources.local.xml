@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="zhinong@localhost" uuid="909cc7b5-06c1-4b72-b0dd-ff2513d24999">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>*:zhinong</introspection-schemas>
+    </data-source>
+  </component>
+</project>
