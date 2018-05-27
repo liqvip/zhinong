@@ -6,12 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1947129e-99cf-4cd9-a522-e22f63103d2c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/target/classes/springmvc-servlet.xml" afterPath="$PROJECT_DIR$/target/classes/springmvc-servlet.xml" />
-      <change beforePath="$PROJECT_DIR$/target/zhinong/WEB-INF/classes/springmvc-servlet.xml" afterPath="$PROJECT_DIR$/target/zhinong/WEB-INF/classes/springmvc-servlet.xml" />
-    </list>
+    <list default="true" id="1947129e-99cf-4cd9-a522-e22f63103d2c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,11 +56,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="springmvc-servlet.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml">
+      <file leaf-file-name="add.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/news/add.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="61" column="55" lean-forward="false" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
+            <state relative-caret-position="621">
+              <caret line="23" column="38" lean-forward="false" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="News.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/News.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+              <folding>
+                <marker date="1527416226996" expanded="true" signature="373:451" ph="SELECT newsT... news" />
+                <marker date="1527416226996" expanded="true" signature="541:692" ph="insert into news... " />
+                <marker date="1527416226996" expanded="true" signature="781:807" ph="SELECT count... news" />
+                <marker date="1527416226996" expanded="true" signature="919:1063" ph="select newsI... news" />
+                <marker date="1527416226996" expanded="true" signature="1159:1219" ph="select from news" />
+                <marker date="1527416226996" expanded="true" signature="1310:1359" ph="delete from news... " />
+                <marker date="1527416226996" expanded="true" signature="1430:1733" ph="update news... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewsService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/service/NewsService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewsMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/mapper/NewsMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewsServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/NewsServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+              <folding>
+                <element signature="e#771#772#0" expanded="true" />
+                <element signature="e#823#824#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/NewsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="864">
+              <caret line="46" column="53" lean-forward="false" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+              <folding>
+                <element signature="e#784#785#0" expanded="true" />
+                <element signature="e#842#843#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/news/detail.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/public/bs/css/bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42660">
+              <caret line="1580" column="0" lean-forward="false" selection-start-line="1580" selection-start-column="0" selection-end-line="1580" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,10 +155,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="FxmlFile" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="AnnotationType" />
+        <option value="CSS File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -94,45 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/Book.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/User.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/dbconfig.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/utils/TimeUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/user/add.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/css/admin.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/user/addsucc.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/User.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/UserMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/UserPag.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/Pagination.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/utils/JacksonUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/Message.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/raise_cat/add.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/RaiseCat.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/raise_cat/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/user/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/Farm.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/farm/add.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/farm/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/controller/RaiseCatController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/service/RaiseCatService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/RaiseCatMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/Raise_Cat.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/RaiseCatServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/service/RaiseService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/RaiseServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/RaiseMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/public/css/bootstrap-select.min.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/Farm.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/FarmMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/FarmServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/blogss/service/FarmService.java" />
@@ -140,11 +182,50 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/blogss/controller/RaiseController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/Raise.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/raise/add.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin/raise/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/Raise.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/Interceptor/AdminInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/Interceptor/AuthInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/annotation/Auth.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/AdminServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/Admin.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/AdminMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/admin/add.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/admin/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/farm/add.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/farm/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/order/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/raise/add.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/raise/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/raise_cat/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/user/add.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/user/addsucc.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/user/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/login.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/raise_cat/add.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/service/NewsCatService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/NewsCatServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/controller/NewsCatController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/news_cat/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/NewsCatMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/news_cat/add.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/NewsCat.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/News_Cat.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/js/wangEditor3.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/css/news.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/news/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/pojo/News.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/news/add.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/mapper/NewsMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/News.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/service/NewsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/NewsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/blogss/controller/NewsController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/admin/news/detail.jsp" />
       </list>
     </option>
   </component>
@@ -190,7 +271,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="87" />
     <option name="y" value="1" />
     <option name="width" value="1400" />
@@ -212,7 +293,9 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -228,9 +311,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -273,6 +356,15 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="blogss" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhinong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhinong" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="blogss" type="462c0819:PsiDirectoryNode" />
+              <item name="Interceptor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zhinong" type="b2602c69:ProjectViewProjectNode" />
@@ -331,7 +423,48 @@
               <item name="zhinong" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhinong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhinong" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhinong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhinong" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhinong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhinong" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="news" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhinong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhinong" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhinong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhinong" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zhinong" type="b2602c69:ProjectViewProjectNode" />
@@ -354,25 +487,29 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin\js" />
+      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin\css" />
+      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin" />
       <recent name="D:\IdeaProjects\zhinong\src\main\webapp" />
       <recent name="D:\IdeaProjects\zhinong\src\main\webapp\WEB-INF" />
-      <recent name="D:\IdeaProjects\zhinong\src\main\resources\mapper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.blogss.controller" />
       <recent name="cn.blogss.serviceimpl" />
       <recent name="cn.blogss.service" />
-      <recent name="cn.blogss.controller" />
       <recent name="cn.blogss.mapper" />
+      <recent name="cn.blogss.pojo" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\WEB-INF" />
-      <recent name="D:\IdeaProjects\zhinong\src\main\webapp" />
-      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin\css" />
-      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin\raise" />
       <recent name="D:\IdeaProjects\zhinong\src\main\resources\mapper" />
+      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin\js" />
+      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin\css" />
+      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin\news" />
+      <recent name="D:\IdeaProjects\zhinong\src\main\webapp\admin\news_cat" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -589,11 +726,14 @@
       <workItem from="1526861640928" duration="2157000" />
       <workItem from="1526878532267" duration="312000" />
       <workItem from="1526900203157" duration="2834000" />
+      <workItem from="1527312789873" duration="15237000" />
+      <workItem from="1527396009632" duration="22860000" />
+      <workItem from="1527420124076" duration="46000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193806000" />
+    <option name="totallyTimeSpent" value="232013000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -605,7 +745,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -623,7 +763,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19151671" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18251929" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15874036" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -631,7 +771,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50555557" sideWeight="0.4974293" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13333334" sideWeight="0.4974293" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -687,138 +827,392 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/public/js/jquery.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/public/js/bootstrap-select.min.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/public/bs/css/bootstrap.css" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/utils/TimeUtil.java" />
-    <entry file="jar://D:/jdk1.8/src.zip!/java/lang/System.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/service/AdminService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="353" column="0" lean-forward="true" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+        <state relative-caret-position="162">
+          <caret line="6" column="30" lean-forward="false" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/utils/JacksonUtil.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.9.5/jackson-databind-2.9.5.jar!/com/fasterxml/jackson/databind/ObjectMapper.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/AdminServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="1215" column="18" lean-forward="false" selection-start-line="1215" selection-start-column="18" selection-end-line="1215" selection-end-column="18" />
+        <state relative-caret-position="104">
+          <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/UserServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/pojo/Message.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/raise_cat/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/UserController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/pojo/RaiseCat.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/user/add.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/pojo/Farm.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/user/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/farm/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/raise_cat/add.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/service/RaiseCatService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/mapper/RaiseCatMapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/Raise_Cat.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/service/RaiseService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/RaiseCatController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/public/css/bootstrap-select.min.css" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/mapper/FarmMapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/service/FarmService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/FarmServiceImpl.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.16.RELEASE/spring-web-4.3.16.RELEASE-sources.jar!/org/springframework/web/multipart/MultipartFile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="66" column="64" lean-forward="false" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="65" />
+        <state relative-caret-position="213">
+          <caret line="33" column="49" lean-forward="false" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.2/commons-io-2.2.jar!/org/apache/commons/io/FileUtils.class">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/Farm.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
-          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+        <state relative-caret-position="135">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding>
+            <marker date="1526878252248" expanded="true" signature="324:398" ph="insert into farm... " />
+            <marker date="1526878252248" expanded="true" signature="487:513" ph="SELECT count... farm" />
+            <marker date="1526878252248" expanded="true" signature="630:709" ph="select from farm" />
+            <marker date="1526878252248" expanded="true" signature="807:867" ph="select from farm" />
+            <marker date="1526878252248" expanded="true" signature="960:1009" ph="delete from farm... " />
+            <marker date="1526878252248" expanded="true" signature="1082:1385" ph="update farm... " />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/Admin.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="81">
+          <caret line="3" column="64" lean-forward="false" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="uml://MAVEN/cn.blogss.zhinong:zhinong:1.0-SNAPSHOT">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>MAVEN</ID>
-          <OriginalElement>cn.blogss.zhinong:zhinong:1.0-SNAPSHOT</OriginalElement>
-          <nodes>
-            <node x="" y="">cn.blogss.zhinong:zhinong:1.0-SNAPSHOT</node>
-            <node x="" y="">junit:junit:jar:4.11</node>
-            <node x="" y="">junit:junit:jar:4.11/org.hamcrest:hamcrest-core:jar:1.3</node>
-            <node x="" y="">org.apache.tomcat:tomcat-servlet-api:jar:9.0.2</node>
-            <node x="" y="">org.springframework:spring-context:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.springframework:spring-context:jar:4.3.16.RELEASE/org.springframework:spring-aop:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.springframework:spring-context:jar:4.3.16.RELEASE/org.springframework:spring-beans:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.springframework:spring-context:jar:4.3.16.RELEASE/org.springframework:spring-core:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.springframework:spring-context:jar:4.3.16.RELEASE/org.springframework:spring-core:jar:4.3.16.RELEASE/commons-logging:commons-logging:jar:1.2</node>
-            <node x="" y="">org.springframework:spring-context:jar:4.3.16.RELEASE/org.springframework:spring-expression:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.springframework:spring-webmvc:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.springframework:spring-web:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.14.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.14.RELEASE/org.springframework:spring-beans:jar:4.3.14.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.14.RELEASE/org.springframework:spring-core:jar:4.3.14.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.14.RELEASE/org.springframework:spring-tx:jar:4.3.14.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.14.RELEASE/org.springframework:spring-tx:jar:4.3.14.RELEASE/org.springframework:spring-beans:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.14.RELEASE/org.springframework:spring-tx:jar:4.3.14.RELEASE/org.springframework:spring-core:jar:4.3.16.RELEASE</node>
-            <node x="" y="">org.mybatis:mybatis:jar:3.2.8</node>
-            <node x="" y="">org.mybatis:mybatis-spring:jar:1.2.2</node>
-            <node x="" y="">javax.servlet:jstl:jar:1.2</node>
-            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.9.5</node>
-            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.9.5/com.fasterxml.jackson.core:jackson-annotations:jar:2.9.0</node>
-            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.9.5/com.fasterxml.jackson.core:jackson-core:jar:2.9.5</node>
-            <node x="" y="">log4j:log4j:jar:1.2.17</node>
-            <node x="" y="">commons-fileupload:commons-fileupload:jar:1.3.1</node>
-            <node x="" y="">commons-fileupload:commons-fileupload:jar:1.3.1/commons-io:commons-io:jar:2.2</node>
-            <node x="" y="">org.apache.commons:commons-lang3:jar:3.4</node>
-            <node x="" y="">mysql:mysql-connector-java:jar:5.1.46</node>
-            <node x="" y="">com.alibaba:druid:jar:1.1.6</node>
-            <node x="" y="">com.mchange:c3p0:jar:0.9.5.2</node>
-            <node x="" y="">com.mchange:c3p0:jar:0.9.5.2/com.mchange:mchange-commons-java:jar:0.2.11</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.8428571428571426" x="836.0" y="234.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>All</VISIBILITY>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/mapper/AdminMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="10" column="3" lean-forward="false" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/mapper/RaiseMapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/Farm.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/pojo/Pagination.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/RaiseCatServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/farm/add.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/FarmController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/RaiseController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/RaiseServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/raise/add.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/Raise.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/pojo/Raise.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/raise/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/css/normalize.css" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.html" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.html" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/normalize.css" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="61" column="55" lean-forward="false" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
+        <state relative-caret-position="972">
+          <caret line="37" column="39" lean-forward="false" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/farm/add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/farm/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/user/add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/user/addsucc.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/user/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/order/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/raise/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="132" column="39" lean-forward="false" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/raise_cat/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-937">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/raise/add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="290" column="39" lean-forward="false" selection-start-line="290" selection-start-column="39" selection-end-line="290" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/NewsCatServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1674">
+          <caret line="62" column="33" lean-forward="false" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="60" column="46" lean-forward="false" selection-start-line="60" selection-start-column="46" selection-end-line="60" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/raise_cat/add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="224" column="47" lean-forward="false" selection-start-line="224" selection-start-column="47" selection-end-line="224" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/news_cat/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3348">
+          <caret line="423" column="50" lean-forward="false" selection-start-line="423" selection-start-column="50" selection-end-line="423" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/service/NewsCatService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-39">
+          <caret line="10" column="54" lean-forward="false" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/news_cat/add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="221" column="54" lean-forward="false" selection-start-line="221" selection-start-column="54" selection-end-line="221" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/pojo/NewsCat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/News_Cat.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <marker date="1527327599748" expanded="true" signature="336:414" ph="insert into news_cat... " />
+            <marker date="1527327599748" expanded="true" signature="503:533" ph="SELECT count... news_cat" />
+            <marker date="1527327599748" expanded="true" signature="653:736" ph="select from news_cat" />
+            <marker date="1527327599748" expanded="true" signature="840:904" ph="select from news_cat" />
+            <marker date="1527327599748" expanded="true" signature="1000:1059" ph="delete from news_cat... " />
+            <marker date="1527327599748" expanded="true" signature="1135:1448" ph="update news_cat... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/mapper/NewsCatMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/admin/add.jsp" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/admin/index.jsp" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/js/wangEditor.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/js/wangEditor3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="4519" column="8" lean-forward="false" selection-start-line="4519" selection-start-column="8" selection-end-line="4519" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/RaiseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/FarmController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/NewsCatController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="48" column="22" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/pojo/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/utils/TimeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/css/news.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/pojo/News.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/news/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="238" column="51" lean-forward="false" selection-start-line="238" selection-start-column="51" selection-end-line="238" selection-end-column="51" />
+          <folding>
+            <element signature="e#18042#18604#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/mapper/NewsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/jdk1.8/src.zip!/java/util/LinkedHashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="162" column="13" lean-forward="false" selection-start-line="162" selection-start-column="13" selection-end-line="162" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.16.RELEASE/spring-context-4.3.16.RELEASE.jar!/org/springframework/ui/ModelMap.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.3.16.RELEASE/spring-webmvc-4.3.16.RELEASE-sources.jar!/org/springframework/web/servlet/ModelAndView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="290" column="24" lean-forward="false" selection-start-line="290" selection-start-column="24" selection-end-line="290" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/News.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <marker date="1527416226996" expanded="true" signature="373:451" ph="SELECT newsT... news" />
+            <marker date="1527416226996" expanded="true" signature="541:692" ph="insert into news... " />
+            <marker date="1527416226996" expanded="true" signature="781:807" ph="SELECT count... news" />
+            <marker date="1527416226996" expanded="true" signature="919:1063" ph="select newsI... news" />
+            <marker date="1527416226996" expanded="true" signature="1159:1219" ph="select from news" />
+            <marker date="1527416226996" expanded="true" signature="1310:1359" ph="delete from news... " />
+            <marker date="1527416226996" expanded="true" signature="1430:1733" ph="update news... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/service/NewsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/serviceimpl/NewsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding>
+            <element signature="e#771#772#0" expanded="true" />
+            <element signature="e#823#824#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/public/bs/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42660">
+          <caret line="1580" column="0" lean-forward="false" selection-start-line="1580" selection-start-column="0" selection-end-line="1580" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/news/add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="23" column="38" lean-forward="false" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/blogss/controller/NewsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="46" column="53" lean-forward="false" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+          <folding>
+            <element signature="e#784#785#0" expanded="true" />
+            <element signature="e#842#843#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/news/detail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
           <folding />
         </state>
       </provider>

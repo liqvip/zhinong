@@ -2,10 +2,9 @@
 <html >
 <head>
 <meta charset="UTF-8">
-<title>Login Form</title>
-
-<link rel="stylesheet" href="./normalize.css">
-
+	<title>知农后台管理系统</title>
+<link rel="stylesheet" href="./css/normalize.css">
+	<script src="../public/js/jquery.js"></script>
 <style type="text/css">
 .btn { 
 	display: inline-block; 
@@ -101,9 +100,6 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 </style>
 
 
-<script src="js/prefixfree.min.js"></script>
-
-
 </head>
 
 <body>
@@ -111,13 +107,35 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 <div class="login">
 	<h1>Login</h1>
 	<form method="post">
-		<input type="text" name="u" placeholder="用户名" required="required" />
-		<input type="password" name="p" placeholder="密码" required="required" />
+		<input type="text" name="loginName" placeholder="用户名" required="required" />
+		<input type="password" name="loginPwd" placeholder="密码" required="required" />
 		<button type="submit" class="btn btn-primary btn-block btn-large">登录</button>
 	</form>
 </div>
-
-
-
+<script>
+	$(document).ready(function () {
+		$("form").submit(function (e) {
+			//防止表单以老式方法提交
+			e.preventDefault();
+			//表单数据序列化
+			var formData = $(this).serialize();
+			//当接口返回的数据类型与dataType不一致时，error模块也将会执行,即使请求成功
+			$.ajax({
+				url:"login",
+				type:"POST",
+				dataType:"JSON",
+				data:formData,
+				success:function (data,status,jqXHR) {
+				    if(!data.success){
+				        alert(data.msg);
+					}
+                },
+				error:function (jqXHR) {
+				    window.location.href="./index.jsp";
+                }
+			});
+        });
+    });
+</script>
 </body>
 </html>

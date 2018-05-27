@@ -1,4 +1,9 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
+<%
+	if(session.getAttribute("loginName") == null){
+		response.sendRedirect("../login.html");
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +11,6 @@
 	<script src="../../public/js/jquery.js"></script>
 	<script src="../../public/js/docs.min.js"></script>
 	<script src="../../public/bs/js/bootstrap.js"></script>
-	<script src="../../public/js/bootstrap-select.min.js"></script>
 	<link rel="stylesheet" href="../../public/bs/css/bootstrap.css">
 	<link rel="stylesheet" href="../../public/css/bootstrap-select.min.css">
 	<link rel="stylesheet" href="../css/admin.css">
@@ -219,13 +223,9 @@
 							<input type="text" name="catName" id="" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="" style="display:block;">分类父ID：<small>默认为0,可不填</small></label>
+							<label for="" style="display:block;">父类型：<small>默认为0,可不填</small></label>
                             <select class="selectpicker" name="parentId">
-                                <option>0</option>
-                                <option>猪类</option>
-                                <option>鸡类</option>
-								<option>羊类</option>
-								<option>种植产品</option>
+                                <option value="0">0</option>
                             </select>
 						</div>
 						<div class="form-group">
@@ -235,6 +235,30 @@
 					</div>
 				</div>
 			</form>
+            <%--获取农资分类--%>
+			<script>
+                $(document).ready(function () {
+                    $.ajax({
+                        url:"../raise_cat/scanall",
+                        method:"GET",
+                        dataType:"JSON",
+                        success:function (data,status,jqXHR) {
+                            raiseCatStr = "";
+
+                            for(var i=0;i<data.length;i++){
+                                raiseCatStr+="<option value='"+data[i].raiseCatId+"'>"+data[i].catName+"</option>";
+                            }
+
+                            $("[name='parentId']").append(raiseCatStr);
+                        },
+                        error:function (jqXHR) {
+                            alert(jqXHR.status);
+                        }
+                    });
+                });
+
+			</script>
+
 			<%--异步添加分类--%>
 			<script>
 				$("form").submit(function (e) {

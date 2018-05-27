@@ -1,6 +1,11 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+    if(session.getAttribute("loginName") == null){
+        response.sendRedirect("./login.html");
+	}
+%>
 <head>
 	<meta charset="UTF-8">
 	<script src="../public/js/jquery.js"></script>
@@ -182,8 +187,8 @@
 			    </div>
 			    <div id="collapseeight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingeight">
 			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="">分类查看</a></li>
-			      	<li class="list-group-item"><a href="">分类添加</a></li>
+			      	<li class="list-group-item"><a href="./news_cat/index.jsp">分类查看</a></li>
+			      	<li class="list-group-item"><a href="./news_cat/add.jsp">分类添加</a></li>
 			      </ul>
 			    </div>
 			  </div>

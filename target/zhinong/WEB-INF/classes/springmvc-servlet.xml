@@ -27,7 +27,7 @@
     <mvc:annotation-driven></mvc:annotation-driven>
 
 
-    <!--  静态页面，如html,css,js,images可以访问 -->
+    <!--  放行css,js,images等静态资源 -->
     <mvc:default-servlet-handler />
 
     <!--文件上传-->
@@ -55,13 +55,6 @@
         </property>
     </bean>
 
-    <!--拦截器实现权限控制-->
-   <!-- <mvc:interceptors>
-        <mvc:interceptor>
-               <mvc:mapping path="/admin/*"/>
-            <bean class="cn.blogss.interceptors"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>-->
 
 <!--配置ViewResolver,可以用多个ViewResolver,使用order属性排序,InternalResourceViewResolver放在最后
         -->

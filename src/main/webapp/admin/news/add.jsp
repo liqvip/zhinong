@@ -1,4 +1,9 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
+<%
+	if(session.getAttribute("loginName") == null){
+		response.sendRedirect("../login.html");
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +11,10 @@
 	<script src="../../public/js/jquery.js"></script>
 	<script src="../../public/js/docs.min.js"></script>
 	<script src="../../public/bs/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="../../public/bs/css/bootstrap.css">	
-	<link rel="stylesheet" href="../css/admin.css">	
+	<link rel="stylesheet" href="../../public/bs/css/bootstrap.css">
+	<link rel="stylesheet" href="../../public/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="../css/admin.css">
+	<script src="../js/wangEditor3.js"></script>
 	<title>知农后台</title>
 	<style>
 	</style>
@@ -60,8 +67,8 @@
 			    </div>
 			    <div id="collapseone" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingone">
 			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="../user/index.jsp">用户查看</a></li>
-			      	<li class="list-group-item"><a href="../user/add.jsp">用户添加</a></li>
+			      	<li class="list-group-item"><a href="./index.jsp">用户查看</a></li>
+			      	<li class="list-group-item"><a href="./add.jsp">用户添加</a></li>
 			      </ul>
 			    </div>
 			  </div>
@@ -77,8 +84,8 @@
 			    </div>
 			    <div id="collapsetwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingtwo">
 			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="">管理员查看</a></li>
-			      	<li class="list-group-item"><a href="./add.jsp">管理员添加</a></li>
+			      	<li class="list-group-item"><a href="../admin/index.jsp">管理员查看</a></li>
+			      	<li class="list-group-item"><a href="../admin/add.jsp">管理员添加</a></li>
 			      </ul>
 			    </div>
 			  </div>
@@ -99,19 +106,19 @@
 			    </div>
 			  </div>
 
-			  <!-- 农资管理 -->
+			  <!-- 新闻管理 -->
 			  <div class="panel panel-primary">
 			    <div class="panel-heading" role="tab" id="headingfour">
 			      <h4 class="panel-title">
 			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-			        	农资管理
+			        	新闻管理
 			        </a>
 			      </h4>
 			    </div>
 			    <div id="collapsefour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfour">
 			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="../raise/index.jsp">农资查看</a></li>
-			      	<li class="list-group-item"><a href="../raise/add.jsp">农资添加</a></li>
+			      	<li class="list-group-item"><a href="./index.jsp">新闻查看</a></li>
+			      	<li class="list-group-item"><a href="">新闻添加</a></li>
 			      </ul>
 			    </div>
 			  </div>
@@ -133,19 +140,19 @@
 			    </div>
 			  </div>
 
-			  <!-- 农资分类管理 -->
+			  <!-- 新闻分类管理 -->
 			  <div class="panel panel-primary">
 			    <div class="panel-heading" role="tab" id="headingsix">
 			      <h4 class="panel-title">
 			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
-			        	农资分类管理
+			        	新闻分类管理
 			        </a>
 			      </h4>
 			    </div>
 			    <div id="collapsesix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsix">
 			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="../raise_cat/index.jsp">分类查看</a></li>
-			      	<li class="list-group-item"><a href="../raise_cat/add.jsp">分类添加</a></li>
+			      	<li class="list-group-item"><a href="../news_cat/index.jsp">分类查看</a></li>
+			      	<li class="list-group-item"><a href="../news_cat/add.jsp">分类添加</a></li>
 			      </ul>
 			    </div>
 			  </div>
@@ -161,8 +168,8 @@
 			    </div>
 			    <div id="collapseseven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingseven">
 			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="../news/index.jsp">新闻查看</a></li>
-			      	<li class="list-group-item"><a href="../news/add.jsp">新闻添加</a></li>
+			      	<li class="list-group-item"><a href="./index.jsp">新闻查看</a></li>
+			      	<li class="list-group-item"><a href="">新闻添加</a></li>
 			      </ul>
 			    </div>
 			  </div>
@@ -206,87 +213,91 @@
 
 		<!-- 右侧设计 -->
 		<div class="col-md-10">
-		  <table class="table table-striped table-bordered">
-		  	<tbody>
-			  	<tr>
-			  		<th>账号</th>
-		  			<th>密码</th>
-		  			<th>注册时间</th>
-		  			<th>删除</th>
-		  			<th>修改</th>
-			  	</tr>	
-			  	<tr>
-			  		<td>user1</td>
-			  		<td>123</td>
-			  		<td>2015-3-03</td>
-			  		<td><a href="" data-toggle="modal" data-target="#deletemodal">删除</a></td>
-			  		<td><a href="" data-toggle="modal" data-target="#modifymodal">修改</a></td>
-			  	</tr>
-		  	</tbody>
-		  </table>
-
-		  <!-- 底部分页 -->
-		   <ul class="pagination">
-		    <li><a href="#">上一页</a></li>
-		    <li class="active"><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#">下一页</a></li>
-		  </ul>
-
+			<form action="" method="post">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">添加新闻</h3>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="">新闻标题：</label>
+							<input type="text" name="newsTitle"  class="form-control">
+						</div>
+                        <div id="editor">
+							<p>这里输入内容</p>
+						</div>
+						<div class="form-group">
+							<label for="" style="display:block;">新闻分类</label>
+							<select class="selectpicker" name="newsCatId">
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="submit" value="添加" class="btn btn-primary">
+							<input type="reset" value="取消" class="btn btn-warning">
+						</div>
+					</div>
+				</div>
+			</form>
 		</div><!--col-md-10-->
 
 	</div><!--row-->
-
-	<!-- 删除modal -->
-	<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">用户删除</h4>
-	      </div>
-	      <div class="modal-body">
-	      	<h4 class="text-danger">你确定要删除该用户吗?</h4>	
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
-	        <button type="button" class="btn btn-primary">确定</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-	<!-- 修改modal -->
-	<div class="modal fade" id="modifymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">管理员信息修改</h4>
-	      </div>
-	      <div class="modal-body">
-	      	<form action="">
-	      		<div class="form-group">
-	      			<label for="">账号:</label>
-	      			<input type="text" class="form-control">
-	      		</div>
-	      		<div class="form-group">
-	      			<label for="">密码:</label>
-	      			<input type="text" class="form-control">
-	      		</div>
-	      	</form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
-	        <button type="button" class="btn btn-primary">修改</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
 </body>
 <script>
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('editor') )
+    // tab显示和隐藏
+    // 下面两个配置，使用其中一个即可显示“上传图片”的tab。但是两者不要同时使用！！！
+    editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
+    //editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
+    editor.create();
+
+		<%--异步请求获得新闻类型--%>
+		$(document).ready(function () {
+			$.ajax({
+				url:"../news_cat/scanall",
+				method:"GET",
+				dataType:"JSON",
+				success:function (data,status,jqXHR) {
+					newsCatStr = "";
+
+					for(var i=0;i<data.length;i++){
+					    newsCatStr+="<option value='"+data[i].newsCatId+"'>"+data[i].catName+"</option>";
+					}
+
+					$("[name='newsCatId']").append(newsCatStr);
+                },
+				error:function (jqXHR) {
+					alert(jqXHR.status);
+                }
+			});
+        });
+
+//        异步添加新闻
+    $("form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url:"add",
+            method:"POST",
+            data:{
+                newsCatId:$("[name='newsCatId']").val(),
+				newsTitle:$("[name='newsTitle']").val(),
+				newsContent:editor.txt.html()
+			},
+            dataType:"JSON",
+            success:function (data,status,jqXHR) {
+                if(data.success){
+                    alert(data.msg);
+                    window.location.href="./index.jsp";
+                }else {
+                    alert(data.msg);
+                }
+            },
+            error:function (jqXHR) {
+                    alert(jqXHR.status);
+            }
+        });
+    });
+
 </script>
 </html>

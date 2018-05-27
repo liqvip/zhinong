@@ -1,5 +1,9 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
-<%@page contentType="text/html; charset=utf-8" language="java" %>
+<%
+	if(session.getAttribute("loginName") == null){
+		response.sendRedirect("../login.html");
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

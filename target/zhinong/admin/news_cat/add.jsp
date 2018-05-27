@@ -1,4 +1,9 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
+<%
+	if(session.getAttribute("loginName") == null){
+		response.sendRedirect("../login.html");
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +11,9 @@
 	<script src="../../public/js/jquery.js"></script>
 	<script src="../../public/js/docs.min.js"></script>
 	<script src="../../public/bs/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="../../public/bs/css/bootstrap.css">	
-	<link rel="stylesheet" href="../css/admin.css">	
+	<link rel="stylesheet" href="../../public/bs/css/bootstrap.css">
+	<link rel="stylesheet" href="../../public/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="../css/admin.css">
 	<title>知农后台</title>
 	<style>
 	</style>
@@ -77,8 +83,8 @@
 			    </div>
 			    <div id="collapsetwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingtwo">
 			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="./index.jsp">管理员查看</a></li>
-			      	<li class="list-group-item"><a href="./add.jsp">管理员添加</a></li>
+			      	<li class="list-group-item"><a href="../admin/index.jsp">管理员查看</a></li>
+			      	<li class="list-group-item"><a href="../admin/add.jsp">管理员添加</a></li>
 			      </ul>
 			    </div>
 			  </div>
@@ -144,8 +150,8 @@
 			    </div>
 			    <div id="collapsesix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsix">
 			      <ul class="list-group">
-			      <li class="list-group-item"><a href="../raise_cat/index.jsp">分类查看</a></li>
-			      	<li class="list-group-item"><a href="../raise_cat/add.jsp">分类添加</a></li>
+			      	<li class="list-group-item"><a href="./index.jsp">分类查看</a></li>
+			      	<li class="list-group-item"><a href="">分类添加</a></li>
 			      </ul>
 			    </div>
 			  </div>
@@ -178,8 +184,8 @@
 			    </div>
 			    <div id="collapseeight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingeight">
 			      <ul class="list-group">
-			      		<li class="list-group-item"><a href="../news_cat/index.jsp">分类查看</a></li>
-			      	<li class="list-group-item"><a href="../news_cat/add.jsp">分类添加</a></li>
+			      	<li class="list-group-item"><a href="./index.jsp">分类查看</a></li>
+			      	<li class="list-group-item"><a href="">分类添加</a></li>
 			      </ul>
 			    </div>
 			  </div>
@@ -206,19 +212,21 @@
 
 		<!-- 右侧设计 -->
 		<div class="col-md-10">
-			<form action="">
+			<form action="add" method="post">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">基本信息</h3>
+						<h3 class="panel-title">分类信息</h3>
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label for="">账号：</label>
-							<input type="text" name="" id="" class="form-control">
+							<label for="">新闻类型：</label>
+							<input type="text" name="catName" id="" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="">密码：</label>
-							<input type="text" name="" id="" class="form-control">
+							<label for="" style="display:block;">父类型：<small>默认为0,可不填</small></label>
+                            <select class="selectpicker" name="parentId">
+                                <option value="0">0</option>
+                            </select>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="添加" class="btn btn-primary">
@@ -227,6 +235,53 @@
 					</div>
 				</div>
 			</form>
+            <%--获取农资分类--%>
+			<script>
+                $(document).ready(function () {
+                    $.ajax({
+                        url:"../news_cat/scanall",
+                        method:"GET",
+                        dataType:"JSON",
+                        success:function (data,status,jqXHR) {
+                            raiseCatStr = "";
+
+                            for(var i=0;i<data.length;i++){
+                                raiseCatStr+="<option value='"+data[i].raiseCatId+"'>"+data[i].catName+"</option>";
+                            }
+
+                            $("[name='parentId']").append(raiseCatStr);
+                        },
+                        error:function (jqXHR) {
+                            alert(jqXHR.status);
+                        }
+                    });
+                });
+
+			</script>
+
+			<%--异步添加分类--%>
+			<script>
+				$("form").submit(function (e) {
+					e.preventDefault();
+					var form =$(this);
+					$.ajax({
+						url:form.attr("action"),
+						method:form.attr("method"),
+						dataType:"JSON",
+						data:form.serialize(),
+						success:function (data,status,jqXHR) {
+							if(data.success)	{
+							    alert(data.msg);
+							}else{
+                                alert(data.msg);
+							}
+                        },
+						error:function (jqXHR) {
+							alert("发生错误："+jqXHR.status);
+                        }
+					});
+                });
+			</script>
 		</div><!--col-md-10-->
 
 	</div><!--row-->

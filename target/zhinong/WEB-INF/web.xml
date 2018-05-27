@@ -2,6 +2,10 @@
          xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 
   <!--Spring应用上下文，理解层次化的ApplicationContext-->
   <context-param>
@@ -27,6 +31,12 @@
   <servlet-mapping>
     <servlet-name>mvc-dispatcher</servlet-name>
     <url-pattern>/</url-pattern>
+      <!--缺省匹配,不会拦截jsp页面，但是会拦截html,css.js,images等静态资源-->
+    <!--这是应为servlet容器有内置的“*.jsp”匹配器，而扩展名匹配的优先级高于缺省匹配，所以才会有上述现象-->
+</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.html</url-pattern>
   </servlet-mapping>
 
   <!--配置编码过滤器，对post方法有效,解决中文乱码-->

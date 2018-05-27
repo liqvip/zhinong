@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.blogss.mapper.NewsMapper">
+    <sql id="columns">newsId,newsCatId,newsTitle,newsContent,newsImg,createTime</sql>
+
+    <!--新闻详情-->
+    <select id="newsDetail" resultType="Map" parameterType="int">
+        SELECT newsTitle,newsContent
+        from  news
+        WHERE newsId=#{newsId}
+    </select>
+
+
+    <!--后台新闻添加-->
+    <insert id="newsAdd" parameterType="News">
+        insert into news(newsCatId,newsTitle,newsContent,newsImg,createTime) values
+        (#{newsCatId},#{newsTitle},#{newsContent},#{newsImg},#{createTime})
+    </insert>
+    
+    <!--总记录数-->
+    <select id="totRecord" resultType="int">
+        SELECT count(*) from  news
+    </select>
+
+    <!--后台新闻查看-->
+    <select id="newsSelectAll" parameterType="int" resultType="News">
+        select newsId,newsTitle,createTime,catName
+        from news,news_cat
+        where news.newsCatId=news_cat.newsCatId
+        limit #{pageNow},5
+    </select>
+
+    <!--后台新闻查看所有-->
+    <select id="newsSelectAll2"  resultType="News">
+        select <include refid="columns"></include>
+        from news
+    </select>
+
+    <!--后台新闻删除-->
+    <delete id="newsDelete" parameterType="int">
+        delete from news
+        where newsId = #{newsId}
+    </delete>
+
+    <!--后台新闻修改-->
+    <update id="newsModify">
+        update news
+        <set>
+            <if test="newsTitle != null">
+                newsTitle = #{newsTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="newsId != null">
+                newsId = #{newsId,jdbcType=INTEGER},
+            </if>
+        </set>
+        WHERE  newsId = #{newsId}
+    </update>
+</mapper>
