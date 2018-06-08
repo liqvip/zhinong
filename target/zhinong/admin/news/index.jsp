@@ -117,8 +117,8 @@
 				</div>
 				<div id="collapsefour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfour">
 					<ul class="list-group">
-						<li class="list-group-item"><a href="">农资查看</a></li>
-						<li class="list-group-item"><a href="./add.jsp">农资添加</a></li>
+						<li class="list-group-item"><a href="../raise/index.jsp">农资查看</a></li>
+						<li class="list-group-item"><a href="../raise/add.jsp">农资添加</a></li>
 					</ul>
 				</div>
 			</div>

@@ -234,11 +234,7 @@
 						</div>
 						<div class="form-group">
 							<label for="">农资缩略图：</label>
-							<input type="file" name="fileOne" id="" >
-						</div>
-						<div class="form-group">
-							<label for="">农资图片(可选择多张)：</label>
-							<input type="file" name="fileMore" id="" multiple="multiple">
+							<input type="file" name="file" id="" >
 						</div>
 						<div class="form-group">
 							<label for="">市场价：</label>
@@ -327,6 +323,7 @@
             success:function (data,status,jqXHR) {
                 if(data.success){
                     alert(data.msg);
+                    window.location.href="./index.jsp";
                 }else {
                     alert(data.msg);
                 }

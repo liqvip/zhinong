@@ -217,7 +217,6 @@
 				<th>分类ID</th>
 				<th>农场ID</th>
 				<th>名称</th>
-				<th>农资图片</th>
 				<th>农资缩略图</th>
 				<th>市场价(元)</th>
 				<th>养成周期(月)</th>
@@ -255,7 +254,6 @@
 					  "<td>"+data.list[i].raiseCatId+"</td>" +
                       "<td>"+data.list[i].farmId+"</td>" +
 					  "<td>"+data.list[i].raiseName+"</td>" +
-                      "<td>-</td>" +
                       "<td><img src='../images/raise/"+data.list[i].raiseThums+"' alt=''></td>" +
                       "<td>"+data.list[i].marketPrice+"</td>" +
                       "<td>"+data.list[i].raiseCycle+"</td>" +
@@ -356,7 +354,6 @@
                                 "<td>"+data.list[i].raiseCatId+"</td>" +
                                 "<td>"+data.list[i].farmId+"</td>" +
                                 "<td>"+data.list[i].raiseName+"</td>" +
-                                "<td>-</td>" +
                                 "<td><img src='../images/raise/"+data.list[i].raiseThums+"' alt=''></td>" +
                                 "<td>"+data.list[i].marketPrice+"</td>" +
                                 "<td>"+data.list[i].raiseCycle+"</td>" +

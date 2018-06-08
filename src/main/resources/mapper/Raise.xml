@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.blogss.mapper.RaiseMapper">
-    <sql id="columns">raiseId,raiseCatId,farmId,raiseName,raiseImg,raiseThums,marketPrice,raiseCycle,raiseProfit,
+    <sql id="columns">raiseId,raiseCatId,farmId,raiseName,raiseThums,marketPrice,raiseCycle,raiseProfit,
     raiseStock,raisePeriod</sql>
 
     <!--后台农资分类添加-->
     <insert id="raiseAdd" parameterType="Raise">
         insert into
-        raise(raiseCatId,farmId,raiseName,raiseImg,raiseThums,marketPrice,raiseCycle,raiseProfit,raiseStock,raisePeriod)
+        raise(raiseCatId,farmId,raiseName,raiseThums,marketPrice,raiseCycle,raiseProfit,raiseStock,raisePeriod)
         values
-        (#{raiseCatId},#{farmId},#{raiseName},#{raiseImg},#{raiseThums},#{marketPrice},#{raiseCycle},#{raiseProfit},
+        (#{raiseCatId},#{farmId},#{raiseName},#{raiseThums},#{marketPrice},#{raiseCycle},#{raiseProfit},
         #{raiseStock},#{raisePeriod})
     </insert>
     

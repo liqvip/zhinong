@@ -2,16 +2,20 @@ package cn.blogss.controller;/*
     create by LiQiang at 2018/4/22   
 */
 
+import cn.blogss.pojo.Farm;
 import cn.blogss.pojo.News;
 import cn.blogss.service.NewsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
@@ -27,6 +31,23 @@ public class NewsController {
 
     public NewsController(){
         System.out.println("NewsController:我被注入啦");
+    }
+
+    //    新闻图片上传
+    @RequestMapping(value = "/news/upload",method = RequestMethod.POST,produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String imgUpload(@RequestAttribute("file")MultipartFile file) throws
+            IOException {
+        //图片处理
+        String newFileName = "";
+        if(!file.isEmpty()){
+            newFileName = System.currentTimeMillis()+file.getOriginalFilename();
+            System.out.println(request.getServletContext().getRealPath("images"));
+            File newFile = new File(request.getServletContext().getRealPath("admin\\images\\news"),newFileName);
+            FileUtils.copyInputStreamToFile(file.getInputStream(),newFile);
+        }
+
+        return  "{\"url\":\""+newFileName+"\"}";
     }
 
 //    新闻详情

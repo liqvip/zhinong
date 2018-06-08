@@ -7,7 +7,6 @@ public class Raise {
     private  int raiseCatId;
     private  int farmId;
     private String raiseName;
-    private String raiseImg;
     private String raiseThums;
     private double marketPrice;
     private String raiseCycle;
@@ -54,14 +53,6 @@ public class Raise {
 
     public void setRaiseName(String raiseName) {
         this.raiseName = raiseName;
-    }
-
-    public String getRaiseImg() {
-        return raiseImg;
-    }
-
-    public void setRaiseImg(String raiseImg) {
-        this.raiseImg = raiseImg;
     }
 
     public double getMarketPrice() {

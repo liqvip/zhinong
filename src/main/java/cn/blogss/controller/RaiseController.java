@@ -33,19 +33,18 @@ public class RaiseController {
 //    后台农资添加
     @RequestMapping(value = "/raise/add",method = RequestMethod.POST,produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String raiseAdd(@ModelAttribute Raise raise , @RequestAttribute("fileMore")MultipartFile[] fileMore,
-                           @RequestAttribute("fileOne") MultipartFile fileOne) throws IOException {
+    public String raiseAdd(@ModelAttribute Raise raise , @RequestAttribute("file") MultipartFile file) throws IOException {
         //农资缩略图处理
-        if(!fileOne.isEmpty()){
-            String newFileName = System.currentTimeMillis()+fileOne.getOriginalFilename();
+        if(!file.isEmpty()){
+            String newFileName = System.currentTimeMillis()+file.getOriginalFilename();
             raise.setRaiseThums(newFileName);
             System.out.println(request.getServletContext().getRealPath("images"));
             File newFile = new File(request.getServletContext().getRealPath("admin\\images\\raise"),newFileName);
-            FileUtils.copyInputStreamToFile(fileOne.getInputStream(),newFile);
+            FileUtils.copyInputStreamToFile(file.getInputStream(),newFile);
         }
 
         //农资图片处理,多图
-        if(fileMore.length!=0&&fileOne!=null){
+       /* if(fileMore.length!=0&&fileOne!=null){
             List<String> ls = new ArrayList<String>();
 
             for(MultipartFile fs:fileMore){
@@ -58,7 +57,7 @@ public class RaiseController {
 
             String str = StringUtils.join(ls.toArray(),";");
             raise.setRaiseImg(str);
-        }
+        }*/
         //model处理
         String str = raiseService.raiseAdd(raise);
         return  str;
