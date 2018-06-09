@@ -3,6 +3,9 @@
 	if(session.getAttribute("loginName") == null){
 		response.sendRedirect("../login.html");
 	}
+
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -312,7 +315,7 @@
 
             // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
 			console.log(result);
-            var url = "../images/news/"+result.url;
+            var url = "<%=basePath%>"+"admin/images/news/"+result.url;
             insertImg(url);
 
             // result 必须是一个 JSON 格式字符串！！！否则报错

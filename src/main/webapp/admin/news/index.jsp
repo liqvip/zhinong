@@ -286,7 +286,7 @@
             var curPage = $("#curPage").text();
 
 			$(document).on("click",".pagination>li>a",function (event) {
-			    $("table tr:not(:first)").remove();
+                $(".news_list>li").remove();
                 //判断点击的页码是多少
                 if($(this).attr("id")=="first" || $(this).text()==1){
                     $("#first,#pre").addClass("disabled").addClass("btn");
@@ -331,16 +331,16 @@
                     success:function (data,status,jqXHR) {
                         var tableStr = "";
                         for(var i=0;i<data.list.length;i++) {
-                            // 表格拼接
+                            // 新闻列表拼接
                             tableStr+="<li class='news_info'>" +
-                                "<div class='news'>" +
+                                	"<div class='news'>" +
                                 	"<p><a href='detail/"+data.list[i].newsId+"' target='_blank' class='news_title text-primary'>"+data.list[i].newsTitle+"</a></p>"+
-                                	"<span class='news_cat'>分类："+data.list[i].news_cat+"</span>"+
+                                	"<span class='news_cat'>分类："+data.list[i].catName+"</span>"+
                                 	"<span class='createtime'>时间："+data.list[i].createTime+"</span>"+
-                                "</div>"+
+                                	"</div>"+
                                 "</li>";
                         }
-                        $("table").append(tableStr);
+                        $(".news_list").append(tableStr);
                         /*底部数字分页算法*/
                         /*
                             start,显示时候起始页码
