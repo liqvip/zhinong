@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
-    if(session.getAttribute("loginName") == null){
+    if(session.getAttribute("adminName") == null){
         response.sendRedirect("./login.html");
 	}
 %>

@@ -318,7 +318,7 @@
             method:"POST",
             data:form,
             processData:false,//告诉jq不处理数据
-            contentType:false,//告诉jqi不设置内容类型
+            contentType:false,//告诉jq不设置内容类型
             dataType:"JSON",
             success:function (data,status,jqXHR) {
                 if(data.success){

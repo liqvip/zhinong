@@ -7,6 +7,17 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
+  <!--过滤器，用户验证用户是否登录,路径匹配-->
+  <filter>
+    <filter-name>Login</filter-name>
+    <filter-class>cn.blogss.filter.LoginFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>Login</filter-name>
+    <url-pattern>/home/user/*</url-pattern>
+  </filter-mapping>
+
   <!--Spring应用上下文，理解层次化的ApplicationContext-->
   <context-param>
     <param-name>contextConfigLocation</param-name>

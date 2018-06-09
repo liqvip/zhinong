@@ -128,10 +128,12 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 				success:function (data,status,jqXHR) {
 				    if(!data.success){
 				        alert(data.msg);
+					}else{
+                        window.location.href="./index.jsp";
 					}
                 },
 				error:function (jqXHR) {
-				    window.location.href="./index.jsp";
+				    alert(jqXHR.status);
                 }
 			});
         });

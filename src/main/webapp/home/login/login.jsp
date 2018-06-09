@@ -185,30 +185,30 @@
 		<div class="" style="width: 800px;margin: 0 auto;">
 			<div class="panel panel-success">
 			  <div class="panel-heading">
-			    <h3 class="panel-title" style="font-size: 20px;">欢迎登录</h3>
+			    <h3 class="panel-title" style="font-size: 20px;">请登录</h3>
 			  </div>
 			  <div class="panel-body">
-			  	<form action="check.jsp" method="post">
+			  	<form action="" method="post">
 			  		<div class="form-group">
 		  				<label for="">账号：</label>
-		  				<input type="text" class="form-control auth" name="userName" placeholder="请输入账号">
+		  				<input type="text" class="form-control auth" name="loginName" placeholder="请输入账号">
 		  				<p>6-10位英文、数字、 符号，区分大小写!</p>
 		  			</div>
 		  			<div class="form-group">
 		  				<label for="">密码：</label>
-		  				<input type="password" class="form-control auth" name="passWord" placeholder="请输入密码">
+		  				<input type="password" class="form-control auth" name="loginPwd" placeholder="请输入密码">
 		  				<p>8-20位英文、数字、 符号，区分大小写!</p>
 		  			</div>
-                    <a href="" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>开始登录</a>
-                    <a href="" class="btn btn-danger"><span class="glyphicon glyphicon-cog"></span>找回密码</a>
+                    <input type="submit" class="btn btn-success">
+                    <a href="" class="btn btn-danger">找回密码</a>
 			  	</form>
 			  </div>
 			</div>
 		</div>
 	</div>
 	<script>
-		var uO = $("input[name=userName]");
-		var pO = $("input[name=passWord]");	
+		var uO = $("input[name=loginName]");
+		var pO = $("input[name=loginPwd]");
 
 		uO.blur(function(){
 			var userV = uO.val();
@@ -231,7 +231,10 @@
 			}
 		});
 
-		$("form").submit(function(){
+		$("form").submit(function(e){
+		    //防止表单以老式方法提交
+		    e.preventDefault();
+		    var str = $(this).serialize();
 			$(".auth").blur();
 			var tot = 0;
 
@@ -239,9 +242,25 @@
 				tot+=$(this).data("s");
 			});
 
-			if(tot!=3){
-			return false;
-			}
+			if(tot!=2){
+			    return false;
+			}else {
+			    $.ajax({
+                    url:"check",
+                    type:"POST",
+                    data:str,
+                    success:function (data,status,jqXHR) {
+                        if(!data.success){
+                            alert(data.msg);
+                        }else{
+                            window.location.href="../index.jsp";
+                        }
+                    },
+                    error:function (jqXHR) {
+                        alert(jqXHR.status);
+                    }
+                });
+            }
 		});
 
 	</script>

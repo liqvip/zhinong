@@ -188,15 +188,15 @@
 			    <h3 class="panel-title" style="font-size: 20px;">欢迎注册</h3>
 			  </div>
 			  <div class="panel-body">
-			  	<form action="check.jsp" method="post">
+			  	<form action="register" method="post">
 			  		<div class="form-group">
 		  				<label for="">账号：</label>
-		  				<input type="text" class="form-control auth" name="userName" placeholder="请输入账号">
+		  				<input type="text" class="form-control auth" name="loginName" placeholder="请输入账号">
 		  				<p>6-10位英文、数字、 符号，区分大小写!</p>
 		  			</div>
 		  			<div class="form-group">
 		  				<label for="">密码：</label>
-		  				<input type="password" class="form-control auth" name="passWord" placeholder="请输入密码">
+		  				<input type="password" class="form-control auth" name="loginPwd" placeholder="请输入密码">
 		  				<p>8-20位英文、数字、 符号，区分大小写!</p>
 		  			</div>
 		  			<div class="form-group">
@@ -212,8 +212,8 @@
 		</div>
 	</div>
 	<script>
-		var uO = $("input[name=userName]");
-		var pO = $("input[name=passWord]");	
+		var uO = $("input[name=loginName]");
+		var pO = $("input[name=loginPwd]");
 		var rpO = $("input[name=repassWord]");	
 
 		uO.blur(function(){

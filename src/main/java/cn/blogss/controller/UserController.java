@@ -31,6 +31,7 @@ public class UserController {
         System.out.println("UserController:我被注入啦");
     }
 
+
 //    后台用户添加
     @RequestMapping(value = "/user/add",method = RequestMethod.POST)
     public String userAdd(@ModelAttribute User user , @RequestAttribute("file")MultipartFile file) throws IOException {
