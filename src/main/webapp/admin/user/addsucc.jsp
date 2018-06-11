@@ -1,11 +1,6 @@
 <%--
   Created by LiQiang at 2018/4/22
 --%>
-<%
-    if(session.getAttribute("loginName") == null){
-        response.sendRedirect("../login.html");
-    }
-%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

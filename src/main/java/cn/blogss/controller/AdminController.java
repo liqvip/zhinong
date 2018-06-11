@@ -39,7 +39,7 @@ public class AdminController {
 
         //如果存在该用户
         if(code!=0){
-            session.setAttribute("adminName",admin.getLoginName());
+            session.setAttribute("adminLoginName",admin.getLoginName());
 //            转发到后台主页
 //            后面不加.jsp后缀,return "forward:index";表示转发到某个Controller的方法上面,去掉forward则表示找到对应的view并渲染
 //            根据情况返回view或json

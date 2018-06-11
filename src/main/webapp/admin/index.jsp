@@ -1,11 +1,6 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-<%
-    if(session.getAttribute("adminName") == null){
-        response.sendRedirect("./login.html");
-	}
-%>
 <head>
 	<meta charset="UTF-8">
 	<script src="../public/js/jquery.js"></script>

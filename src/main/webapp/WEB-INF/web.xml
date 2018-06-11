@@ -9,6 +9,17 @@
 
   <!--过滤器，用户验证用户是否登录,路径匹配-->
   <filter>
+    <filter-name>adminLogin</filter-name>
+    <filter-class>cn.blogss.filter.AdminLoginFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>adminLogin</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+
+  <!--过滤器，用户验证用户是否登录,路径匹配-->
+  <filter>
     <filter-name>Login</filter-name>
     <filter-class>cn.blogss.filter.LoginFilter</filter-class>
   </filter>

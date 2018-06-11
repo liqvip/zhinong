@@ -1,9 +1,5 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
 <%
-	if(session.getAttribute("loginName") == null){
-		response.sendRedirect("../login.html");
-	}
-
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
