@@ -2,7 +2,6 @@ package cn.blogss.controller;/*
     create by LiQiang at 2018/5/25   
 */
 
-import cn.blogss.Interceptor.AdminInterceptor;
 import cn.blogss.pojo.Admin;
 import cn.blogss.pojo.Message;
 import cn.blogss.service.AdminService;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

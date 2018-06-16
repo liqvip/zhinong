@@ -1,13 +1,20 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
+<%
+    //项目名
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <head>
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="../public/bs/css/bootstrap.css">
+    <link rel="stylesheet" href="<%=basePath%>home/css/home.css">
+    <link rel="stylesheet" href="<%=basePath%>public/bs/css/bootstrap.css">
     <%--必须在引入bootstrap.js之前导入--%>
-    <script src="../public/js/jquery.js"></script>
-    <script src="../public/bs/js/bootstrap.js"></script>
-    <script src="../public/js/docs.min.js"></script>
+    <script src="<%=basePath%>public/js/jquery.js"></script>
+    <script src="<%=basePath%>public/bs/js/bootstrap.js"></script>
+    <script src="<%=basePath%>public/js/docs.min.js"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -35,27 +42,39 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./user/user.jsp">
+                            <a href="<%=basePath%>home/user">
                                 <span class="glyphicon glyphicon-star-empty"></span>
                                 <span>个人中心</span>
                             </a>
                         </li>
-                      
-                        <li>
-                            <a href="./login/login.jsp">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <span>登录</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./reg/register.jsp">
-                                <span class="glyphicon glyphicon-cog"></span>
-                                <span>注册</span>
-                            </a>
-                        </li>                
+
+                        <c:choose>
+                            <c:when test="${loginName == null || loginName == ''}">
+                                <li>
+                                    <a href="<%=basePath%>home/login">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <span>登录</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<%=basePath%>home/reg">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                        <span>注册</span>
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li>
+                                    <a href="<%=basePath%>home/signout">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                        <span>退出</span>
+                                    </a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>
                 </div>
-            </div>    
+            </div>
         </div>
     </div>
 
@@ -64,7 +83,7 @@
         <div class="row" style="padding:20px 0px">
             <div class="container" style="padding-right:0px;margin-left: 117px;">
                 <div class="col-xs-2 col-md-2" style="padding-left:0px;">
-                    <a href=""><img src="./images/logo.png" title="乐农" alt="乐农"></a>
+                    <a href=""><img src="<%=basePath%>home/images/logo.png" title="乐农" alt="乐农"></a>
                 </div>
                 <style>
                     .nav>li>a:focus,.nav>li>a:hover{
@@ -76,26 +95,26 @@
                     <nav class="navbar" style="width:100%;margin-left: 15px;">
                         <ul class="nav navbar-nav column">
                             <li>
-                                <a href="" alt="首页" style=" " class="">首页</a>
-                             </li>                                
-                             <li>
-                                <a href="./raise/raise.jsp" alt="掘金农场" style="" class="">掘金农场</a>
-                             </li>                                
-                             <li>
-                                <a href="" alt="欢乐集市" style="" class="">欢乐集市</a>
-                             </li>                                
-                             <li>
-                                <a href="" alt="科学种养" style="" class="uline">科学种养</a>
-                             </li>                                
-                             <li>
-                                <a href="./user/user.jsp" alt="用户中心" style="" class="">用户中心</a>
-                             </li>                                
-                             <li>
-                                <a href="" alt="关于我们" style="" class="">关于我们</a>
-                             </li>                        
-                             <li><a href="" alt="媒体报道" style="" class="">媒体报道</a>
+                                <a href="<%=basePath%>" alt="首页" style=" " class="">首页</a>
                              </li>
-                             </li>                        
+                             <li>
+                                <a href="<%=basePath%>home/raise" alt="掘金农场" style="" class="">掘金农场</a>
+                             </li>
+                             <li>
+                                <a href="<%=basePath%>home/market" alt="欢乐集市" style="" class="">欢乐集市</a>
+                             </li>
+                             <li>
+                                <a href="<%=basePath%>home/science" alt="科学种养" style="" class="uline">科学种养</a>
+                             </li>
+                             <li>
+                                <a href="<%=basePath%>home/user" alt="用户中心" style="" class="">用户中心</a>
+                             </li>
+                             <li>
+                                <a href="<%=basePath%>home/about" alt="关于我们" style="" class="">关于我们</a>
+                             </li>
+                             <li><a href="<%=basePath%>home/news" alt="媒体报道" style="" class="">媒体报道</a>
+                             </li>
+                             </li>
                              <li class="clear"></li>
                         </ul>
                         <style>
@@ -141,7 +160,7 @@
                                 width:135px;
                                 margin-left:2px;
                             }
-                           
+
                         </style>
                         <script>
                              $('.column li a').mouseenter(function(){
@@ -158,7 +177,7 @@
                         </div>
                     </nav>
                     <script>
-                       
+
 
                         $('.searchinput').focus(function(){
                             $(this).attr({'placeholder':'输入农资名称'});
@@ -179,7 +198,7 @@
                             },500);
                         });
                     </script>
-                </div>  
+                </div>
             </div>
         </div>
     </nav>
@@ -198,28 +217,28 @@
           <div class="carousel-inner" role="listbox">
 
             <div class="item active">
-              <img src="./images/slide/3.jpg" alt="...">
+              <img src="<%=basePath%>home/images/slide/3.jpg" alt="...">
               <div class="carousel-caption">
                 <p>再没有比春雨洗浴后的青山更迷人了，整个山坡，都是苍翠欲滴的浓绿，没来得散尽的雾气像淡雅丝绸，一缕缕地缠在它的腰间，阳光把每片叶子上的雨滴，都变成了五彩的珍珠</p>
               </div>
             </div>
 
             <div class="item">
-              <img src="./images/slide/2.jpg" alt="...">
+              <img src="<%=basePath%>home/images/slide/2.jpg" alt="...">
               <div class="carousel-caption">
                 <p>炎炎的太阳，高悬在世界的当空。红的光如火箭般射到地面，地面着火了，反射出油一般在沸煎的火焰来。蒸腾，窒塞，酷烈，奇闷，简直要使人们底细胞与纤维，由颤抖而炸裂了。</p>
               </div>
             </div>
 
             <div class="item">
-              <img src="./images/slide/1.jpg" alt="...">
+              <img src="<%=basePath%>home/images/slide/1.jpg" alt="...">
               <div class="carousel-caption">
                 <p>双十一来掘金，赢百元现金！双十一来掘金，赢百元现金！双十一来掘金，赢百元现金！双十一来掘金，赢百元现金！双十一来掘金，赢百元现金！双十一来掘金，赢百元现金！</p>
               </div>
             </div>
 
             <div class="item">
-              <img src="./images/slide/4.jpg" alt="...">
+              <img src="<%=basePath%>home/images/slide/4.jpg" alt="...">
               <div class="carousel-caption">
                 <p>自然世界此刻是如此的美丽:到处放射着明媚的阳光,到处炫耀着五颜的色彩,到处飞扬着悦耳的鸟叫虫鸣,到处飘荡着令人陶醉的香气。</p>
               </div>
@@ -281,7 +300,7 @@
                 <div class="title"></div>
                 <div class="pd01">
                     <a href="">
-                        <img src="./images/recommend/pd01.jpg" alt="" width="671" height="316">
+                        <img src="<%=basePath%>home/images/recommend/pd01.jpg" alt="" width="671" height="316">
                     </a>
                     <div class="pd_text">
                         <h2>盐池滩羊</h2>
@@ -302,7 +321,7 @@
                         <a href="" class="raise">立即认养  &gt;</a>
                     </div>
                     <a href="">
-                        <img src="./images/recommend/pd02.jpg" alt="" width="671" height="316">
+                        <img src="<%=basePath%>home/images/recommend/pd02.jpg" alt="" width="671" height="316">
                     </a>
                 </div>
             </div>
@@ -319,7 +338,7 @@
                             <ul class="">
                                 <li class="">
                                     <a class="" href="" class="">
-                                        <img  src="./images/news/left01.jpg" alt="" width="119" height="80">
+                                        <img  src="<%=basePath%>home/images/news/left01.jpg" alt="" width="119" height="80">
                                     </a>
                                     <a href="" class="">
                                         <h3 >互联网养殖好吃好玩红利多  掀起全民养鸡“热”</h3>
@@ -329,7 +348,7 @@
                                 </li>
                                 <li>
                                     <a  href="" class="">
-                                        <img  src="./images/news/left02.png" alt="" width="119" height="80">
+                                        <img  src="<%=basePath%>home/images/news/left02.png" alt="" width="119" height="80">
                                     </a>
                                     <a href="" class="">
                                         <h3 >共享农场助力三农发展  央视喊你来养“猪”</h3>
@@ -339,7 +358,7 @@
                                 </li>
                                 <li >
                                     <a href="" class="">
-                                        <img src="./images/news/left03.png" alt="" width="119" height="80">
+                                        <img src="<%=basePath%>home/images/news/left03.png" alt="" width="119" height="80">
                                     </a>
                                     <a href="" class="">
                                         <h3>互联网养殖：大山里的藏香猪   成为互联网金融“抢手货”</h3>
@@ -355,7 +374,7 @@
                             <ul class="">
                                 <li class="">
                                     <a class="" href="" class="">
-                                        <img  src="./images/news/right01.jpg" alt="" width="119" height="80">
+                                        <img  src="<%=basePath%>home/images/news/right01.jpg" alt="" width="119" height="80">
                                     </a>
                                     <a href="" class="">
                                         <h3 >互联网养殖 开启养殖生态共享经济</h3>
@@ -365,7 +384,7 @@
                                 </li>
                                 <li>
                                     <a  href="" class="">
-                                        <img  src="./images/news/right02.png" alt="" width="119" height="80">
+                                        <img  src="<%=basePath%>home/images/news/right02.png" alt="" width="119" height="80">
                                     </a>
                                     <a href="" class="">
                                         <h3 >知农之家退出宁夏五宝之——岩石滩羊 不可小看互联网的养殖</h3>
@@ -375,7 +394,7 @@
                                 </li>
                                 <li >
                                     <a href="" class="">
-                                        <img src="./images/news/right02.png" alt="" width="119" height="80">
+                                        <img src="<%=basePath%>home/images/news/right02.png" alt="" width="119" height="80">
                                     </a>
                                     <a href="" class="">
                                         <h3>"巴马香猪"走进互联网 即将在知农之家上线</h3>
@@ -410,7 +429,7 @@
             <div class="" style="width: 1200px;margin: 0 auto">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3"><img src="./images/logo.png" alt="" style="margin-top: 20px;"></div>
+                        <div class="col-md-3"><img src="<%=basePath%>home/images/logo.png" alt="" style="margin-top: 20px;"></div>
                         <div class="col-md-6">
                             <div class="footer_menu">
                                 <ul>
@@ -420,14 +439,14 @@
                                     <li>加入我们</li>
                                 </ul>
                                 <div class="copytright">
-                                    <img src="./images/footer/copyright.png" alt="" style="width: 20px">
+                                    <img src="<%=basePath%>home/images/footer/copyright.png" alt="" style="width: 20px">
                                     <span style="margin-left: 10px;">赣公网安备14010902000157号 赣ICP备14001940号-4 </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <img src="./images/footer/mywx.png" alt="" width="100px">
-                            <img src="./images/footer/mygzh.jpg" alt="" width="100px" style="margin-left: 10px;">
+                            <img src="<%=basePath%>home/images/footer/mywx.png" alt="" width="100px">
+                            <img src="<%=basePath%>home/images/footer/mygzh.jpg" alt="" width="100px" style="margin-left: 10px;">
                         </div>
                     </div>
                 </div>
@@ -440,5 +459,5 @@
     <!-- 回到顶部 -->
     <div class="gotop" style="display: none;"></div>
 </body>
-<script src="js/index.js"></script>
+<script src="<%=basePath%>home/js/index.js"></script>
 </html>

@@ -1,6 +1,11 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+	//项目名
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <head>
 	<meta charset="UTF-8">
 	<title>跳转提示</title>
@@ -10,7 +15,7 @@
 </body>
 <script>
     window.setTimeout(function () {
-		window.location.href="../login/login.jsp"
+		window.location.href="<%=basePath%>home/login";
     },2000);
 </script>
 </html>

@@ -33,13 +33,19 @@ public class AdminLoginFilter implements Filter{
 //        如果该请求需要被过滤
         if(!excludedPages.contains(uri)){
 //            用户未登录
+            System.out.println(uri);
             if(userName == null || "".equals(userName)){
                 //重定向到登录页面
                 resp.sendRedirect("/login.html");
+            }else {
+                chain.doFilter(request,response);
             }
 
+        }else if(uri == "/admin" || uri == "/amdin/"){
+            resp.sendRedirect("/login.html");
+        }else{
+            chain.doFilter(request,response);
         }
-        chain.doFilter(request,response);
 
     }
 

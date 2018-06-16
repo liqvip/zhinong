@@ -37,7 +37,7 @@ public class UserHomeController {
         int code = userService.userRegister(user);
 
         if(code != 0){
-            return "home/reg/check";
+            return "home/reg/reg_success";
         }
 
         return "";
@@ -74,5 +74,24 @@ public class UserHomeController {
         resp.getWriter().write(str);
         return null;
     }
+
+//    用户中心首页
+    @RequestMapping("/user")
+    public String userPage(){
+        return "home/user/user";
+    }
+
+//    用户个人中心
+    @RequestMapping("/user/personal")
+    public String personalPage(){
+        return "home/user/user_personal";
+    }
+
+    //    用户订单
+    @RequestMapping("/user/order")
+    public String orderPage(){
+        return "home/user/user_order";
+    }
+
 
 }

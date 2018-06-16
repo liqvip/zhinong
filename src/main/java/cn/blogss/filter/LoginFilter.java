@@ -25,7 +25,7 @@ public class LoginFilter implements Filter{
 
         if(userName == null || "".equals(userName)){
             //页面重定向到登录页面
-            resp.sendRedirect("/home/login/login.jsp");
+            resp.sendRedirect("/home/login");
         }else {
             chain.doFilter(request,response);
         }
