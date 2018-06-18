@@ -207,7 +207,7 @@
 		  				<input type="password" class="form-control auth" name="loginPwd" placeholder="请输入密码">
 		  				<p>8-20位英文、数字、 符号，区分大小写!</p>
 		  			</div>
-                    <input type="submit" class="btn btn-success">
+                    <input type="submit" class="btn btn-success" value="登录">
                     <a href="" class="btn btn-danger">找回密码</a>
 			  	</form>
 			  </div>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class DefaultController {
+
     @Autowired
     HttpServletRequest request;
 
@@ -18,9 +19,10 @@ public class DefaultController {
         return "home/index";
     }
 
+
     @RequestMapping("/home/raise")
     public String raisePage(){
-        return "home/raise/raise";
+        return "redirect:/home/raise/1";
     }
 
     @RequestMapping("/home/login")

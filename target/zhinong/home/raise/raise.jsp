@@ -9,9 +9,10 @@
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <head>
+    <link rel="stylesheet" href="<%=basePath%>home/css/raise.css">
 	<link rel="stylesheet" href="<%=basePath%>home/css/home.css">
 	<link rel="stylesheet" href="<%=basePath%>public/bs/css/bootstrap.css">
-	<link rel="stylesheet" href="<%=basePath%>home/css/raise.css">
+
     <%--jquery.js必须在引入bootstrap.js之前导入--%>
 	<script src="<%=basePath%>public/js/jquery.js"></script>
 	<script src="<%=basePath%>public/bs/js/bootstrap.js"></script>
@@ -208,139 +209,117 @@
     		<div class="raise_head">
     			<h2>认养品种</h2>
     			<ul>
-    				<li><a href="" class="cur">全部</a></li>
-    				<li><a href="">猪类认养</a></li>
-    				<li><a href="">鸡类认养</a></li>
-    				<li><a href="">羊类认养</a></li>
+    				<li><a href="<%=basePath%>home/raise" class="cur">全部</a></li>
+					<c:forEach items="${raiseCat}" var="rc" varStatus="s">
+                        <li><a href="<%=basePath%>home/raise/1?cid=${rc.raiseCatId}">${rc.catName}</a></li>
+                    </c:forEach>
     			</ul>
+                <script>
+                    $(".raise_head li>a").click(function () {
+                       $(this).addClass("cur");
+                       $(":not(this)").removeClass("cur");
+                    });
+                </script>
     		</div>
 			<div class="raise_body">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-4">
-							<div class="raise_item">
-								<span class="icon01"></span>	
-								<div class="raise_img">
-									<a href="<%=basePath%>home/raise/raise_detail">
-										<img src="<%=basePath%>home/images/raise/item/1.jpg" alt="">
-									</a>	
-								</div>
-								<h2>第75-2期黑山猪散养</h2>
-								<em></em>
-								<div class="raise_pm">
-									<i>￥140.00元/份</i>
-									<b>剩余：476份</b>
-								</div>
-								<a href="<%=basePath%>home/raise/raise_detail" class="raise_btn01">立即认养</a>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="raise_item">
-								<span class="icon01"></span>	
-								<div class="raise_img">
-									<a href="<%=basePath%>home/raise/raise_detail">
-										<img src="<%=basePath%>home/images/raise/item/2.jpg" alt="">
-									</a>	
-								</div>
-								<h2>第568期榆社笨鸡蛋</h2>
-								<em></em>
-								<div class="raise_pm">
-									<i>￥140.00元/份</i>
-									<b>剩余：476份</b>
-								</div>
-								<a href="<%=basePath%>home/raise/raise_detail" class="raise_btn01">立即认养</a>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="raise_item">
-								<span class="icon01"></span>	
-								<div class="raise_img">
-									<a href="<%=basePath%>home/raise/raise_detail">
-										<img src="<%=basePath%>home/images/raise/item/3.jpg" alt="">
-									</a>	
-								</div>
-								<h2>第567期榆社笨鸡蛋</h2>
-								<em></em>
-								<div class="raise_pm">
-									<i>￥140.00元/份</i>
-									<b>剩余：476份</b>
-								</div>
-								<a href="<%=basePath%>home/raise/raise_detail" class="raise_btn01">立即认养</a>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<div class="raise_item">
-								<span class="icon03"></span>	
-								<div class="raise_img">
-									<a href="<%=basePath%>home/raise/raise_detail">
-										<img src="<%=basePath%>home/images/raise/item/4.jpg" alt="">
-									</a>	
-								</div>
-								<h2>第15-2期巴马香猪</h2>
-								<em></em>
-								<div class="raise_pm">
-									<i>￥140.00元/份</i>
-									<b>剩余：0份</b>
-								</div>
-								<a href="<%=basePath%>home/raise/raise_detail" class="raise_btn03">立即认养</a>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="raise_item">
-								<span class="icon03"></span>	
-								<div class="raise_img">
-									<a href="<%=basePath%>home/raise/raise_detail">
-										<img src="<%=basePath%>home/images/raise/item/2.jpg" alt="">
-									</a>	
-								</div>
-								<h2>第594期榆社笨鸡蛋</h2>
-								<em></em>
-								<div class="raise_pm">
-									<i>￥140.00元/份</i>
-									<b>剩余：0份</b>
-								</div>
-								<a href="<%=basePath%>home/raise/raise_detail" class="raise_btn03">立即认养</a>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="raise_item">
-								<span class="icon03"></span>	
-								<div class="raise_img">
-									<a href="<%=basePath%>home/raise/raise_detail">
-										<img src="<%=basePath%>home/images/raise/item/3.jpg" alt="">
-									</a>	
-								</div>
-								<h2>第50-1期雁门关右玉羊</h2>
-								<em></em>
-								<div class="raise_pm">
-									<i>￥140.00元/份</i>
-									<b>剩余：0份</b>
-								</div>
-								<a href="<%=basePath%>home/raise/raise_detail" class="raise_btn03">立即认养</a>
-							</div>
-						</div>
+                        <c:forEach items="${raise}" var="r" varStatus="s">
+                            <div class="raise_item">
+                                <span class="icon01"></span>
+                                <div class="raise_img">
+                                    <a href="<%=basePath%>home/raise/raise_detail/${r.raiseId}">
+                                        <img src="<%=basePath%>admin/images/raise/${r.raiseThums}" alt="">
+                                    </a>
+                                </div>
+                                <h2>${r.raisePeriod}</h2>
+                                <em></em>
+                                <div class="raise_pm">
+                                    <i>￥${r.marketPrice}元/份</i>
+                                    <b>剩余：${r.raiseStock}份</b>
+                                </div>
+                                <a href="<%=basePath%>home/raise/raise_detail/${r.raiseId}" class="raise_btn01">立即认养</a>
+                            </div>
+                        </c:forEach>
 					</div>
 				</div>
 			</div>
+
+            <%--底部分页--%>
 			<div class="raise_pag">
 				<ul class="pagination pagination-lg">
-				    <li class="disabled">
-				      <a href="#" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-				    <li class="active"><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li>
-				      <a href="#" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
+                    <li>
+                        <a href="<%=basePath%>home/raise/1" aria-label="Previous">
+                            <span aria-hidden="true">首页</span>
+                        </a>
+                    </li>
+
+                    <%--上一页--%>
+                    <c:choose>
+                        <c:when test="${page.pageNow>1}">
+                            <li>
+                                <a href="<%=basePath%>home/raise/${page.pageNow-1}" aria-label="Previous">
+                                    <span aria-hidden="true">上一页</span>
+                                </a>
+                            </li>
+                        </c:when>
+                        <c:when test="${page.pageNow<=1}">
+                            <li>
+                                <a href="<%=basePath%>home/raise/1" aria-label="Previous">
+                                    <span aria-hidden="true">上一页</span>
+                                </a>
+                            </li>
+                        </c:when>
+                    </c:choose>
+
+                    <%--下一页--%>
+                   <c:choose>
+                       <c:when test="${page.totalPageCount==0}">
+                           <li>
+                               <a href="<%=basePath%>home/raise/${page.pageNow}" aria-label="Previous">
+                                   <span aria-hidden="true">下一页</span>
+                               </a>
+                           </li>
+                       </c:when>
+                       <c:when test="${page.pageNow>=page.totalPageCount}">
+                           <li>
+                               <a href="<%=basePath%>home/raise/${page.totalPageCount}" aria-label="Previous">
+                                   <span aria-hidden="true">下一页</span>
+                               </a>
+                           </li>
+                       </c:when>
+                       <c:when test="${page.pageNow<page.totalPageCount}">
+                           <li>
+                               <a href="<%=basePath%>home/raise/${page.pageNow+1}" aria-label="Previous">
+                                   <span aria-hidden="true">下一页</span>
+                               </a>
+                           </li>
+                       </c:when>
+                   </c:choose>
+
+                    <c:choose>
+                        <c:when test="${page.totalPageCount==0}">
+                            <li>
+                                <a href="<%=basePath%>home/raise/${page.pageNow}" aria-label="Previous">
+                                    <span aria-hidden="true">尾页</span>
+                                </a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="<%=basePath%>home/raise/${page.totalPageCount}" aria-label="Previous">
+                                    <span aria-hidden="true">尾页</span>
+                                </a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <li>
+                        <span style="margin-left: 20px;">共${page.totalPageCount}页</span>
+                    </li>
+                    <li>
+                        <span>第${page.pageNow}页</span>
+                    </li>
 				  </ul>
 			</div>
     	</div>

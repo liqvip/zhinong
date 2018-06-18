@@ -58,6 +58,8 @@
 }
 
 .raise_content .raise_body .raise_item{
+	float: left;
+	margin-left: 25px;
 	position: relative;
 	width: 358px;
 	height: 520px;

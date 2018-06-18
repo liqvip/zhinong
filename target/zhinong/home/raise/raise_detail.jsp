@@ -207,16 +207,16 @@
     	<div class="raise_detail_content" style="width: 1200px;margin: 0 auto">
     		<div class="detail_head">
 	    		<ol class="breadcrumb">
-				  <li><a href="#">鸡类认养</a></li>
-				  <li class="active">榆社笨鸡</li>
+				  <li><a href="#">${catName}</a></li>
+				  <li class="active">${raiseDetail.raiseName}</li>
 				</ol>
     		</div>
     		<div class="raise_detail_body">
 				<div class="row">
 					<div class="col-md-8">
 						<div class="section01">
-							<img src="../images/raise_detail/2.jpg" alt="">
-							<h2>第596期榆社笨鸡蛋</h2>
+							<img src="<%=basePath%>admin/images/raise/${raiseDetail.raiseThums}" alt="">
+							<h2>${raiseDetail.raisePeriod}</h2>
 							<div class="icon">
 								<span class="icon01">
 									<em style="display: none;">实地散养</em>
@@ -230,20 +230,20 @@
 							</div>
 							<dl>
 								<dt>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价:</dt>
-								<dd>120.00元/份</dd>
+								<dd>${raiseDetail.marketPrice}元/份</dd>
 							</dl>
 							<dl>
 								<dt>周&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期:</dt>
-								<dd>1个月</dd>
+								<dd>${raiseDetail.raiseCycle}个月</dd>
 							</dl>
 							<dl>
 								<dt>养成收益:</dt>
-								<dd>1.10元/份</dd>
+								<dd>${raiseDetail.raiseProfit}元/份</dd>
 								<i></i>
 							</dl>
 							<dl>
 								<dt>剩余数量:</dt>
-								<dd>105份</dd>
+								<dd>${raiseDetail.raiseStock}份</dd>
 							</dl>
 							<dl>
 								<dt>购买数量:</dt>
@@ -251,7 +251,7 @@
 								<input name="" value="1" class="num" type="text">
 								<span class="add"></span>
 							</dl>
-							<a href="javascript:void(0)" class="btn01">立即认养</a>
+							<a href="<%=basePath%>home/raise/${raiseDetail.raiseId}" class="btn01">立即认养</a>
 						</div>
 						<script>
 							$(".reduce").click(function(){
