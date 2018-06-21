@@ -14,5 +14,20 @@
         SELECT count(*) from user
         where loginName = #{0} and loginPwd = #{1}
     </select>
-    
+
+    <!--根据用户名查询用户的信息-->
+    <select id="getUserByName" parameterType="String" resultType="User">
+        select * from user where loginName = #{loginName}
+    </select>
+
+    <!--进入用户中心显示用户的养殖项目-->
+    <select id="userPage" parameterType="Integer" resultType="RaiseOrders">
+        select * from raise_orders where userId = #{userId}
+    </select>
+
+    <!--用户订单界面-->
+    <select id="userOrders" parameterType="Integer" resultType="RaiseOrders">
+        select * from raise_orders where userId = #{userId}
+    </select>
+
 </mapper>

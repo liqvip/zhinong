@@ -5,8 +5,11 @@ package cn.blogss.serviceimpl;/*
 import cn.blogss.mapper.HomeRaiseMapper;
 import cn.blogss.pojo.Raise;
 import cn.blogss.pojo.RaiseCat;
+import cn.blogss.pojo.RaiseOrders;
 import cn.blogss.service.HomeRaiseService;
+import cn.blogss.utils.OrderNum;
 import cn.blogss.utils.Page;
+import cn.blogss.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -72,5 +75,34 @@ public class HomeRaiseServiceImpl implements HomeRaiseService{
     @Override
     public List<RaiseCat> raiseCat() {
         return raiseMapper.raiseCat();
+    }
+
+    //    订单提交
+    @Override
+    public void raiseSubmit(int raiseId, int raiseMount,Model model) {
+
+        Raise raise = raiseMapper.raiseDetail(raiseId);
+        model.addAttribute("raiseDetail",raise);
+        model.addAttribute("raiseMount",raiseMount);
+        model.addAttribute("totalMoney",raiseMount*raise.getMarketPrice());
+    }
+
+//    订单付款
+    @Override
+    public int raisePay(RaiseOrders raiseOrders) {
+        String createTime = TimeUtil.getCurTime();
+        String orderNum = OrderNum.getOrderNum();
+
+        raiseOrders.setCreateTime(createTime);
+        raiseOrders.setOrderNum(orderNum);
+        raiseStock(raiseOrders.getRaiseMount());
+
+        return raiseMapper.raisePay(raiseOrders);
+    }
+
+//    更新农资库存
+    @Override
+    public void raiseStock(int raiseMount) {
+        raiseMapper.raiseStock(raiseMount);
     }
 }

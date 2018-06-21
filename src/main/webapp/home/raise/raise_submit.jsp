@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=utf-8" language="java" %>
+<%@page contentType="text/html;charset=utf-8" language="java"%>
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -11,14 +11,14 @@
 <head>
     <link rel="stylesheet" href="<%=basePath%>home/css/home.css">
     <link rel="stylesheet" href="<%=basePath%>public/bs/css/bootstrap.css">
-	<link rel="stylesheet" href="<%=basePath%>home/css/raise_detail.css">
+    <link rel="stylesheet" href="<%=basePath%>home/css/raise.css">
     <%--jquery.js必须在引入bootstrap.js之前导入--%>
     <script src="<%=basePath%>public/js/jquery.js"></script>
     <script src="<%=basePath%>public/bs/js/bootstrap.js"></script>
     <script src="<%=basePath%>public/js/docs.min.js"></script>
 
 	<meta charset="UTF-8">
-	<link rel="shortcut icon" href="<%=basePath%>home/images/favicon.ico">
+	<link rel="shortcut icon" href="../images/favicon.ico">
 	<title>知农之家官方网站-互联网养殖</title>
 </head>
 <body>
@@ -45,31 +45,12 @@
                             <span>个人中心</span>
                         </a>
                     </li>
-
-                    <c:choose>
-                        <c:when test="${user == null}">
-                            <li>
-                                <a href="<%=basePath%>home/login">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    <span>登录</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<%=basePath%>home/reg">
-                                    <span class="glyphicon glyphicon-cog"></span>
-                                    <span>注册</span>
-                                </a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li>
-                                <a href="<%=basePath%>home/signout">
-                                    <span class="glyphicon glyphicon-cog"></span>
-                                    <span>退出</span>
-                                </a>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
+                    <li>
+                        <a href="<%=basePath%>home/signout">
+                            <span class="glyphicon glyphicon-cog"></span>
+                            <span>退出</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -201,126 +182,46 @@
     </div>
 </nav>
 
-    <div class="raise_banner"><img src="<%=basePath%>home/images/raise_detail/1.jpg" alt=""></div>
-
+    <!-- 主体内容 -->
     <div class="content">
-    	<div class="raise_detail_content" style="width: 1200px;margin: 0 auto">
-    		<div class="detail_head">
-	    		<ol class="breadcrumb">
-				  <li><a href="#">${catName}</a></li>
-				  <li class="active">${raiseDetail.raiseName}</li>
-				</ol>
-    		</div>
-    		<div class="raise_detail_body">
-				<div class="row">
-					<div class="col-md-8">
-						<div class="section01">
-							<img src="<%=basePath%>admin/images/raise/${raiseDetail.raiseThums}" alt="">
-							<h2>${raiseDetail.raisePeriod}</h2>
-							<div class="icon">
-								<span class="icon01">
-									<em style="display: none;">实地散养</em>
-								</span>
-								<span class="icon02">
-									<em style="display: none;">中国人保</em>
-								</span>
-								<span  class="icon03">
-									<em style="display: none;">冷链配送</em>
-								</span>
-							</div>
-							<dl>
-								<dt>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价:</dt>
-								<dd>${raiseDetail.marketPrice}元/份</dd>
-							</dl>
-							<dl>
-								<dt>周&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期:</dt>
-								<dd>${raiseDetail.raiseCycle}个月</dd>
-							</dl>
-							<dl>
-								<dt>养成收益:</dt>
-								<dd>${raiseDetail.raiseProfit}元/份</dd>
-								<i></i>
-							</dl>
-							<dl>
-								<dt>剩余数量:</dt>
-								<dd>${raiseDetail.raiseStock}份</dd>
-							</dl>
-							<dl>
-								<dt>购买数量:</dt>
-								<span class="reduce"></span>
-								<input name="" value="1" class="num" type="text">
-								<span class="add"></span>
-							</dl>
-							<a href="" class="btn01">立即认养</a>
-						</div>
-						<script>
-							$(".reduce").click(function(){
-								$(".num").val($(".num").val()-1);
-								if($(".num").val()<=1||$(".num").val()==""){
-									$(".num").val(1);
-								}
-							});
-
-							$(".add").click(function(){
-								if($(".num").val()==""){
-									$(".num").val(1);
-								}
-								$(".num").val(parseInt($(".num").val())+1);
-								/*这里判断剩余的数量*/
-							});
-
-							$(".num").get(0).oninput=function(){
-								this.value=this.value.replace(/^[0]+|([a-zA-Z]|[\u4E00-\u9FA5])/gi,"");
-							};
-							$(".btn01").click(function(){
-							    var raiseCount = $(".num").val();
-							    $(this).attr("href","<%=basePath%>home/raise/raise_submit?raiseId=${raiseDetail.raiseId}&raiseMount="+raiseCount+"&marketPrice=${raiseDetail.marketPrice}");
-                            });
-						</script>
-					</div>
-					<div class="col-md-4">
-						<div class="section02">
-							<h3 >购买记录</h3>
-							<em ></em>
-							<div>用户</div> <div data-v-e5176284="">数量</div>
-							<div>时间</div>
-							<span>
-								<ul>
-									<li>
-    									<b>176****2011</b>
-    									<b>25</b>
-    									<b>2018-03-29</b>
-									</li>
-								</ul>
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="section03">
-							<ul class="nav nav-tabs" role="tablist">
-							    <li role="presentation" class="active">
-							    	<a href="#goods" role="tab" data-toggle="tab">商品详情</a>
-							    </li>
-							    <li role="presentation">
-							    	<a href="#farm" role="tab" data-toggle="tab">农场介绍</a>
-							    </li>
-							</ul>
-							  <!-- Tab panes -->
-							<div class="tab-content">
-							  <div role="tabpanel" class="tab-pane active" id="goods">
-							   <img src="holder.js/100%x500" alt="">
-							   </div>
-							  <div role="tabpanel" class="tab-pane" id="farm">
-							  	<img src="holder.js/100%x500" alt="">
-							  </div>
-							</div>
-						</div>
-					</div>
-				</div>
-    		</div>
-    	</div>
+        <div style="width: 1200px;position: relative;margin: 0 auto;">
+            <div class="head">
+                <span></span>
+                <h2 style="color: #848484;">核对订单信息</h2>
+            </div>
+            <div class="product">
+                <h2>商品信息</h2>
+                <img src="<%=basePath%>admin/images/raise/${raiseDetail.raiseThums}" alt="">
+                <ul>
+                    <li>
+                        <span>商品名称</span>
+                        <p>${raiseDetail.raiseName}</p>
+                    </li>
+                    <li>
+                        <span>单价</span>
+                        <p>${raiseDetail.marketPrice}</p>
+                    </li>
+                    <li>
+                        <span>认养数量</span>
+                        <p>${raiseMount}</p>
+                    </li>
+                    <li>
+                        <span>总金额</span>
+                        <p>${totalMoney}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="pay">
+                <span>支付金额</span>
+                <strong>${totalMoney}元</strong>
+                <a href="">提交订单</a>
+            </div>
+            <script>
+                $(".pay>a").click(function(){
+                    $(this).attr("href","<%=basePath%>home/raise/raise_pay?raiseId=${raiseDetail.raiseId}&raiseMount=${raiseMount}&totalMoney=${totalMoney}");
+                });
+            </script>
+        </div>
     </div>
 
 <footer class="footer">

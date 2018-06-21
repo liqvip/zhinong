@@ -4,6 +4,7 @@ package cn.blogss.mapper;/*
 
 import cn.blogss.pojo.Raise;
 import cn.blogss.pojo.RaiseCat;
+import cn.blogss.pojo.RaiseOrders;
 
 import java.util.List;
 
@@ -26,5 +27,11 @@ public interface HomeRaiseMapper {
 
 //    农资所有分类
     public abstract List<RaiseCat> raiseCat();
+
+//    订单提交
+    public abstract int raisePay(RaiseOrders raiseOrders);
+
+//    更新农资库存
+    public abstract int raiseStock(int raiseMount);
 
 }

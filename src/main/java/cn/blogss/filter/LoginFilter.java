@@ -3,6 +3,8 @@ package cn.blogss.filter;/*
  */
 
 
+import cn.blogss.pojo.User;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,9 +23,9 @@ public class LoginFilter implements Filter{
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
 
-        String userName = (String)session.getAttribute("loginName");
+        Object user = (User)session.getAttribute("user");
 
-        if(userName == null || "".equals(userName)){
+        if(user == null || "".equals(user)){
             //页面重定向到登录页面
             resp.sendRedirect("/home/login");
         }else {

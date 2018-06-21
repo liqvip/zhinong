@@ -1,4 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=utf-8" language="java"%>
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <%
@@ -197,7 +200,7 @@
                     <div class="row section01" style="border-radius: 5px;height:166px;border: 1px solid #ccc;">
                         <div class="col-md-3" style="border-left: 0px;">
                             <h4>账号</h4>
-                            <h5>181****0597</h5>
+                            <h5>${user.loginName}</h5>
                         </div>
                         <div class="col-md-2">
                             <h4>账户</h4>
@@ -260,33 +263,35 @@
                             </div>
                             <div class="order_content">
                                 <ul>
-                                    <li>
-                                       <div class="num_time">
-                                           <span>订单编号：Z12181513572844347402</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>2017-12-18 12:54:04</span> 
-                                       </div> 
-                                    </li>
-                                    <li class="row">
-                                        <div  class="col-md-2">
-                                            <img src="../images/raise/item/1.jpg" alt="">
-                                        </div>
-                                        <div class="period_num col-md-2">
-                                            <h2>第15-3期巴马香猪</h2>
-                                            <h3>数量：1份</h3>
-                                        </div>
-                                        <div class="username col-md-2">
-                                            <h2>——</h2>
-                                        </div>
-                                        <div class="totalmoney col-md-2">
-                                            <h2>￥160.00</h2>
-                                        </div>
-                                        <div class="order_status col-md-2">
-                                            <h2>现金收益</h2>
-                                            <h3>认养中</h3>
-                                        </div>
-                                        <div class="order_detail col-md-2">
-                                            <a href="" data-toggle="modal" data-target="#myModal">订单详情</a>
-                                        </div>
-                                    </li> 
+                                    <c:forEach items="${raiseOrders}" var="ro" varStatus="s">
+                                        <li>
+                                            <div class="num_time">
+                                                <span>订单编号：${ro.orderNum}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>2017-12-18 12:54:04</span>
+                                            </div>
+                                        </li>
+                                        <li class="row">
+                                            <div  class="col-md-2">
+                                                <img src="../images/raise/item/1.jpg" alt="">
+                                            </div>
+                                            <div class="period_num col-md-2">
+                                                <h2>第15-3期巴马香猪</h2>
+                                                <h3>数量：${ro.raiseMount}份</h3>
+                                            </div>
+                                            <div class="username col-md-2">
+                                                <h2>——</h2>
+                                            </div>
+                                            <div class="totalmoney col-md-2">
+                                                <h2>${ro.totalMoney}</h2>
+                                            </div>
+                                            <div class="order_status col-md-2">
+                                                <h2>现金收益</h2>
+                                                <h3>认养中</h3>
+                                            </div>
+                                            <div class="order_detail col-md-2">
+                                                <a href="" data-toggle="modal" data-target="#myModal">订单详情</a>
+                                            </div>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>

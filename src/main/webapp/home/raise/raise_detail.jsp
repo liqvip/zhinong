@@ -47,7 +47,7 @@
                     </li>
 
                     <c:choose>
-                        <c:when test="${loginName == null || loginName == ''}">
+                        <c:when test="${user == null}">
                             <li>
                                 <a href="<%=basePath%>home/login">
                                     <span class="glyphicon glyphicon-user"></span>
@@ -251,7 +251,7 @@
 								<input name="" value="1" class="num" type="text">
 								<span class="add"></span>
 							</dl>
-							<a href="<%=basePath%>home/raise/${raiseDetail.raiseId}" class="btn01">立即认养</a>
+							<a href="" class="btn01">立即认养</a>
 						</div>
 						<script>
 							$(".reduce").click(function(){
@@ -272,6 +272,10 @@
 							$(".num").get(0).oninput=function(){
 								this.value=this.value.replace(/^[0]+|([a-zA-Z]|[\u4E00-\u9FA5])/gi,"");
 							};
+							$(".btn01").click(function(){
+							    var raiseCount = $(".num").val();
+							    $(this).attr("href","<%=basePath%>home/raise/raise_submit?raiseId=${raiseDetail.raiseId}&raiseMount="+raiseCount+"&marketPrice=${raiseDetail.marketPrice}");
+                            });
 						</script>
 					</div>
 					<div class="col-md-4">

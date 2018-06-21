@@ -41,5 +41,16 @@
         select raiseCatId,catName from raise_cat;
     </select>
 
+    <!--订单付款-->
+    <insert id="raisePay" parameterType="RaiseOrders">
+        insert into raise_orders(userId,raiseId,raiseMount,totalMoney,createTime,orderNum)
+        values(#{userId},#{raiseId},#{raiseMount},#{totalMoney},#{createTime},#{orderNum});
+    </insert>
+
+    <!--订单完成之后需要更新农资的库存-->
+    <update id="raiseStock" parameterType="Integer">
+        update raise set raiseStock = raiseStock-#{raiseMount}
+    </update>
+
 
 </mapper>

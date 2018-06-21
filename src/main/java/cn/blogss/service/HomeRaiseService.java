@@ -4,6 +4,7 @@ package cn.blogss.service;/*
 
 import cn.blogss.pojo.Raise;
 import cn.blogss.pojo.RaiseCat;
+import cn.blogss.pojo.RaiseOrders;
 import org.springframework.ui.Model;
 
 import java.util.List;
@@ -25,5 +26,14 @@ public interface HomeRaiseService {
 
     //    农资所有分类
     public abstract List<RaiseCat> raiseCat();
+
+    //    订单提交
+    public abstract void raiseSubmit(int raiseId,int raiseMount,Model model);
+
+    //    订单付款
+    public abstract int raisePay(RaiseOrders raiseOrders);
+
+    //    更新农资库存
+    public abstract void raiseStock(int raiseMount);
 
 }

@@ -49,7 +49,7 @@
                         </li>
 
                         <c:choose>
-                            <c:when test="${loginName == null || loginName == ''}">
+                            <c:when test="${user == null}">
                                 <li>
                                     <a href="<%=basePath%>home/login">
                                         <span class="glyphicon glyphicon-user"></span>

@@ -2,6 +2,8 @@ package cn.blogss.controller;/*
     create by LiQiang at 2018/4/22   
 */
 
+import cn.blogss.pojo.RaiseOrders;
+import cn.blogss.pojo.User;
 import cn.blogss.service.HomeRaiseService;
 import cn.blogss.service.RaiseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,41 @@ public class RaiseHomeController {
         homeRaiseService.raiseDetail(raiseId,model);
         return "home/raise/raise_detail";
     }
+
+    //提交订单
+    @RequestMapping(value = "/raise/raise_submit",method = RequestMethod.GET)
+    public String raiseSubmit(Model model){
+        User user = (User)request.getSession().getAttribute("user") ;
+
+        if(user == null){
+            return "redirect:/home/login";
+        }
+
+        int raiseId = Integer.parseInt(request.getParameter("raiseId"));
+        int raiseMount = Integer.parseInt(request.getParameter("raiseMount"));
+
+        homeRaiseService.raiseSubmit(raiseId,raiseMount,model);
+
+        return "home/raise/raise_submit";
+    }
+
+    //订单付款
+    @RequestMapping(value = "/raise/raise_pay",method = RequestMethod.GET)
+    public String raisePay(@ModelAttribute RaiseOrders raiseOrders){
+        User user = (User)request.getSession().getAttribute("user") ;
+
+
+        int userId = user.getUserId();
+        raiseOrders.setUserId(userId);
+
+        int code = homeRaiseService.raisePay(raiseOrders);
+
+        if(code != 0){
+            return "home/raise/pay_success";
+        }
+
+        return "home/raise/pay_fail";
+    }
+
 
 }

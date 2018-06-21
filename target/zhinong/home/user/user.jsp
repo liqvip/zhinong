@@ -1,4 +1,6 @@
 <%@page contentType="text/html;charset=utf-8" language="java"%>
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <%
@@ -195,7 +197,7 @@
                     <div class="row section01">
                         <div class="col-md-3" style="border-left: 0px;">
                             <h4>账号</h4>
-                            <h5>181****0597</h5>
+                            <h5>${user.loginName}</h5>
                         </div>
                         <div class="col-md-2">
                             <h4>账户</h4>

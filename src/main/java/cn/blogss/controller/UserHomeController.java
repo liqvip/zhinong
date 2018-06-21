@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class UserHomeController {
     HttpServletRequest request;
 
     @Autowired
-    private UserHomeService userService;
+    private UserHomeService userHomeService;
 
 
 //    用户注册
@@ -34,7 +35,7 @@ public class UserHomeController {
         String nowTime = TimeUtil.getCurTime();
         user.setCreateTime(nowTime);
 
-        int code = userService.userRegister(user);
+        int code = userHomeService.userRegister(user);
 
         if(code != 0){
             return "home/reg/reg_success";
@@ -46,14 +47,15 @@ public class UserHomeController {
 //    用户登录
     @RequestMapping(value = "/login/check",method = RequestMethod.POST,produces = "application/json;charset=utf-8")
     public String userLogin(@RequestParam("loginName")String loginName,@RequestParam("loginPwd")String loginPwd,HttpServletResponse resp) throws IOException {
-        int code = userService.userLogin(loginName,loginPwd);
+        int code = userHomeService.userLogin(loginName,loginPwd);
         Message msg = new Message();
         ObjectMapper om = new ObjectMapper();
         om.configure(SerializationFeature.INDENT_OUTPUT,true);
         String str = "";
 
         if(code != 0){
-            request.getSession().setAttribute("loginName",loginName);
+            User user = userHomeService.getUserByName(loginName);
+            request.getSession().setAttribute("user",user);
             msg.setSuccess(true);
             msg.setMsg("登录成功");
             msg.setTime(System.currentTimeMillis());
@@ -89,7 +91,11 @@ public class UserHomeController {
 
     //    用户订单
     @RequestMapping("/user/order")
-    public String orderPage(){
+    public String orderPage(Model model){
+        User user = (User)request.getSession().getAttribute("user");
+        int userId = user.getUserId();
+
+        userHomeService.userOrders(userId,model);
         return "home/user/user_order";
     }
 
