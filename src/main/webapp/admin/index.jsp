@@ -3,15 +3,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<script src="../public/js/jquery.js"></script>
-	<script src="../public/js/docs.min.js"></script>
-	<script src="../public/bs/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="../public/bs/css/bootstrap.css">	
-	<link rel="stylesheet" href="./css/admin.css">	
+   	<%@include file="main_admin.jsp"%>
 	<title>知农后台</title>
-	<style>
-		
-	</style>
 </head>
 <body>
 	<!-- 导航条 -->
@@ -46,185 +39,47 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 
-	
 
 	<div class="row">
 		<!-- 左侧设计 -->
 		<div class="col-md-2">
-			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-			  <!-- 用户管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingone">
-			      <h4 class="panel-title">
-			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseone" aria-expanded="true" aria-controls="collapseone">
-			        	用户管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapseone" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingone">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="./user/index.jsp">用户查看</a></li>
-			      	<li class="list-group-item"><a href="./user/add.jsp">用户添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
+			<div id="menu_tree" class="ztree">
 
-			  <!-- 管理员管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingtwo">
-			      <h4 class="panel-title">
-			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
-			        	管理员管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapsetwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingtwo">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="./user/index.jsp">管理员查看</a></li>
-			      	<li class="list-group-item"><a href="./user/add.jsp">管理员添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
-
-			  <!-- 订单管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingthree">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
-			        	订单管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapsethree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingthree">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="">订单查看</a></li>
-			      	<li class="list-group-item"><a href="">订单添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
-
-			  <!-- 农资管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingfour">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-			        	农资管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapsefour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfour">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="./raise/index.jsp">农资查看</a></li>
-			      	<li class="list-group-item"><a href="./raise/add.jsp">农资添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
-
-			  <!-- 农场管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingfive">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-			        	农场管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapsefive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfive">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="./farm/index.jsp">农场查看</a></li>
-			      	<li class="list-group-item"><a href="./farm/add.jsp">农场添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
-
-			  <!-- 农资分类管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingsix">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
-			        	农资分类管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapsesix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsix">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="./raise_cat/index.jsp">分类查看</a></li>
-			      	<li class="list-group-item"><a href="./raise_cat/add.jsp">分类添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
-
-			  <!-- 新闻管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingseven">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
-			        	新闻管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapseseven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingseven">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="./news/index.jsp">新闻查看</a></li>
-			      	<li class="list-group-item"><a href="./news/add.jsp">新闻添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
-
-			  <!-- 新闻分类管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingeight">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseeight" aria-expanded="false" aria-controls="collapseeight">
-			        	新闻分类管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapseeight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingeight">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="./news_cat/index.jsp">分类查看</a></li>
-			      	<li class="list-group-item"><a href="./news_cat/add.jsp">分类添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
-
-			  <!-- 公告管理 -->
-			  <div class="panel panel-primary">
-			    <div class="panel-heading" role="tab" id="headingnine">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsenine" aria-expanded="false" aria-controls="collapsenine">
-			        	公告管理
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapsenine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingnine">
-			      <ul class="list-group">
-			      	<li class="list-group-item"><a href="">公告查看</a></li>
-			      	<li class="list-group-item"><a href="">公告添加</a></li>
-			      </ul>
-			    </div>
-			  </div>
-
-			</div><!--panel-group-->
+			</div>
 		</div><!--col-md-2-->
 
 		<!-- 右侧设计 -->
 		<div class="col-md-10">
-			<div class="container">
-			  <div class="page-header">
-				<h1>欢迎光临 <small>知农后台管理系统</small>
-					<a class="btn btn-primary btn-lg pull-right" href="../index.jsp">去首页</a>
-				</h1>
-			  </div> 
-			  <img src="./images/1.jpg" alt="">
-			</div>
+            <div id="page_content">
+				<iframe src="" frameborder="0" scrolling="no" width="100%" height="700px"></iframe>
+	  		</div>
 		</div><!--col-md-10-->
 
 	</div><!--row-->
 
-
-
 </body>
 <script>
+	var zTreeObj;
+	var setting = {
+        async: {
+            enable: true,
+            url: "<%=basePath%>admin/menuClick",
+            autoParam: ["id"]
+        },
+
+		callback:{
+            onClick:menuClick
+		}
+	};
+
+	$(document).ready(function () {
+		zTreeObj = $.fn.zTree.init($("#menu_tree"),setting);
+    });
+
+	function menuClick(e,treeId,treeNode) {
+		if(treeNode.isParent)
+		   return;
+        $("iframe").attr("src","<%=basePath%>admin/"+treeNode.murl);
+    }
 </script>
 </html>

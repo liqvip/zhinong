@@ -32,6 +32,7 @@
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.1.6" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

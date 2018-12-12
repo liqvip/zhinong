@@ -38,3 +38,16 @@ table td>img{
 	height: 50px;
 	border-radius: 5px;
 }
+
+#title{
+	font-size: 18px;
+	border-bottom: 1px solid #99C7F4;
+	margin-bottom: 15px;
+	padding-bottom: 20px;
+}
+
+#title>button{
+	margin-left: 10px;
+	float: right;
+    text-align: center;
+}

@@ -118,7 +118,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 			//防止表单以老式方法提交
 			e.preventDefault();
 			//表单数据序列化
-			var formData = $(this).serialize();
+		var formData = $(this).serialize();
 			//当接口返回的数据类型与dataType不一致时，error模块也将会执行,即使请求成功
 			$.ajax({
 				url:"admin/login",
@@ -129,7 +129,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 				    if(!data.success){
 				        alert(data.msg);
 					}else{
-                        window.location.href="admin/index.jsp";
+                        window.location.href="admin/index";
 					}
                 },
 				error:function (jqXHR) {

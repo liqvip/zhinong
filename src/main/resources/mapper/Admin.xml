@@ -4,14 +4,7 @@
     <sql id="columns">adminId,loginName,loginPwd,createTime</sql>
     <select id="adminLogin" resultType="Integer" parameterType="Admin">
         select COUNT(*) from admin
-        <where>
-            <if test="loginName != null">
-                loginName = #{loginName}
-            </if>
-            <if test="loginName != null">
-               and loginPwd = #{loginPwd}
-            </if>
-        </where>
+        where loginName = #{loginName} and loginPwd = #{loginPwd}
     </select>
 
 </mapper>

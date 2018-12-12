@@ -3,6 +3,9 @@ package cn.blogss.service;/*
 */
 
 import cn.blogss.pojo.Admin;
+import cn.blogss.pojo.Menu;
+
+import java.util.List;
 
 public interface AdminService {
 //    管理员登录验证

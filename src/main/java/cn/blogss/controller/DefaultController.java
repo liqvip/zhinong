@@ -14,6 +14,11 @@ public class DefaultController {
     @Autowired
     HttpServletRequest request;
 
+   /* @RequestMapping(value = {"/admin","/admin/"})
+    public String adminPage(){
+        return "redirect:/admin/index";
+    }*/
+
     @RequestMapping("/")
     public String mainPage(){
         return "home/index";

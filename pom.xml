@@ -131,7 +131,16 @@
       <artifactId>c3p0</artifactId>
       <version>0.9.5.2</version>
     </dependency>
+
+    <!--分页标签-->
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.2</version>
+    </dependency>
   </dependencies>
+
+
 
   <build>
     <finalName>zhinong</finalName>

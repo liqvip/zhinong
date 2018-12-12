@@ -3,36 +3,48 @@
 <mapper namespace="cn.blogss.mapper.FarmMapper">
     <sql id="columns">farmId,farmImg,farmName</sql>
 
-    <!--后台农资分类添加-->
+    <!--后台农场添加-->
     <insert id="farmAdd" parameterType="Farm">
         insert into farm(farmName,farmImg) values
         (#{farmName},#{farmImg})
     </insert>
     
     <!--总记录数-->
-    <select id="totRecord" resultType="int">
-        SELECT count(*) from  farm
+    <select id="totRecord" resultType="int" parameterType="String">
+        SELECT count(*) from  farm where 1=1
+        <if test="farmName != null and farmName != ''">
+            and farmName like concat('%',#{farmName},'%')
+        </if>
+
     </select>
 
-    <!--后台农资分类查看,分页-->
-    <select id="farmSelectAll" parameterType="int" resultType="Farm">
-        select <include refid="columns"></include>
-        from farm limit #{pageNow},5
-    </select>
-
-    <!--后台农资分类查看所有-->
-    <select id="farmSelectAll2"  resultType="Farm">
+    <!--后台农场查看,分页-->
+    <select id="farmSelectAll" resultType="Farm">
         select <include refid="columns"></include>
         from farm
+        where 1=1
+        <if test="farmName != null and farmName != ''">
+           and farmName like concat('%',#{farmName},'%')
+        </if>
+        limit #{pageIndex},#{pageSize}
     </select>
 
-    <!--后台农资分类删除-->
-    <delete id="farmDelete" parameterType="int">
+
+    <!--后台农场删除-->
+    <delete id="farmDelete">
         delete from farm
-        where farmId = #{farmId}
+        where farmId in
+        <foreach collection="array" item="item" index="index" separator="," open="(" close=")">
+          #{item}
+        </foreach>
     </delete>
 
-    <!--后台农资分类修改-->
+    <!--删除一条-->
+    <delete id="farmDelOne" parameterType="String">
+        DELETE FROM farm WHERE farmId = #{id}
+    </delete>
+
+    <!--后台农场修改-->
     <update id="farmModify">
         update farm
         <set>

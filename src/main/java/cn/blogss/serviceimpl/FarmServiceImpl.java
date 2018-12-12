@@ -7,6 +7,7 @@ import cn.blogss.pojo.Message;
 import cn.blogss.pojo.Pagination;
 import cn.blogss.pojo.Farm;
 import cn.blogss.pojo.RaiseCat;
+import cn.blogss.pojo.utils.Page;
 import cn.blogss.service.FarmService;
 import cn.blogss.service.FarmService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -54,42 +56,22 @@ public class FarmServiceImpl implements FarmService{
 
     //    农场查看,分页
     @Override
-    public String farmSelectAll(int pageNow) throws JsonProcessingException {
-        Pagination<Farm> up = new Pagination<Farm>();
-//        总页数
-        int totPage = (farmMapper.totRecord()-1)/5+1;
-        up.setTotPage(totPage);
+    public List<Farm> farmSelectAll(String pageIndex,int pageSize,String farmName){
 
-        if(pageNow==1){
-            up.setFirstPage(true);
-            up.setLastPage(false);
-        } else if(pageNow==totPage){
-            up.setFirstPage(false);
-            up.setLastPage(true);
-        }else {
-            up.setFirstPage(false);
-            up.setLastPage(false);
-        }
 
-        List<Farm> list = farmMapper.farmSelectAll((pageNow-1)*5);
-        up.setList(list);
-        ObjectMapper om = new ObjectMapper();
-        om.configure(SerializationFeature.INDENT_OUTPUT,true);
-        //om.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+         return farmMapper.farmSelectAll((Integer.parseInt(pageIndex)-1)*pageSize,pageSize,farmName);
 
-        String str = "";
-        try {
-            str = om.writeValueAsString(up);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return  str;
     }
 
     //    农场删除
     @Override
-    public void farmDelete(int farmId) {
-        farmMapper.farmDelete(farmId);
+    public void farmDelete(String[] ids) {
+        farmMapper.farmDelete(ids);
+    }
+
+    @Override
+    public void farmDelOne(String id) {
+        farmMapper.farmDelOne(id);
     }
 
     //    农场修改
@@ -98,19 +80,10 @@ public class FarmServiceImpl implements FarmService{
         farmMapper.farmModify(farm);
     }
 
-    @Override
-    public String farmSelectAll2() {
-        List<Farm> list = farmMapper.farmSelectAll2();
-        ObjectMapper om = new ObjectMapper();
-        om.configure(SerializationFeature.INDENT_OUTPUT,true);
-        //om.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 
-        String str = "";
-        try {
-            str = om.writeValueAsString(list);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return  str;
+    @Override
+    public int totRecord(String farmName) {
+        return farmMapper.totRecord(farmName);
     }
+
 }

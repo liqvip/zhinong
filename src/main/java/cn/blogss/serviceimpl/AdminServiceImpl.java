@@ -4,9 +4,12 @@ package cn.blogss.serviceimpl;/*
 
 import cn.blogss.mapper.AdminMapper;
 import cn.blogss.pojo.Admin;
+import cn.blogss.pojo.Menu;
 import cn.blogss.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -18,4 +21,5 @@ public class AdminServiceImpl implements AdminService{
         Integer code = adminMapper.adminLogin(admin);
         return code;
     }
+
 }

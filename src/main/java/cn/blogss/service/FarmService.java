@@ -4,6 +4,7 @@ package cn.blogss.service;/*
 
 import cn.blogss.pojo.Farm;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -13,14 +14,17 @@ public interface FarmService {
     public abstract String farmAdd(Farm farm);
 
     //农场查看
-    public abstract String farmSelectAll(int pagenow) throws JsonProcessingException;
+    public abstract List<Farm> farmSelectAll(String pageIndex,int pageSize,String farmName);
 
     //农场删除
-    public abstract void farmDelete(int farmId);
+    public abstract void farmDelete(String[] ids);
 
 //    农场修改
     public abstract void farmModify(Farm farm);
 
-    //农场查看全部
-    public abstract String farmSelectAll2();
+    //查询总记录
+    public int totRecord(String farmName);
+
+    //删除一条
+    void farmDelOne(String id);
 }
