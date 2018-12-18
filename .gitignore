@@ -1,0 +1,8 @@
+# ignore all files in the .idea directory
+.idea/
+
+# ignore all files in the target directory
+target/
+
+# ignore zhinong.iml file
+zhinong.iml

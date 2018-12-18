@@ -1,12 +1,12 @@
-package cn.blogss.serviceimpl;/*
+package cn.blogss.service.impl;/*
     create by LiQiang at 2018/5/14   
 */
 
-import cn.blogss.mapper.RaiseMapper;
-import cn.blogss.pojo.Raise;
+import cn.blogss.mapper.RaiseCatMapper;
 import cn.blogss.pojo.Message;
 import cn.blogss.pojo.Pagination;
-import cn.blogss.service.RaiseService;
+import cn.blogss.pojo.RaiseCat;
+import cn.blogss.service.RaiseCatService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -16,14 +16,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RaiseServiceImpl implements RaiseService{
+public class RaiseCatServiceImpl implements RaiseCatService{
     @Autowired
-    RaiseMapper raiseMapper;
+    RaiseCatMapper raiseCatMapper;
 
-//    农资添加
+//    农资分类添加
     @Override
-    public String raiseAdd(Raise raise) {
-        int code = raiseMapper.raiseAdd(raise);
+    public String raiseCatAdd(RaiseCat raiseCat) {
+        int code = raiseCatMapper.raiseCatAdd(raiseCat);
         System.out.println("code:"+code);
         Message msg = new Message();
 
@@ -50,12 +50,12 @@ public class RaiseServiceImpl implements RaiseService{
         return  str;
     }
 
-    //    农资查看,分页
+    //    农资分类查看,分页
     @Override
-    public String raiseSelectAll(int pageNow) throws JsonProcessingException {
-        Pagination<Raise> up = new Pagination<Raise>();
+    public String raiseCatSelectAll(int pageNow) throws JsonProcessingException {
+        Pagination<RaiseCat> up = new Pagination<RaiseCat>();
 //        总页数
-        int totPage = (raiseMapper.totRecord()-1)/5+1;
+        int totPage = (raiseCatMapper.totRecord()-1)/5+1;
         up.setTotPage(totPage);
 
         if(pageNow==1){
@@ -69,7 +69,7 @@ public class RaiseServiceImpl implements RaiseService{
             up.setLastPage(false);
         }
 
-        List<Raise> list = raiseMapper.raiseSelectAll((pageNow-1)*5);
+        List<RaiseCat> list = raiseCatMapper.raiseCatSelectAll((pageNow-1)*5);
         up.setList(list);
         ObjectMapper om = new ObjectMapper();
         om.configure(SerializationFeature.INDENT_OUTPUT,true);
@@ -84,15 +84,31 @@ public class RaiseServiceImpl implements RaiseService{
         return  str;
     }
 
-    //    农资删除
+    //    农资分类删除
     @Override
-    public void raiseDelete(int raiseId) {
-        raiseMapper.raiseDelete(raiseId);
+    public void raiseCatDelete(int raiseCatId) {
+        raiseCatMapper.raiseCatDelete(raiseCatId);
     }
 
-    //    农资修改
+    //    农资分类修改
     @Override
-    public void raiseModify(Raise raise) {
-        raiseMapper.raiseModify(raise);
+    public void raiseCatModify(RaiseCat raiseCat) {
+        raiseCatMapper.raiseCatModify(raiseCat);
+    }
+
+    @Override
+    public String raiseCatSelectAll2() {
+        List<RaiseCat> list = raiseCatMapper.raiseCatSelectAll2();
+        ObjectMapper om = new ObjectMapper();
+        om.configure(SerializationFeature.INDENT_OUTPUT,true);
+        //om.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+        String str = "";
+        try {
+            str = om.writeValueAsString(list);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return  str;
     }
 }

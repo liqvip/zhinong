@@ -1,13 +1,12 @@
-package cn.blogss.serviceimpl;/*
+package cn.blogss.service.impl;/*
     create by LiQiang at 2018/5/14   
 */
 
-import cn.blogss.mapper.NewsMapper;
+import cn.blogss.mapper.NewsCatMapper;
 import cn.blogss.pojo.Message;
-import cn.blogss.pojo.News;
 import cn.blogss.pojo.Pagination;
-import cn.blogss.service.NewsService;
-import cn.blogss.utils.TimeUtil;
+import cn.blogss.pojo.NewsCat;
+import cn.blogss.service.NewsCatService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -15,25 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
-public class NewsServiceImpl implements NewsService{
+public class NewsCatServiceImpl implements NewsCatService{
     @Autowired
-    NewsMapper newsMapper;
+    NewsCatMapper newsCatMapper;
 
-//    新闻详情
+//    新闻分类添加
     @Override
-    public Map newsDetail(int newsId) {
-        return newsMapper.newsDetail(newsId);
-    }
-
-    //    新闻添加
-    @Override
-    public String newsAdd(News news) {
-        news.setNewsImg("");
-        news.setCreateTime(TimeUtil.getCurTime());
-        int code = newsMapper.newsAdd(news);
+    public String newsCatAdd(NewsCat newsCat) {
+        int code = newsCatMapper.newsCatAdd(newsCat);
         System.out.println("code:"+code);
         Message msg = new Message();
 
@@ -60,12 +50,12 @@ public class NewsServiceImpl implements NewsService{
         return  str;
     }
 
-    //    新闻查看,分页
+    //    新闻分类查看,分页
     @Override
-    public String newsSelectAll(int pageNow) throws JsonProcessingException {
-        Pagination<News> up = new Pagination<News>();
+    public String newsCatSelectAll(int pageNow) throws JsonProcessingException {
+        Pagination<NewsCat> up = new Pagination<NewsCat>();
 //        总页数
-        int totPage = (newsMapper.totRecord()-1)/5+1;
+        int totPage = (newsCatMapper.totRecord()-1)/5+1;
         up.setTotPage(totPage);
 
         if(pageNow==1){
@@ -79,7 +69,7 @@ public class NewsServiceImpl implements NewsService{
             up.setLastPage(false);
         }
 
-        List<News> list = newsMapper.newsSelectAll((pageNow-1)*5);
+        List<NewsCat> list = newsCatMapper.newsCatSelectAll((pageNow-1)*5);
         up.setList(list);
         ObjectMapper om = new ObjectMapper();
         om.configure(SerializationFeature.INDENT_OUTPUT,true);
@@ -94,21 +84,21 @@ public class NewsServiceImpl implements NewsService{
         return  str;
     }
 
-    //    新闻删除
+    //    新闻分类删除
     @Override
-    public void newsDelete(int newsId) {
-        newsMapper.newsDelete(newsId);
+    public void newsCatDelete(int newsCatId) {
+        newsCatMapper.newsCatDelete(newsCatId);
     }
 
-    //    新闻修改
+    //    新闻分类修改
     @Override
-    public void newsModify(News news) {
-        newsMapper.newsModify(news);
+    public void newsCatModify(NewsCat newsCat) {
+        newsCatMapper.newsCatModify(newsCat);
     }
 
     @Override
-    public String newsSelectAll2() {
-        List<News> list = newsMapper.newsSelectAll2();
+    public String newsCatSelectAll2() {
+        List<NewsCat> list = newsCatMapper.newsCatSelectAll2();
         ObjectMapper om = new ObjectMapper();
         om.configure(SerializationFeature.INDENT_OUTPUT,true);
         //om.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);

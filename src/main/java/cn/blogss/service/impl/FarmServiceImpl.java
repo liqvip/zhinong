@@ -1,4 +1,4 @@
-package cn.blogss.serviceimpl;/*
+package cn.blogss.service.impl;/*
     create by LiQiang at 2018/5/14   
 */
 
