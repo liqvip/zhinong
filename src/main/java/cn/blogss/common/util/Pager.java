@@ -1,4 +1,4 @@
-package cn.blogss.common.utils.pagetag;
+package cn.blogss.common.util;
 
 import java.io.IOException;
 

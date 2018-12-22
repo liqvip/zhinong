@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- shiro内置的过滤器
+		认证:anon,authBasic,authc,user,logout
+		授权:perms,roles,ssl,port
+	-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- loginUrl：没有登录的用户请求需要登录的页面时自动跳转到登录页面，不是必须的属性，
+        不输入地址的话会自动寻找项目web项目的根目录下的”/login.jsp”页面。 -->
+        <property name="loginUrl" value="/login.html"/>
+        <!-- 未授权的跳转页面 -->
+        <property name="unauthorizedUrl" value="/403.html"/>
+        <!-- 过滤器链 -->
+        <property name="filterChainDefinitions">
+            <value>
+                /home/login = anon
+                /admin/login = anon
+                /testRole1 = roles["admin","admin1"]
+                /testRole = rolesOr["admin","admin1"]
+                /admin/** = authc
+                <!-- /testPerms = perms["user:delete"]
+                /testPerms1 = perms["user:delete","user:update"] -->
+            </value>
+        </property>
+        <property name="filters">
+            <util:map>
+                <entry key="rolesOr" value-ref="rolesOrFilter"></entry>
+            </util:map>
+        </property>
+    </bean>
+
+    <bean class="cn.blogss.filter.RolesOrFilter" id="rolesOrFilter"></bean>
+
+    <!-- 创建 SecurityManager 对象 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="realm"/>
+        <property name="sessionManager" ref="customSessionManager"></property>
+        <property name="cacheManager" ref="cacheManager"></property>
+        <property name="rememberMeManager" ref="cookieRememberMeManager"></property>
+    </bean>
+
+    <bean id="realm" class="cn.blogss.shiro.realm.CustomRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"/>
+        <property name="hashIterations" value="1"/>
+    </bean>
+
+    <!-- SessionManager -->
+    <bean class="cn.blogss.session.CustomSessionManager" id="customSessionManager">
+        <property name="sessionDAO" ref="redisSessionDao"></property>
+    </bean>
+
+    <!-- default sessionManager -->
+    <!-- <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" id="sessionManager">
+		<property name="sessionDAO" ref="redisSessionDao"></property>
+    </bean> -->
+
+    <bean class="cn.blogss.session.RedisSessionDao" id="redisSessionDao"></bean>
+
+    <!-- CacheManager -->
+    <bean class="cn.blogss.cache.RedisCacheManager" id="cacheManager"></bean>
+
+    <!-- remember me -->
+    <bean class="org.apache.shiro.web.mgt.CookieRememberMeManager" id="cookieRememberMeManager">
+        <property name="cookie" ref="simpleCookie"></property>
+    </bean>
+    <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="simpleCookie">
+        <constructor-arg value="rememberMe"></constructor-arg>
+        <property name="maxAge" value="86400"></property><!-- 单位为second(秒) -->
+    </bean>
+
+    <!-- 通过注解配置授权 -->
+    <aop:config proxy-target-class="true"></aop:config>
+    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"></property>
+    </bean>
+</beans>

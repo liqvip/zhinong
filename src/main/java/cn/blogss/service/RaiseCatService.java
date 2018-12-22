@@ -3,7 +3,6 @@ package cn.blogss.service;/*
 */
 
 import cn.blogss.pojo.RaiseCat;
-import cn.blogss.pojo.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface RaiseCatService {

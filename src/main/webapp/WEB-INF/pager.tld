@@ -22,7 +22,7 @@
   	<!-- 指定标签名 -->
     <name>pager</name>
 	<!-- 标签处理类,需要指定包名+类名 -->
-    <tag-class>cn.blogss.common.utils.pagetag.Pager</tag-class>
+    <tag-class>cn.blogss.common.util.Pager</tag-class>
 	<!-- 标签名描述信息 -->
     <description> Display JSP sources </description>
 	<!-- 标签属性 -->

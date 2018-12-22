@@ -3,7 +3,7 @@ package cn.blogss.controller.home;/*
 */
 
 import cn.blogss.pojo.RaiseOrders;
-import cn.blogss.pojo.User;
+import cn.blogss.pojo.Users;
 import cn.blogss.service.HomeRaiseService;
 import cn.blogss.service.RaiseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class RaiseHomeController {
     //提交订单
     @RequestMapping(value = "/raise/raise_submit",method = RequestMethod.GET)
     public String raiseSubmit(Model model){
-        User user = (User)request.getSession().getAttribute("user") ;
+        Users user = (Users)request.getSession().getAttribute("user") ;
 
         if(user == null){
             return "redirect:/home/login";
@@ -59,10 +59,10 @@ public class RaiseHomeController {
     //订单付款
     @RequestMapping(value = "/raise/raise_pay",method = RequestMethod.GET)
     public String raisePay(@ModelAttribute RaiseOrders raiseOrders){
-        User user = (User)request.getSession().getAttribute("user") ;
+        Users user = (Users)request.getSession().getAttribute("user") ;
 
 
-        int userId = user.getUserId();
+        int userId = user.getId();
         raiseOrders.setUserId(userId);
 
         int code = homeRaiseService.raisePay(raiseOrders);

@@ -3,7 +3,7 @@ package cn.blogss.controller.admin;/*
 */
 
 import cn.blogss.pojo.Menu;
-import cn.blogss.pojo.utils.Page;
+import cn.blogss.common.util.Page;
 import cn.blogss.service.MenuService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
