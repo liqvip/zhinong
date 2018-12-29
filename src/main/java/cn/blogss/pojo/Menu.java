@@ -4,8 +4,8 @@ package cn.blogss.pojo;/*
 
 public class Menu {
     private int id;
-    private String name;
-    private String murl;
+    private String name = "";
+    private String murl = "";
     private int priority;
     private boolean isParent = true;
     private int pid;

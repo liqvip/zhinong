@@ -43,23 +43,23 @@ class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public String menuAdd(Menu menu) {
-        return null;
+    public void add(Menu menu) {
+        menuMapper.add(menu);
     }
 
     @Override
-    public List<Menu> menuSelectAll(String pageIndex, int pageSize, Menu menu) {
-        return menuMapper.menuSelectAll((Integer.parseInt(pageIndex)-1)*pageSize,pageSize,menu);
+    public List<Menu> selectMenuByPage(String pageIndex, int pageSize, Menu menu) {
+        return menuMapper.selectMenuByPage((Integer.parseInt(pageIndex)-1)*pageSize,pageSize,menu);
     }
 
     @Override
-    public void menuDelete(String[] ids) {
-
+    public void delBatch(String[] ids) {
+        menuMapper.delBatch(ids);
     }
 
     @Override
-    public void menuModify(Menu menu) {
-
+    public void edit(Menu menu) {
+        menuMapper.edit(menu);
     }
 
 
@@ -69,8 +69,8 @@ class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public void menuDelOne(String id) {
-
+    public void delOne(String id) {
+        menuMapper.delOne(id);
     }
 
     @Override

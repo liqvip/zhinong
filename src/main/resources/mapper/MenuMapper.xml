@@ -25,10 +25,11 @@
             and murl like concat('%',#{murl},'%')
         </if>
 
+
     </select>
 
     <!--后台菜单查看,分页-->
-    <select id="menuSelectAll" resultType="Menu">
+    <select id="selectMenuByPage" resultType="Menu">
         select <include refid="columns"></include>
         from menu
         where 1=1
@@ -51,5 +52,67 @@
         from menu
         where id = #{id}
     </select>
+
+    <!--添加菜单-->
+    <insert id="add" parameterType="Menu">
+        insert into menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="murl != null">
+                murl,
+            </if>
+            <if test="priority != null">
+                priority,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="murl != null">
+                #{murl,jdbcType=VARCHAR},
+            </if>
+            <if test="priority != null">
+                #{priority},
+            </if>
+            <if test="pid != null">
+                #{pid},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="edit" parameterType="Menu">
+        update menu
+        set name = #{name},
+        murl = #{murl,jdbcType=VARCHAR},
+        priority = #{priority},
+        pid = #{pid}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delBatch">
+        delete from menu
+        where id in
+        <foreach collection="array" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--删除一条-->
+    <delete id="DelOne" parameterType="String">
+        DELETE FROM menu WHERE id = #{id}
+    </delete>
+
 
 </mapper>

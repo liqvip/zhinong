@@ -13,8 +13,8 @@
         <form action="<%=basePath%>admin/menu/add" method="post">
     </c:when>
     <c:otherwise>
-        <input type="hidden" name="${smenu.id}">
         <form action="<%=basePath%>admin/menu/edit" method="post">
+            <input type="hidden" name="id" value="${smenu.id}">
     </c:otherwise>
 </c:choose>
     <div class="form-group" style="width: 500px">
@@ -39,7 +39,7 @@
         <label class="col-sm-2 control-label">父级菜单</label>
         <div class="col-sm-10">
             <select name="pid" id="" class="selectpicker" data-live-search="true">
-                <option value="">无</option>
+                <option value="0">无</option>
                 <c:forEach items="${menus}" var="menu" varStatus="index">
                     <option value="${menu.id}">${menu.name}</option>
                 </c:forEach>

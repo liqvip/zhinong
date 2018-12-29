@@ -1,17 +1,32 @@
 package cn.blogss.common.util;/*
- *Created by liqiang on 2018/12/22
- */
+    create by LiQiang at 2018/5/16   
+*/
 
 public class Message {
-    private boolean success;
-    private String msg;
+    Boolean success;
+    long time;
+    String msg;
 
-    public boolean isSuccess() {
+    public Message(){
+        this.success = true;
+        this.time = System.currentTimeMillis();
+        this.msg = "操作成功";
+    }
+
+    public Boolean getSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(Boolean success) {
         this.success = success;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public String getMsg() {

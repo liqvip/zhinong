@@ -1,6 +1,8 @@
-<%@page contentType="text/html; charset=utf-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by liqiang at 2018/12/28 
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <%@include file="../main_admin.jsp"%>
 </head>
@@ -9,24 +11,20 @@
     <!-- 右侧设计 -->
     <div class="col-md-12">
         <p id="title">
-            菜单列表
-            <button class="btn btn-primary" onclick="addShow()">新 增</button>
+            新闻类型
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="addShow()">新 增</button>
             <button class="btn btn-danger" onclick="delBatch()">删 除</button>
         </p>
-        <form action="<%=basePath%>admin/menu" method="post" class="form-inline" style="margin-bottom: 20px;">
+        <form action="<%=basePath%>admin/newsCat" method="post" class="form-inline" style="margin-bottom: 20px;">
             <div class="form-group">
-                <label for="">菜单名称</label>
-                <input type="text" name="name" value="${menu.name}" id="" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="">目标地址</label>
-                <input type="text" name="murl" value="${menu.murl}" id="" class="form-control">
+                <label for="">类别</label>
+                <input type="text" name="name" value="${newsCat.name}" id="" class="form-control">
             </div>
             <input type="submit" value="查 询" class="btn btn-primary">
             &nbsp;&nbsp;<input type="button" value="清 空" id="clear" class="btn btn-primary">
         </form>
         <c:choose>
-            <c:when test="${empty menus}">
+            <c:when test="${empty newsCat}">
                 <span class="center-block text-danger">未找到您想查询的记录!</span>
             </c:when>
             <c:otherwise>
@@ -36,24 +34,26 @@
                             <input type="checkbox" name="all" onclick="selectAll()">
                         </th>
                         <th>序号</th>
-                        <th>菜单名称</th>
-                        <th>目标地址</th>
-                        <th>优先级</th>
+                        <th>类别</th>
+                        <th>数量</th>
+                        <th>发表时间</th>
                         <th>操作</th>
                     </tr>
-                    <c:forEach items="${menus}" var="item" varStatus="id">
+                    <c:forEach items="${newsCats}" var="item" varStatus="id">
                         <tr>
                             <td>
                                 <input type="checkbox" name="id" value="${item.id}">
                             </td>
                             <td>${(page.pageIndex-1)*page.pageSize+id.index+1}</td>
                             <td>${item.name}</td>
-                            <td>${item.murl}</td>
-                            <td>${item.priority}</td>
+                            <td>${item.num}</td>
+                            <td style="width: 200px">
+                                <fmt:formatDate value="${item.addtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                            </td>
                             <td style="width: 250px">
-                                <button class="btn btn-primary btn-sm" onclick="">查看</button>
-                                <button class="btn btn-info btn-sm" onclick="editShow(this)">修改</button>
-                                <button class="btn btn-danger btn-sm" onclick="delOne(this)">删除</button>
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"
+                                        onclick="editShow(${item.id},'${item.name}')">修改</button>
+                                <button class="btn btn-danger btn-sm" onclick="delOne(${item.id})">删除</button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -64,9 +64,26 @@
         </c:choose>
     </div><!--col-md-12-->
 </div><!--row-->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </body>
 <script>
-    //清空搜索框、点击新增按钮、点击修改按钮
+    //清空搜索框
     $(document).ready(function () {
         $("#clear").on("click",function () {
             $("input[name=murl]").val("");
@@ -74,67 +91,7 @@
         });
     });
 
-    function addShow(){
-        layer.open({
-            type: 2,
-            title: '新增菜单',
-            shadeClose: true, //点击遮罩关闭层
-            area : ['500px' , '400px'],
-            content: '<%=basePath%>admin/menu/addShow',
-            btn:["确定","取消"],
-            yes:function (index,layero) {
-                var fObj = layer.getChildFrame("form",index);
-                layer.close(layer.index);
-                $.ajax({
-                    type:"post",
-                    url:fObj.attr("action"),
-                    data:fObj.serialize(),
-                    dataType:"json",
-                    success:function (data,status,jqXHR) {
-                        if(data.success){
-                            layer.msg("添加成功");
-                            window.location.reload(true);
-                        }
-                    },
-                    error:function (jqXHR) {
-                        layer.msg("添加失败");
-                    }
-                });
-            }
-        });
-    }
-
-    function editShow(obj) {
-        var id = $(obj).parent().prevAll(":last").children(":first").val();
-        layer.open({
-            type: 2,
-            title: '修改菜单',
-            shadeClose: true, //点击遮罩关闭层
-            area : ['500px' , '400px'],
-            content: '<%=basePath%>admin/menu/editShow?id='+id,
-            btn:["确定","取消"],
-            yes:function (index,layero) {
-                var fObj = layer.getChildFrame("form",index);
-                layer.close(layer.index);
-                $.ajax({
-                    type:"post",
-                    url:fObj.attr("action"),
-                    data:fObj.serialize(),
-                    dataType:"json",
-                    success:function (data,status,jqXHR) {
-                        if(data.success){
-                            layer.msg("修改成功");
-                            window.location.reload(true);
-                        }
-                    },
-                    error:function (jqXHR) {
-                        layer.msg("修改失败")
-                    }
-                });
-            }
-        });
-
-    }
+    //多选
     function selectAll() {
         if($("input[name=all]").is(":checked")){
             $(":checkbox").prop("checked",true);
@@ -143,14 +100,63 @@
         }
     }
 
+    function addShow(){
+        $("#myModalLabel").html("增加类别");
+        $(".modal-body").html("名称：<input type='text' id='newTypeName'>");
+        $(".modal-footer").html("<button type='button' class='btn btn-primary' onclick='add()'>提交</button>")
+    }
 
-    function delOne(obj){
-        var id = $(obj).parent().prevAll(":last").children(":first").val();
+    function add() {
+        $("#myModal").modal("hide");
+        var name = $("#newTypeName").val();
+        $.ajax({
+            url:"<%=basePath%>admin/newsCat/add?name="+name,
+            type:"get",
+            dataType:"json",
+            success:function (data,status,jqXHR) {
+                if(data.success){
+                    layer.msg("添加成功!");
+                    window.location.reload();
+                }
+            },
+            error:function (jqXHR) {
+                layer.msg("添加失败!");
+            }
+        });
+    }
+
+    function editShow(id,name) {
+        $("#myModalLabel").html("修改类别");
+        $(".modal-body").html("名称：<input type='text' id='newTypeName' value='"+name+"'>");
+        $(".modal-footer").html("<button type='button' class='btn btn-primary' onclick='edit("+id+")'>提交</button>")
+    }
+
+    function edit(id) {
+        $("#myModal").modal("hide");
+        var name = $("#newTypeName").val();
+        $.ajax({
+            url:"<%=basePath%>admin/newsCat/edit",
+            type:"post",
+            data:{id:id,name:name},
+            dataType:"json",
+            success:function (data,status,jqXHR) {
+                if(data.success){
+                    layer.msg("修改成功!");
+                    window.location.reload();
+                }
+            },
+            error:function (jqXHR) {
+                layer.msg("修改失败!");
+            }
+        });
+    }
+
+    function delOne(id){
         layer.confirm("确定删除所选条目？",{
                 title:"提示"
             },function (index) {
                 $.ajax({
-                    url:"<%=basePath%>admin/menu/delOne?id="+id,
+                    url:"<%=basePath%>admin/newsCat/delOne?id="+id,
                     type:"get",
                     dataType:"json",
                     success:function (data,status,jqXHR) {
@@ -185,7 +191,7 @@
                 $.ajax({
                     /*提交数组*/
                     traditional:true,
-                    url:"<%=basePath%>admin/menu/delBatch",
+                    url:"<%=basePath%>admin/newsCat/delBatch",
                     type:"post",
                     dataType:"json",
                     data:{ids:ids},
@@ -204,4 +210,3 @@
     }
 </script>
 </html>
-

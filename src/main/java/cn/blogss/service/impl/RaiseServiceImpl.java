@@ -4,7 +4,7 @@ package cn.blogss.service.impl;/*
 
 import cn.blogss.mapper.RaiseMapper;
 import cn.blogss.pojo.Raise;
-import cn.blogss.pojo.Message;
+import cn.blogss.common.util.Message;
 import cn.blogss.pojo.Pagination;
 import cn.blogss.service.RaiseService;
 import com.fasterxml.jackson.core.JsonProcessingException;

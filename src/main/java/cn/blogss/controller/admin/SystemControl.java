@@ -2,7 +2,7 @@ package cn.blogss.controller.admin;/*
  *Created by liqiang on 2018/12/22
  */
 
-import cn.blogss.pojo.Message;
+import cn.blogss.common.util.Message;
 import cn.blogss.service.MenuService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,32 +23,23 @@ public class SystemControl {
     private MenuService menuService;
 
     /*后台用户登录*/
-    @RequestMapping(value = "/login",method = {RequestMethod.GET,RequestMethod.POST},
-            produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/login",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public String login(@RequestParam("username") String username,@RequestParam("password") String password){
-        String res = "";
+    public Message login(@RequestParam("username") String username,@RequestParam("password") String password){
         Message message = new Message();
-        ObjectMapper om = new ObjectMapper();
         UsernamePasswordToken token = new UsernamePasswordToken(username,password);
         Subject subject = SecurityUtils.getSubject();
         try {
             if(!subject.isAuthenticated()){
                 subject.login(token);
             }
-            message.setSuccess(true);
             message.setMsg("登录成功!");
         }catch (Exception e){
             message.setSuccess(false);
             message.setMsg("用户名或密码错误，请重新输入！");
         }
 
-        try {
-            res = om.writeValueAsString(message);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return res;
+        return message;
     }
 
     //登录成功，跳转到后台主页

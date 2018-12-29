@@ -13,23 +13,22 @@ public interface MenuMapper {
     int isParent(int id);
 
     //菜单添加
-    public abstract int menuAdd(Menu menu);
+    public abstract void add(Menu menu);
 
     //总记录数
     public abstract int totRecord(Menu menu);
 
     //菜单查看,分页
-    public abstract List<Menu> menuSelectAll(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize,
+    public abstract List<Menu> selectMenuByPage(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize,
                                              @Param("menu") Menu menu);
-
-    //菜单删除
-    public abstract int menuDelete(String[] ids);
-
     //    菜单修改
-    public abstract int menuModify(Menu menu);
+    public abstract int edit(Menu menu);
 
     //删除一条
-    void menuDelOne(String id);
+    void delOne(String id);
+
+    //菜单删除
+    public abstract int delBatch(String[] ids);
 
     List<Menu> addShow();
 

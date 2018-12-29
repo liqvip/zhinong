@@ -163,7 +163,7 @@
 			    <div id="collapseseven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingseven">
 			      <ul class="list-group">
 			      	<li class="list-group-item"><a href="../news/index.jsp">新闻查看</a></li>
-			      	<li class="list-group-item"><a href="../news/add.jsp">新闻添加</a></li>
+			      	<li class="list-group-item"><a href="../news/add_edit.jsp">新闻添加</a></li>
 			      </ul>
 			    </div>
 			  </div>

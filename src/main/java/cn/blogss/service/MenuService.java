@@ -11,22 +11,21 @@ public interface MenuService {
     String selectMenuList(String id);
 
     //菜单添加
-    public abstract String menuAdd(Menu menu);
+    public abstract void add(Menu menu);
 
     //菜单查看
-    public abstract List<Menu> menuSelectAll(String pageIndex, int pageSize, Menu menu);
+    public abstract List<Menu> selectMenuByPage(String pageIndex, int pageSize, Menu menu);
 
     //菜单批量删除
-    public abstract void menuDelete(String[] ids);
+    public abstract void delBatch(String[] ids);
 
     //    菜单修改
-    public abstract void menuModify(Menu menu);
+    public abstract void edit(Menu menu);
 
-    //查询总记录
     public int totRecord(Menu menu);
 
     //删除一条
-    void menuDelOne(String id);
+    void delOne(String id);
 
     List<Menu> addShow();
 

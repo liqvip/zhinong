@@ -67,7 +67,6 @@ public class CustomRealm extends AuthorizingRealm{
 		
 		//通过用户名到数据库中获取凭证
 		String password = getPasswordByUsersName(userName);
-		
 		if(password == null)
 			return null;
 		

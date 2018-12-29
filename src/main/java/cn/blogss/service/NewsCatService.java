@@ -5,20 +5,23 @@ package cn.blogss.service;/*
 import cn.blogss.pojo.NewsCat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import java.util.List;
+
 public interface NewsCatService {
+    public abstract List<NewsCat> selectNewsCatByPage(String pageIndex, int pageSize, NewsCat newsCat);
 
-    //新闻分类添加
-    public abstract String newsCatAdd(NewsCat newsCat);
+    //菜单添加
+    public abstract void add(NewsCat newsCat);
 
-    //新闻分类查看
-    public abstract String newsCatSelectAll(int pagenow) throws JsonProcessingException;
+    //菜单批量删除
+    public abstract void delBatch(String[] ids);
 
-    //新闻分类删除
-    public abstract void newsCatDelete(int newsCatId);
+    //删除一条
+    void delOne(String id);
 
-//    新闻分类修改
-    public abstract void newsCatModify(NewsCat newsCat);
+    //    菜单修改
+    public abstract void edit(NewsCat newsCat);
 
-//    查找所有的新闻分类
-    public String newsCatSelectAll2();
+    public int totRecord(NewsCat newsCat);
+
 }

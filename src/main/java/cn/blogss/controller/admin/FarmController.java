@@ -56,11 +56,8 @@ public class FarmController {
     @RequestMapping(value = "/farm/scan",method = {RequestMethod.GET,RequestMethod.POST},
             produces = "application/json;" +
             "charset=utf-8")
-    public String farmScan(@RequestParam(value = "pageIndex",required = false) String pageIndex,
+    public String farmScan(@RequestParam(value = "pageIndex",defaultValue = "1") String pageIndex,
                            @RequestParam(value = "farmName",required = false) String farmName,Model model){
-        if(pageIndex == null || pageIndex.equals(""))
-            pageIndex = "1";
-
         Page page = new Page();
         String submitUrl = "";
         if(farmName == null || farmName.equals("")){
