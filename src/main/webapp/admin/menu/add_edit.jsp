@@ -39,7 +39,7 @@
         <label class="col-sm-2 control-label">父级菜单</label>
         <div class="col-sm-10">
             <select name="pid" id="" class="selectpicker" data-live-search="true">
-                <option value="0">无</option>
+                <option value="0">类别</option>
                 <c:forEach items="${menus}" var="menu" varStatus="index">
                     <option value="${menu.id}">${menu.name}</option>
                 </c:forEach>

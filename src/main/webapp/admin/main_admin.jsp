@@ -6,8 +6,13 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%--jstl 核心库--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--jstl 格式化标签库--%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%--jstl 函数标签库--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%--自定义分页标签--%>
 <%@ taglib prefix="m" uri="MyPager-tag"%>
 <link rel="stylesheet" href="<%=basePath%>public/css/pager.css" />
 <link rel="stylesheet" href="<%=basePath%>public/zTree/css/zTreeStyle.css">

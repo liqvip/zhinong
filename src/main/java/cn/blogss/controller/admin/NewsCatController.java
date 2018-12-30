@@ -66,7 +66,7 @@ public class NewsCatController {
 
     @RequestMapping(value = "newsCat/delBatch",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Message menuDelete(@RequestParam("ids")String[] ids){
+    public Message newsCatDelBatch(@RequestParam("ids")String[] ids){
         newsCatService.delBatch(ids);
         return new Message();
     }
@@ -74,7 +74,7 @@ public class NewsCatController {
     //    新闻分类修改
     @RequestMapping(value = "newsCat/edit",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
-    public Message newsCatDelBatch(@ModelAttribute NewsCat newsCat){
+    public Message newsCatEdit(@ModelAttribute NewsCat newsCat){
         newsCat.setAddtime(new Date());
         newsCatService.edit(newsCat);
         return new Message();

@@ -24,7 +24,7 @@
             &nbsp;&nbsp;<input type="button" value="清 空" id="clear" class="btn btn-primary">
         </form>
         <c:choose>
-            <c:when test="${empty newsCat}">
+            <c:when test="${empty newsCats}">
                 <span class="center-block text-danger">未找到您想查询的记录!</span>
             </c:when>
             <c:otherwise>

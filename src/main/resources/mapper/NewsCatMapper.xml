@@ -124,7 +124,7 @@
   </update>
 
   <!--后台菜单查看,分页-->
-  <select id="selectNewsCatByPage" resultType="NewsCat">
+  <select id="selectNewsCatByPage" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from news_cat
     where 1=1
@@ -149,5 +149,9 @@
             #{item}
         </foreach>
     </delete>
+
+    <select id="newsAddShow" resultType="NewsCat">
+      select id,name from news_cat
+    </select>
 
 </mapper>

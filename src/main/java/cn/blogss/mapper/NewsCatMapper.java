@@ -54,12 +54,16 @@ public interface NewsCatMapper {
      */
     int updateByPrimaryKey(NewsCat record);
 
-    //菜单查看,分页
-    public abstract List<NewsCat> selectNewsCatByPage(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize,
-                                                @Param("newsCat") NewsCat newsCat);
+    public abstract List<NewsCat> selectNewsCatByPage(@Param("pageIndex")int pageIndex,
+                                                      @Param("pageSize")int pageSize,
+                                                      @Param("newsCat")NewsCat newsCat);
 
-    //菜单批量删除
+    //新闻分类批量删除
     public abstract void delBatch(String[] ids);
 
+    //模糊查询总记录
     public int totRecord(NewsCat newsCat);
+
+    //添加新闻时的查询
+    public List<NewsCat> newsAddShow();
 }

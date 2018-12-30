@@ -1,6 +1,9 @@
 package cn.blogss.mapper;
 
 import cn.blogss.pojo.News;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface NewsMapper {
     /**
@@ -58,4 +61,13 @@ public interface NewsMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(News record);
+
+    public abstract List<News> selectNewsByPage(@Param("pageIndex")int pageIndex,
+                                                   @Param("pageSize")int pageSize,
+                                                   @Param("news")News news);
+
+    //新闻分类批量删除
+    public abstract void delBatch(String[] ids);
+
+    public int totRecord(News newsCat);
 }

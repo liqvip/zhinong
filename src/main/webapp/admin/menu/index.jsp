@@ -52,8 +52,8 @@
                             <td>${item.priority}</td>
                             <td style="width: 250px">
                                 <button class="btn btn-primary btn-sm" onclick="">查看</button>
-                                <button class="btn btn-info btn-sm" onclick="editShow(this)">修改</button>
-                                <button class="btn btn-danger btn-sm" onclick="delOne(this)">删除</button>
+                                <button class="btn btn-info btn-sm" onclick="editShow(${item.id})">修改</button>
+                                <button class="btn btn-danger btn-sm" onclick="delOne(${item.id})">删除</button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -104,8 +104,7 @@
         });
     }
 
-    function editShow(obj) {
-        var id = $(obj).parent().prevAll(":last").children(":first").val();
+    function editShow(id) {
         layer.open({
             type: 2,
             title: '修改菜单',
@@ -144,8 +143,7 @@
     }
 
 
-    function delOne(obj){
-        var id = $(obj).parent().prevAll(":last").children(":first").val();
+    function delOne(id){
         layer.confirm("确定删除所选条目？",{
                 title:"提示"
             },function (index) {

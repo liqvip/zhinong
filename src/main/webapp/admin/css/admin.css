@@ -52,3 +52,9 @@ table td>img{
 	float: right;
     text-align: center;
 }
+
+#title>a{
+	margin-left: 10px;
+	float: right;
+	text-align: center;
+}
