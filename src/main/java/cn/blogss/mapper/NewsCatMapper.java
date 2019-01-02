@@ -66,4 +66,6 @@ public interface NewsCatMapper {
 
     //添加新闻时的查询
     public List<NewsCat> newsAddShow();
+
+    void increaseNumByCatId(Integer catId);
 }

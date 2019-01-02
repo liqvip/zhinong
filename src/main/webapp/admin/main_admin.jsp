@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="<%=basePath%>public/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="<%=basePath%>public/css/validationEngine.jquery.css">
 <link rel="stylesheet" href="<%=basePath%>public/webuploader-0.1.5/webuploader.css">
+<link rel="stylesheet" href="<%=basePath%>public/summernote-0.8.11/summernote.css">
 <%--必须在引入bootstrap.js之前导入--%>
 <script src="<%=basePath%>public/js/jquery.js"></script>
 <script src="<%=basePath%>public/bs/js/bootstrap.js"></script>
@@ -30,3 +31,4 @@
 <script src="<%=basePath%>public/layer-v3.1.1/layer.js"></script>
 <script src="<%=basePath%>public/zTree/js/jquery.ztree.core.js"></script>
 <script src="<%=basePath%>public/webuploader-0.1.5/webuploader.js"></script>
+<script src="<%=basePath%>public/summernote-0.8.11/summernote.js"></script>

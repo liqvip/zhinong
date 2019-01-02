@@ -154,4 +154,8 @@
       select id,name from news_cat
     </select>
 
+    <update id="increaseNumByCatId" parameterType="Integer">
+      update news_cat set num = num + 1 where id = #{catId};
+    </update>
+
 </mapper>

@@ -51,7 +51,6 @@
                             <td>${item.murl}</td>
                             <td>${item.priority}</td>
                             <td style="width: 250px">
-                                <button class="btn btn-primary btn-sm" onclick="">查看</button>
                                 <button class="btn btn-info btn-sm" onclick="editShow(${item.id})">修改</button>
                                 <button class="btn btn-danger btn-sm" onclick="delOne(${item.id})">删除</button>
                             </td>

@@ -51,7 +51,7 @@
 		<!-- 右侧设计 -->
 		<div class="col-md-10">
             <div id="page_content">
-				<iframe src="" frameborder="0" scrolling="no" width="100%" height="700px"></iframe>
+				<iframe src="" frameborder="0" scrolling="yes" width="100%" height="600px"></iframe>
 	  		</div>
 		</div><!--col-md-10-->
 
@@ -79,7 +79,7 @@
 	function menuClick(e,treeId,treeNode) {
 		if(treeNode.isParent)
 		   return;
-        $("iframe").attr("src","<%=basePath%>admin/"+treeNode.murl);
+        $("iframe").attr("src","<%=basePath%>"+treeNode.murl);
     }
 </script>
 </html>

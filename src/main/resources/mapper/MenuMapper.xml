@@ -39,6 +39,7 @@
         <if test="menu.murl != null and menu.murl != ''">
             and murl like concat('%',#{menu.murl},'%')
         </if>
+        order by priority asc
         limit #{pageIndex},#{pageSize}
     </select>
 
@@ -110,7 +111,7 @@
     </delete>
 
     <!--删除一条-->
-    <delete id="DelOne" parameterType="String">
+    <delete id="delOne" parameterType="String">
         DELETE FROM menu WHERE id = #{id}
     </delete>
 

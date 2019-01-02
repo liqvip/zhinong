@@ -3,14 +3,14 @@ package cn.blogss.common.util;/*
 */
 
 public class Message {
-    Boolean success;
-    long time;
-    String msg;
+    Boolean success = true;
+    String msg = "操作成功";
 
-    public Message(){
-        this.success = true;
-        this.time = System.currentTimeMillis();
-        this.msg = "操作成功";
+    public Message(){};
+
+    public Message(boolean success,String msg){
+        this.success = success;
+        this.msg = msg;
     }
 
     public Boolean getSuccess() {
@@ -19,14 +19,6 @@ public class Message {
 
     public void setSuccess(Boolean success) {
         this.success = success;
-    }
-
-    public long getTime() {
-        return time;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 
     public String getMsg() {

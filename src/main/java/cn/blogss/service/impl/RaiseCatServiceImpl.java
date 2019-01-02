@@ -29,11 +29,9 @@ public class RaiseCatServiceImpl implements RaiseCatService{
 
         if(code!=0){
             msg.setSuccess(true);
-            msg.setTime(System.currentTimeMillis());
             msg.setMsg("添加成功");
         }else {
             msg.setSuccess(false);
-            msg.setTime(System.currentTimeMillis());
             msg.setMsg("添加失败");
         }
 

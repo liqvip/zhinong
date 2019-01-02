@@ -4,7 +4,7 @@
 <head>
     <%@include file="../main_admin.jsp"%>
 </head>
-<body style="width: 100%;height: 100%;">
+<body>
 <div class="row">
 	<!-- 右侧设计 -->
 	<div class="col-md-12">
@@ -98,7 +98,7 @@
 				success:function (data,status,jqXHR) {
 				    if(data.success){
                         layer.close();
-                        window.location.href="<%=basePath%>/admin/farm/scan";
+                        window.location.href="<%=basePath%>/admin/farm";
 					}
                 },
 				error:function (jqXHR) {

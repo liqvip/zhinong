@@ -30,4 +30,6 @@ public interface NewsService {
     List<NewsCat> addShow();
 
     News editShow(String id);
+
+    News selectNewsById(String id);
 }

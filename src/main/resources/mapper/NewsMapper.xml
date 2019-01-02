@@ -225,7 +225,7 @@
         and title like concat('%',#{news.title},'%')
       </if>
       <if test="news.catId != null and news.catId != ''">
-        and catId = #{news.catId}
+        and cat_id = #{news.catId}
       </if>
       <if test="news.status != null and news.status != ''">
         and status = #{news.status}
@@ -240,7 +240,7 @@
         and title like concat('%',#{title},'%')
       </if>
       <if test="catId != null and catId != ''">
-        and catId = #{catId}
+        and cat_id = #{catId}
       </if>
       <if test="status != null and status != ''">
         and status = #{status}

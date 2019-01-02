@@ -1,12 +1,9 @@
 /*! WebUploader 0.1.5 */
 
 
-/**
- * @fileOverview 让内部各个部件的代码可以用[amd](https://github.com/amdjs/amdjs-api/wiki/AMD)模块定义方式组织起来。
- *
- * AMD API 内部的简单不完全实现，请忽略。只有当WebUploader被合并成一个文件的时候才会引入。
- */
-(function( root, factory ) {
+var jQuery = require('example:widget/ui/jquery/jquery.js')
+
+return (function( root, factory ) {
     var modules = {},
 
         // 内部require, 简单不完全实现。
@@ -101,31 +98,9 @@
 
             // exports every module.
             return exportsTo( factory( root, _define, _require ) );
-        },
-
-        origin;
-
-    if ( typeof module === 'object' && typeof module.exports === 'object' ) {
-
-        // For CommonJS and CommonJS-like environments where a proper window is present,
-        module.exports = makeExport();
-    } else if ( typeof define === 'function' && define.amd ) {
-
-        // Allow using this built library as an AMD module
-        // in another project. That other project will only
-        // see this AMD call, not the internal modules in
-        // the closure below.
-        define([ 'jquery' ], makeExport );
-    } else {
-
-        // Browser globals case. Just assign the
-        // result to a property on the global.
-        origin = root.WebUploader;
-        root.WebUploader = makeExport();
-        root.WebUploader.noConflict = function() {
-            root.WebUploader = origin;
         };
-    }
+
+    return makeExport( jQuery );
 })( window, function( window, define, require ) {
 
 
@@ -8102,5 +8077,7 @@
     ], function( preset ) {
         return preset;
     });
-    return require('webuploader');
+
+    var _require = require;
+    return _require('webuploader');
 });

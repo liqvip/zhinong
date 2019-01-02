@@ -26,7 +26,11 @@ public class NewsServiceImpl implements NewsService{
 
     @Override
     public void add(News news) {
-        newsMapper.insertSelective(news);
+        if(newsMapper.insertSelective(news) != 0){
+            if(Integer.parseInt(news.getStatus()) == 1){
+                newsCatMapper.increaseNumByCatId(news.getCatId());
+            }
+        }
     }
 
     @Override
@@ -56,6 +60,11 @@ public class NewsServiceImpl implements NewsService{
 
     @Override
     public News editShow(String id) {
+        return newsMapper.selectByPrimaryKey(Integer.parseInt(id));
+    }
+
+    @Override
+    public News selectNewsById(String id) {
         return newsMapper.selectByPrimaryKey(Integer.parseInt(id));
     }
 }

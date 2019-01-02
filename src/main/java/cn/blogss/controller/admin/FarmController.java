@@ -8,6 +8,7 @@ import cn.blogss.service.FarmService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/")
 public class FarmController {
     @Autowired
     HttpServletRequest request;
@@ -33,7 +34,7 @@ public class FarmController {
 
 
 //    后台农场添加
-    @RequestMapping(value = "/farm/add",method = RequestMethod.POST,
+    @RequestMapping(value = "farm/add",method = RequestMethod.POST,
             produces = "application/json;charset=utf-8")
     @ResponseBody
     public String farmAdd(@ModelAttribute Farm farm , @RequestAttribute("file")MultipartFile file) throws
@@ -53,22 +54,19 @@ public class FarmController {
     }
 
 //    后台农场查看,分页
-    @RequestMapping(value = "/farm/scan",method = {RequestMethod.GET,RequestMethod.POST},
+    @RequestMapping(value = "farm",method = {RequestMethod.GET,RequestMethod.POST},
             produces = "application/json;" +
             "charset=utf-8")
     public String farmScan(@RequestParam(value = "pageIndex",defaultValue = "1") String pageIndex,
                            @RequestParam(value = "farmName",required = false) String farmName,Model model){
         Page page = new Page();
-        String submitUrl = "";
-        if(farmName == null || farmName.equals("")){
-            submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
-                    request.getContextPath()+"/admin/farm/scan?pageIndex={0}";
-        }else{
-            submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
-                    request.getContextPath()+"/admin/farm/scan?pageIndex={0}"+"&farmName="+farmName;
+        String submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
+                request.getContextPath()+"/admin/farm?pageIndex={0}";
+
+        if(StringUtils.isNotEmpty(farmName)){
+            submitUrl += "&farmName="+farmName;
             request.setAttribute("farmName",farmName);
         }
-
         int totalNum = farmService.totRecord(farmName);
         List<Farm> farmList = farmService.farmSelectAll(pageIndex,Page.pageSize,farmName);
 
@@ -83,7 +81,7 @@ public class FarmController {
 
 
 //    后台农场删除
-    @RequestMapping(value = "/farm/delBatch",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "farm/delBatch",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public String farmDelete(@RequestParam("ids")String[] ids){
         farmService.farmDelete(ids);
@@ -100,10 +98,10 @@ public class FarmController {
     }
 
     //删除单个农场
-    @RequestMapping(value = "/farm/delOne",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "farm/delOne",method = {RequestMethod.GET,RequestMethod.POST})
     public String farmDelete(@RequestParam("id")String id){
         farmService.farmDelOne(id);
-        return "redirect:/admin/farm/scan";
+        return "redirect:/admin/farm";
     }
 
 //    农场信息修改
