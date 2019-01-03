@@ -166,7 +166,7 @@
                 sendFile(files[0], editor, $editable);
             }
         });
-        $("#summernote").summernote('code','${snews.content}');
+        $("#summernote").summernote('code',"${snews.content}");
     });
 
     //图片上传
@@ -287,7 +287,7 @@
         });
     }
 
-    //修改，放入草稿箱或修改
+    //放入草稿箱或修改
     function edit(status,id) {
         var params = {
             'id':id,
@@ -295,7 +295,7 @@
             'title' : $("input[name=title]").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
             'introduction' : $("input[name=introduction]").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
             'catId' : $("select[name=catId]").val(),
-            'content' : $(".news_infos").html(),
+            'content' : $("#summernote").summernote('code'),
             'status' :status
         };
         $.ajax({

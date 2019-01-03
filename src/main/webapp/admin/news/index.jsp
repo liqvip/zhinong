@@ -140,7 +140,7 @@
     </div>
 </body>
 <script>
-    //清空搜索框、点击新增按钮、点击修改按钮
+    //清空搜索框
     $(document).ready(function () {
         $("#clear").on("click",function () {
             $("input[name=title]").val("");
@@ -150,7 +150,6 @@
             });
         });
     });
-
 
     function selectAll() {
         if($("input[name=all]").is(":checked")){

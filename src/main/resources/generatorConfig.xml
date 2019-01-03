@@ -24,7 +24,7 @@
             <property name="trimStrings" value="true" />    
         </javaModelGenerator>    
         <!-- 生成的映射文件包名和位置 -->    
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true" />    
         </sqlMapGenerator>    
         <!-- 生成DAO的包名和位置 -->    
@@ -33,7 +33,7 @@
         </javaClientGenerator>    
         <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->    
         
-        <table tableName="news" domainObjectName="News" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table tableName="link" domainObjectName="Link" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
          
     </context>    
 </generatorConfiguration>  

@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/")
 public class SystemControl {
     @Autowired
     private MenuService menuService;
 
     /*后台用户登录*/
-    @RequestMapping(value = "/login",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "login",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Message login(@RequestParam("username") String username,@RequestParam("password") String password){
         Message message = new Message();
@@ -43,7 +43,7 @@ public class SystemControl {
     }
 
     //登录成功，跳转到后台主页
-    @RequestMapping(value = "/index",method = {RequestMethod.POST,RequestMethod.GET},
+    @RequestMapping(value = "index",method = {RequestMethod.POST,RequestMethod.GET},
             produces = "application/json;charset=utf-8")
     public String loginSucc(){
         return "admin/index";

@@ -1,0 +1,33 @@
+.modal-body {
+    padding: 20px 30px 30px 30px;
+}
+
+.m-b {
+    margin-bottom: 15px;
+}
+
+.m-t-none {
+    margin-top: 0;
+}
+
+.m-b {
+    margin-bottom: 15px;
+}
+
+.input-group-addon {
+    background-color: #fff;
+    border: 1px solid #E5E6E7;
+    border-right-color: rgb(229, 230, 231);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    color: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    padding: 6px 12px;
+    text-align: center;
+}
+
