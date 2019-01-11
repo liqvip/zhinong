@@ -32,3 +32,5 @@
 <script src="<%=basePath%>public/zTree/js/jquery.ztree.core.js"></script>
 <script src="<%=basePath%>public/webuploader-0.1.5/webuploader.js"></script>
 <script src="<%=basePath%>public/summernote-0.8.11/summernote.js"></script>
+<script src="<%=basePath%>public/echarts-3.8.4/echarts.js"></script>
+

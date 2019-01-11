@@ -42,16 +42,16 @@
 
 	<div class="row">
 		<!-- 左侧设计 -->
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<div id="menu_tree" class="ztree">
 
 			</div>
 		</div><!--col-md-2-->
 
 		<!-- 右侧设计 -->
-		<div class="col-md-10">
+		<div class="col-md-11">
             <div id="page_content">
-				<iframe src="" frameborder="0" scrolling="yes" width="100%" height="600px"></iframe>
+				<iframe src="<%=basePath%>admin/home.jsp" frameborder="0" scrolling="yes" width="100%" height="600px"></iframe>
 	  		</div>
 		</div><!--col-md-10-->
 

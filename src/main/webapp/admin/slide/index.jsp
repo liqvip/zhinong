@@ -43,7 +43,7 @@
                     </td>
                     <td>${item.sort}</td>
                     <td style="width: 250px">
-                        <a class="btn btn-info btn-sm" href="<%=basePath%>admin/slide/editShow?id=${item.id}">修改</a>
+                        <a class="btn btn-primary btn-sm" href="<%=basePath%>admin/slide/editShow?id=${item.id}">修改</a>
                         <a class="btn btn-danger btn-sm" onclick="delOne(${item.id})">删除</a>
                     </td>
                 </tr>

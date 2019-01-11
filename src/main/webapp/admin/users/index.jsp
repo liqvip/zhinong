@@ -69,10 +69,10 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${item.status == 1}">
-                                        <button class="btn btn-sm btn-success">有效</button>
+                                        <button class="btn btn-xs btn-success">有效</button>
                                     </c:when>
                                     <c:otherwise>
-                                        <button class="btn btn-sm btn-danger">无效</button>
+                                        <button class="btn btn-xs btn-danger">无效</button>
                                     </c:otherwise>
                                 </c:choose>
                             </td>
@@ -261,36 +261,20 @@
     }
 
     function operation(id,status,btn) {
-        var title = "";
-        var text = "";
-        if (status == 1) {
-            title = '确定要禁用该用户吗?';
-            text = '禁用后将无法登录';
-            status = -1;
-        } else if (status == -1) {
-            title = '确定要启用该用户吗?';
-            text = '启用后该用户将恢复';
-            status = 1;
-        }
-        layer.confirm(text,{
-                title:title
-            },function (index) {
-                $.ajax({
-                    url:"<%=basePath%>admin/users/edit",
-                    type:"post",
-                    data:{id:id,status:status},
-                    dataType:"json",
-                    success:function (data,status,jqXHR) {
-                        if(data.success){
-                            modifyStatus(btn);
-                        }
-                    },
-                    error:function (jqXHR) {
-                        layer.msg("更新错误!");
-                    }
-                });
+        $.ajax({
+            url:"<%=basePath%>admin/users/edit",
+            type:"post",
+            data:{id:id,status:status},
+            dataType:"json",
+            success:function (data,status,jqXHR) {
+                if(data.success){
+                    modifyStatus(btn);
+                }
+            },
+            error:function (jqXHR) {
+                layer.msg("更新错误!");
             }
-        );
+        });
     }
 
     function modifyStatus(btn){

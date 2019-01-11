@@ -58,7 +58,7 @@
                                 <fmt:formatDate value="${item.addtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                             </td>
                             <td style="width: 250px">
-                                <a class="btn btn-info btn-sm" href="<%=basePath%>admin/farm/editShow?id=${item.id}">修改</a>
+                                <a class="btn btn-primary btn-sm" href="<%=basePath%>admin/farm/editShow?id=${item.id}">修改</a>
                                 <a class="btn btn-danger btn-sm" onclick="delOne(${item.id})">删除</a>
                             </td>
                         </tr>

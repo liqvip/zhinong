@@ -58,10 +58,10 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${item.status == 1}">
-                                        <button class="btn btn-sm btn-success">上架</button>
+                                        <button class="btn btn-xs btn-success">上架</button>
                                     </c:when>
                                     <c:otherwise>
-                                        <button class="btn btn-sm btn-danger">下架</button>
+                                        <button class="btn btn-xs btn-danger">下架</button>
                                     </c:otherwise>
                                 </c:choose>
                             </td>

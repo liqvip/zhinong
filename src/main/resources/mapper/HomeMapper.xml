@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.blogss.mapper.HomeMapper">
+
+  <select id="selectNewsCountByStatus" resultType="Map">
+    SELECT
+    status,
+    COUNT(*) AS count
+    FROM
+    news
+    GROUP BY status
+  </select>
+
+    <select id="selectNewsCountByDate" resultType="Map" parameterType="Map">
+        select DATE_FORMAT(addTime,'%Y-%m-%d') as addTime,count(*) as count from news
+        where 1 = 1
+        <if test="qiantian != null and qiantian != ''">
+            and DATE_FORMAT(addTime,'%Y-%m-%d') BETWEEN #{qiantian} and #{today}
+        </if>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+        group by DATE_FORMAT(addTime,'%Y-%m-%d')
+    </select>
+</mapper>
