@@ -1,6 +1,7 @@
 package cn.blogss.mapper;
 
 import cn.blogss.pojo.Users;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -51,14 +52,21 @@ public interface UsersMapper {
      *
      * @mbggenerated
      */
-    int updateByPrimaryKey(Users record);
 
-    /*通过用户名查询*/
     Users getUsersByUsersName(String userName);
 
-    /*根据用户名查询用户角色*/
+    List<String> queryPermissionsByUsersName(String userName);
+
     List<String> queryRolesByUsersName(String userName);
 
-    /*根据用户名查询权限数据*/
-    List<String> queryPermissionsByUsersName(String userName);
+    int updateByPrimaryKey(Users record);
+
+    public abstract List<Users> selectUsersByPage(@Param("pageIndex")int pageIndex,
+                                                  @Param("pageSize")int pageSize,
+                                                  @Param("users")Users users);
+
+    //用户批量删除
+    public abstract void delBatch(String[] ids);
+
+    public int totRecord(Users users);
 }

@@ -12,31 +12,25 @@
 		<div class="col-md-12">
             <form action="" class="form-horizontal">
                  <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">图片：</label>
+                    <label for="" class="col-sm-2 control-label">农场图片：</label>
                      <div class="col-sm-8">
                          <a href="#pic" class="picPath" data-toggle="modal" onclick="findPicList()">
-                             <img id="imagePath" src="${slide.image}" style="width: 190px; height: 115px;" alt="封面" url="点击更换封面"/>
+                             <img id="imagePath" src="${farm.image}" style="width: 190px; height: 115px;" alt="图片" title="点击更换图片"/>
                          </a>
                      </div>
                  </div>
                  <div class="form-group">
-                     <label for="" class="col-sm-2 control-label">摘要：</label>
-                     <div class="col-sm-8">
-                         <input type="text" name="introduction" value="${slide.introduction}" class="form-control">
-                     </div>
+                    <label for="" class="col-sm-2 control-label">农场名称：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="name" value="${farm.name}" class="form-control">
+                    </div>
                  </div>
                  <div class="form-group">
-                     <label for="" class="col-sm-2 control-label">目标地址：</label>
+                     <label for="" class="col-sm-2 control-label">简要介绍：</label>
                      <div class="col-sm-8">
-                         <input type="text" name="url" value="${slide.url}" class="form-control">
+                         <input type="text" name="introduction" value="${farm.introduction}" class="form-control">
                      </div>
                  </div>
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">优先级：</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="sort" value="${slide.sort}" class="form-control">
-                    </div>
-                </div>
             </form>
 		</div><!--col-md-12-->
 	</div><!--row-->
@@ -44,13 +38,13 @@
         <div class="col-md-10">
             <div class="text-right">
                 <c:choose>
-                    <c:when test="${empty slide}">
+                    <c:when test="${empty farm}">
                         <button class="btn btn-sm btn-info" onclick="add()">
                             <span class="glyphicon glyphicon-pencil"></span> 添加
                         </button>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn btn-sm btn-info" onclick="edit(${slide.id})">
+                        <button class="btn btn-sm btn-info" onclick="edit(${farm.id})">
                             <span class="glyphicon glyphicon-pencil"></span> 修改
                         </button>
                     </c:otherwise>
@@ -97,10 +91,10 @@
 </body>
 
 <script>
-    //弹出模态框 选择图片
+    //选择图片之后
     var selectImgPath = function(img) {
         $("#pic").modal('hide');
-        var imgPath = '<img id="imagePath"  style="width: 190px; height: 115px;" alt="封面" title="点击更换封面" src="' + img.src + '" />';
+        var imgPath = '<img id="imagePath"  style="width: 190px; height: 115px;" alt="封面" title="点击更换图片" src="' + img.src + '" />';
         $(".picPath").html(imgPath)
     };
 
@@ -108,7 +102,7 @@
     var findPicList = function() {
         $.ajax({
             //此处使用的是自己封装的JAVA类
-            url : "<%=basePath%>admin/getFileList?dir=slide",
+            url : "<%=basePath%>admin/getFileList?dir=farm",
             type : "get",
             dataType:"json",
             success : function(data) {
@@ -133,20 +127,19 @@
     //添加
     function add(){
         var params = {
-            'sort':$("input[name=sort]").val(),
             'image' : $("#imagePath").attr("src"),
-            'url' : $("input[name=url]").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
+            'name' : $("input[name=name]").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
             'introduction' : $("input[name=introduction]").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;")
         };
         $.ajax({
-            url : "<%=basePath%>admin/slide/add",
+            url : "<%=basePath%>admin/farm/add",
             type : "POST",
             data : params,
             dataType : 'json',
             success : function(data) {
                 if (data.success) {
-                        layer.msg("添加成功，幻灯片已经在前端显示!");
-                    $("input[name=url]").val("");
+                        layer.msg("添加成功!");
+                    $("input[name=name]").val("");
                     $("input[name=introduction]").val("");
                     $("input[name=sort]").val("");
                 }
@@ -161,21 +154,20 @@
     function edit(id) {
         var params = {
             'id':id,
-            'sort':$("input[name=sort]").val(),
             'image' : $("#imagePath").attr("src"),
-            'url' : $("input[name=url]").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
+            'name' : $("input[name=name]").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
             'introduction' : $("input[name=introduction]").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;")
         };
         $.ajax({
-            url : "<%=basePath%>admin/slide/edit",
+            url : "<%=basePath%>admin/farm/edit",
             type : "POST",
             data : params,
             dataType : 'json',
             success : function(data) {
                 if (data.success) {
-                    layer.msg("修改成功，幻灯片已经在前端显示!");
+                    layer.msg("修改成功!");
                     setTimeout(function() {
-                        window.location.href = "<%=basePath%>admin/slide";
+                        window.location.href = "<%=basePath%>admin/farm";
                     }, 1500);
                 }
             },
@@ -188,7 +180,7 @@
 </script>
 <script>
     var BASE_URL = "<%=basePath%>admin/public/webuploader-0.1.5";
-    var SERVER = "<%=basePath%>admin/slide/uploadPic"
+    var SERVER = "<%=basePath%>admin/farm/uploadPic"
 </script>
 <script src="<%=basePath%>admin/js/webuploader-demo.js"></script>
 </html>

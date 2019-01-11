@@ -19,6 +19,8 @@ public class FileBrowseUtil {
     private static final String NEWS = "C:/upload/news";
     private static final String RAISE = "C:/upload/raise";
     private static final String SLIDE = "C:/upload/slide";
+    private static final String FARM = "C:/upload/farm";
+    private static final String USERS = "C:/upload/users";
 
     @RequestMapping("getFileList")
     @ResponseBody
@@ -38,6 +40,12 @@ public class FileBrowseUtil {
             fileList=getFiles(filePath,fileList);
         }else if(dir.equals("slide")){
             filePath = SLIDE;
+            fileList=getFiles(filePath,fileList);
+        }else if(dir.equals("farm")){
+            filePath = FARM;
+            fileList=getFiles(filePath,fileList);
+        }else if(dir.equals("users")){
+            filePath = USERS;
             fileList=getFiles(filePath,fileList);
         }
 

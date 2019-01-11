@@ -3,28 +3,27 @@ package cn.blogss.service;/*
 */
 
 import cn.blogss.pojo.Farm;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.ui.Model;
 
 import java.util.List;
 
 public interface FarmService {
 
     //农场添加
-    public abstract String farmAdd(Farm farm);
+    public abstract void add(Farm farm);
 
-    //农场查看
-    public abstract List<Farm> farmSelectAll(String pageIndex,int pageSize,String farmName);
+    //农场分页
+    public abstract List<Farm> selectFarmByPage(String pageIndex, int pageSize, Farm farm);
 
-    //农场删除
-    public abstract void farmDelete(String[] ids);
+    //农场批量删除
+    public abstract void delBatch(String[] ids);
 
-//    农场修改
-    public abstract void farmModify(Farm farm);
-
-    //查询总记录
-    public int totRecord(String farmName);
+    //    农场修改
+    public abstract void edit(Farm farm);
+    
+    public int totRecord(Farm farm);
 
     //删除一条
-    void farmDelOne(String id);
+    void delOne(String id);
+
+    Farm editShow(String id);
 }

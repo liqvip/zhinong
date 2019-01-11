@@ -58,8 +58,8 @@ public interface LinkMapper {
                                                 @Param("pageSize")int pageSize,
                                                 @Param("link")Link link);
 
-    //新闻分类批量删除
+    //友情链接批量删除
     public abstract void delBatch(String[] ids);
 
-    public int totRecord(Link linkCat);
+    public int totRecord(Link link);
 }

@@ -17,66 +17,42 @@ import java.util.List;
 @Service
 public class FarmServiceImpl implements FarmService{
     @Autowired
-    FarmMapper farmMapper;
+    private FarmMapper farmMapper;
 
-//    农场添加
     @Override
-    public String farmAdd(Farm farm) {
-        int code = farmMapper.farmAdd(farm);
-        System.out.println("code:"+code);
-        Message msg = new Message();
-
-        if(code!=0){
-            msg.setSuccess(true);
-            msg.setMsg("添加成功");
-        }else {
-            msg.setSuccess(false);
-            msg.setMsg("添加失败");
-        }
-
-        ObjectMapper om = new ObjectMapper();
-        om.configure(SerializationFeature.INDENT_OUTPUT,true);
-
-        String str = "";
-        try {
-            str =  om.writeValueAsString(msg);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return  str;
-    }
-
-    //    农场查看,分页
-    @Override
-    public List<Farm> farmSelectAll(String pageIndex,int pageSize,String farmName){
-
-
-         return farmMapper.farmSelectAll((Integer.parseInt(pageIndex)-1)*pageSize,pageSize,farmName);
-
-    }
-
-    //    农场删除
-    @Override
-    public void farmDelete(String[] ids) {
-        farmMapper.farmDelete(ids);
+    public void add(Farm farm) {
+        farmMapper.insertSelective(farm);
     }
 
     @Override
-    public void farmDelOne(String id) {
-        farmMapper.farmDelOne(id);
+    public List<Farm> selectFarmByPage(String pageIndex, int pageSize, Farm farm) {
+        return farmMapper.selectFarmByPage((Integer.parseInt(pageIndex)-1)*pageSize,pageSize,farm);
     }
 
-    //    农场修改
     @Override
-    public void farmModify(Farm farm) {
-        farmMapper.farmModify(farm);
+    public void delBatch(String[] ids) {
+        farmMapper.delBatch(ids);
+    }
+
+    @Override
+    public void edit(Farm farm) {
+        farmMapper.updateByPrimaryKeySelective(farm);
     }
 
 
     @Override
-    public int totRecord(String farmName) {
-        return farmMapper.totRecord(farmName);
+    public void delOne(String id) {
+        farmMapper.delOne(id);
+    }
+
+    @Override
+    public Farm editShow(String id) {
+        return farmMapper.editShow(id);
+    }
+
+    @Override
+    public int totRecord(Farm farm) {
+        return farmMapper.totRecord(farm);
     }
 
 }

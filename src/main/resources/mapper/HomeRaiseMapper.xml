@@ -31,14 +31,14 @@
 
     <!--农资类型-->
     <select id="catName" parameterType="int" resultType="String">
-        select catName
+        select name
         from raise_cat
-        where raiseCatId = (select raiseCatId from raise where raiseId=#{raiseId})
+        where id = (select id from raise where raiseId=#{raiseId})
     </select>
 
     <!--农资所有分类-->
     <select id="raiseCat" resultType="RaiseCat">
-        select raiseCatId,catName from raise_cat;
+        select id,name from raise_cat;
     </select>
 
     <!--订单付款-->

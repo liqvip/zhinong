@@ -136,7 +136,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <!--后台菜单查看,分页-->
+  <!--后台友链查看,分页-->
   <select id="selectLinkByPage" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from link

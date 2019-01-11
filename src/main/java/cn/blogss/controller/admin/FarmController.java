@@ -2,12 +2,11 @@ package cn.blogss.controller.admin;/*
     create by LiQiang at 2018/4/22   
 */
 
-import cn.blogss.pojo.Farm;
+
+import cn.blogss.common.util.Message;
 import cn.blogss.common.util.Page;
+import cn.blogss.pojo.Farm;
 import cn.blogss.service.FarmService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,101 +15,113 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
+
 
 @Controller
 @RequestMapping("/admin/")
 public class FarmController {
     @Autowired
     HttpServletRequest request;
-
     @Autowired
     private FarmService farmService;
 
-
-//    后台农场添加
-    @RequestMapping(value = "farm/add",method = RequestMethod.POST,
-            produces = "application/json;charset=utf-8")
-    @ResponseBody
-    public String farmAdd(@ModelAttribute Farm farm , @RequestAttribute("file")MultipartFile file) throws
-            IOException {
-        //农场头像处理
-        if(!file.isEmpty()){
-            String newFileName = System.currentTimeMillis()+file.getOriginalFilename();
-            farm.setFarmImg(newFileName);
-            System.out.println(request.getServletContext().getRealPath("images"));
-            File newFile = new File(request.getServletContext().getRealPath("admin\\images\\farm"),newFileName);
-            FileUtils.copyInputStreamToFile(file.getInputStream(),newFile);
-        }
-
-        //model处理
-        String str = farmService.farmAdd(farm);
-        return  str;
-    }
-
-//    后台农场查看,分页
-    @RequestMapping(value = "farm",method = {RequestMethod.GET,RequestMethod.POST},
-            produces = "application/json;" +
-            "charset=utf-8")
-    public String farmScan(@RequestParam(value = "pageIndex",defaultValue = "1") String pageIndex,
-                           @RequestParam(value = "farmName",required = false) String farmName,Model model){
-        Page page = new Page();
+    @RequestMapping(value = "farm",method = {RequestMethod.GET,RequestMethod.POST})
+    public String farmList(@ModelAttribute Farm farm, Model model,
+                              @RequestParam(value = "pageIndex",defaultValue = "1") String pageIndex){
         String submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
                 request.getContextPath()+"/admin/farm?pageIndex={0}";
-
-        if(StringUtils.isNotEmpty(farmName)){
-            submitUrl += "&farmName="+farmName;
-            request.setAttribute("farmName",farmName);
-        }
-        int totalNum = farmService.totRecord(farmName);
-        List<Farm> farmList = farmService.farmSelectAll(pageIndex,Page.pageSize,farmName);
-
+        if(StringUtils.isNotEmpty(farm.getName()))
+            submitUrl += "&name="+farm.getName();
+        
+        List<Farm> farmList = farmService.selectFarmByPage(pageIndex, Page.pageSize,farm);
+        int totalNum = farmService.totRecord(farm);
+        Page page = new Page();
         page.setPageIndex(Integer.parseInt(pageIndex));
         page.setTotalNum(totalNum);
         page.setSubmitUrl(submitUrl);
+        
+        model.addAttribute("farm",farm);
         model.addAttribute("page",page);
-        model.addAttribute("farmList",farmList);
+        model.addAttribute("farms",farmList);
 
         return  "admin/farm/index";
     }
 
 
-//    后台农场删除
+    //    后台农场添加
+    @RequestMapping(value = "farm/add",method = {RequestMethod.POST})
+    @ResponseBody
+    public  Message farmAdd(@ModelAttribute Farm farm){
+        farm.setAddtime(new Date());
+        farmService.add(farm);
+        return new Message();
+    }
+
+
+    //  删除单个农场
+    @RequestMapping(value = "farm/delOne",method = {RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Message farmDelOne(@RequestParam("id")String id){
+        farmService.delOne(id);
+        return new Message();
+    }
+
     @RequestMapping(value = "farm/delBatch",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public String farmDelete(@RequestParam("ids")String[] ids){
-        farmService.farmDelete(ids);
-        Map<String,Object> map = new HashMap<>();
-        map.put("success",true);
-        ObjectMapper om = new ObjectMapper();
-        String resStr = "";
-        try {
-            resStr = om.writeValueAsString(map);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+    public Message farmDelBatch(@RequestParam("ids")String[] ids){
+        farmService.delBatch(ids);
+        return new Message();
+    }
+
+    //    农场修改
+    @RequestMapping(value = "farm/edit",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public Message farmEdit(@ModelAttribute Farm farm){
+        farmService.edit(farm);
+        return new Message();
+    }
+    
+
+    @RequestMapping(value = "farm/addShow",method = {RequestMethod.POST,RequestMethod.GET})
+    public String addShow(){
+        return "admin/farm/add_edit";
+    }
+
+    @RequestMapping(value = "farm/editShow",method = {RequestMethod.POST,RequestMethod.GET})
+    public String editShow(Model model,String id){
+        Farm farm = farmService.editShow(id);
+        model.addAttribute("farm",farm);
+        return "admin/farm/add_edit";
+    }
+
+    @RequestMapping(value = "farm/uploadPic",method = {RequestMethod.POST})
+    @ResponseBody
+    public Message uploadPic(@RequestParam("file") MultipartFile[] files) throws IOException {
+        if(files != null && files.length > 0){
+            for(int i = 0;i<files.length;i++){
+                if(files[i].getOriginalFilename().trim() != ""){
+                    String fileName = files[i].getOriginalFilename();
+                    String fileBaseName = fileName.substring(0,fileName.indexOf("."));
+                    String fileExt = fileName.substring(fileName.indexOf(".")+1).toUpperCase();
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    String newFileName = df.format(new Date())+new Random().nextInt(10000)+"."+fileExt;
+                    String filePath = "C:/upload/farm/"+df.format(new Date())+"/"+newFileName;
+                    File localFile = new File(filePath);
+                    if(!localFile.exists()){
+                        localFile.mkdirs();
+                    }
+                    files[i].transferTo(localFile);
+                }
+            }
+            return new Message(true,"上传成功");
+        }else{
+            return new Message(false,"上传失败");
         }
-        return resStr;
     }
-
-    //删除单个农场
-    @RequestMapping(value = "farm/delOne",method = {RequestMethod.GET,RequestMethod.POST})
-    public String farmDelete(@RequestParam("id")String id){
-        farmService.farmDelOne(id);
-        return "redirect:/admin/farm";
-    }
-
-//    农场信息修改
-    @RequestMapping(value = "farm/modify",method = RequestMethod.POST)
-    public void farmModify(HttpServletResponse response,@ModelAttribute Farm farm) throws IOException {
-        farmService.farmModify(farm);
-        response.setContentType("text/html;charset=utf=8");
-        response.getWriter().write("success");
-
-    }
-
 }

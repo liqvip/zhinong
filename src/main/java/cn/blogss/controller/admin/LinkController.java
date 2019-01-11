@@ -37,7 +37,7 @@ public class LinkController {
         
         if(link.getName() != null && link.getName() != "")
             submitUrl += "&name="+link.getName();
-        if(link.getName() != null && link.getName().toString() != "")
+        if(link.getStatus() != null && link.getStatus().toString() != "")
             submitUrl += "&status="+link.getStatus();
 
         List<Link> linkList = linkService.selectLinkByPage(pageIndex, Page.pageSize,link);

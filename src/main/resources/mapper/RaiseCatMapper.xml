@@ -5,7 +5,7 @@
 
     <!--后台农资分类添加-->
     <insert id="raiseCatAdd" parameterType="RaiseCat">
-        insert into raise_cat(catName,parentId) values
+        insert into raise_cat(name,pid) values
         (#{catName},#{parentId})
     </insert>
     
@@ -29,7 +29,7 @@
     <!--后台农资分类删除-->
     <delete id="raiseCatDelete" parameterType="int">
         delete from raise_cat
-        where raiseCatId = #{raiseCatId}
+        where id = #{raiseCatId}
     </delete>
 
     <!--后台农资分类修改-->
