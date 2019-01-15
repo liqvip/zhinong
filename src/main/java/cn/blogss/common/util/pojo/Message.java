@@ -1,4 +1,4 @@
-package cn.blogss.common.util;/*
+package cn.blogss.common.util.pojo;/*
     create by LiQiang at 2018/5/16   
 */
 

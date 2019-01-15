@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface HomeService {
-
     List<?> selectNewsCountByStatus();
 
     List<?> selectNewsCountByDate(Map<String, Object> map);
+
+    List<?>  selectVisitCountByDate(Map<String, Object> map);
 }

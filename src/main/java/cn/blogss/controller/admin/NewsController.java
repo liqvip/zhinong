@@ -3,8 +3,8 @@ package cn.blogss.controller.admin;/*
 */
 
 
-import cn.blogss.common.util.Message;
-import cn.blogss.common.util.Page;
+import cn.blogss.common.util.pojo.Message;
+import cn.blogss.common.util.pojo.Page;
 import cn.blogss.pojo.News;
 import cn.blogss.pojo.NewsCat;
 import cn.blogss.service.NewsService;

@@ -27,4 +27,9 @@ public class HomeServiceImpl implements HomeService {
     public List<?> selectNewsCountByDate(Map<String, Object> map) {
         return homeMapper.selectNewsCountByDate(map);
     }
+
+    @Override
+    public List<?> selectVisitCountByDate(Map<String, Object> map) {
+        return homeMapper.selectVisitCountByDate(map);
+    }
 }

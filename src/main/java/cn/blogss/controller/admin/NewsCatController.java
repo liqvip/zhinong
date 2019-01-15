@@ -2,8 +2,8 @@ package cn.blogss.controller.admin;/*
     create by LiQiang at 2018/4/22   
 */
 
-import cn.blogss.common.util.Message;
-import cn.blogss.common.util.Page;
+import cn.blogss.common.util.pojo.Message;
+import cn.blogss.common.util.pojo.Page;
 import cn.blogss.pojo.NewsCat;
 import cn.blogss.service.NewsCatService;
 import org.apache.commons.lang3.StringUtils;

@@ -42,7 +42,7 @@
     <!-- 创建 SecurityManager 对象 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="realm"/>
-        <property name="sessionManager" ref="customSessionManager"></property>
+        <!--<property name="sessionManager" ref="customSessionManager"></property>-->
         <property name="cacheManager" ref="cacheManager"></property>
         <property name="rememberMeManager" ref="cookieRememberMeManager"></property>
     </bean>
@@ -59,6 +59,8 @@
     <!-- SessionManager -->
     <bean class="cn.blogss.session.CustomSessionManager" id="customSessionManager">
         <property name="sessionDAO" ref="redisSessionDao"></property>
+        <!-- session的失效时间，默认为30分钟。单位为milliseconds(毫秒) -->
+        <property name="globalSessionTimeout" value="1800000"></property>
     </bean>
 
     <!-- default sessionManager -->
@@ -77,7 +79,8 @@
     </bean>
     <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="simpleCookie">
         <constructor-arg value="rememberMe"></constructor-arg>
-        <property name="maxAge" value="86400"></property><!-- 单位为second(秒) -->
+        <!-- cookie的失效时间，默认为-1,即关闭浏览器。单位为seconds(秒),一天 -->
+        <property name="maxAge" value="86400"></property>
     </bean>
 
     <!-- 通过注解配置授权 -->

@@ -4,14 +4,48 @@ $(document).ready(function() {
     initNewsCountByStatus(); //初始化已发表/草稿箱/垃圾箱新闻数目
     //initResourceCountByStatus(); //初始化已发表资源数目
     initNewsCountByDate(); //初始化昨日/今日新闻发表数目
-    //initVisitCount("now"); //初始化今日访客
-    //initVisitCount("history"); //初始化历史访客
+    initVisitCount("now"); //初始化今日访客
+    initVisitCount("history"); //初始化历史访客
     //initVisitCountByWeek(7); //初始化num日访客
 
 });
 
+$('#start').datepicker({
+    keyboardNavigation : false,
+    forceParse : false,
+    autoclose : true,
+    format : 'mm/dd/yyyy',
+    todayHighlight : true,
+    endDate : new Date(),
+}).on('changeDate', function(ev) {
+    var start = ev.date.valueOf();
+    $('#start').val(Format(start, "yyyy-MM-dd"));
+    if ($('#end').val() != "" && $('#start').val() > $('#end').val()) {
+        swal("指定日期范围出错", "请重新检查", "error");
+    } else if ($('#start').val() != "" && $('#end').val() != "") {
+        initVisitCountByRange($('#start').val(), $('#end').val());
+    }
+});
+
+$('#end').datepicker({
+    keyboardNavigation : false,
+    forceParse : false,
+    autoclose : true,
+    format : 'mm/dd/yyyy',
+    todayHighlight : true,
+    endDate : new Date(),
+}).on('changeDate', function(ev) {
+    var end = ev.date.valueOf();
+    $('#end').val(Format(end, "yyyy-MM-dd"));
+    if ($('#start').val() != "" && $('#start').val() > $('#end').val()) {
+        swal("指定日期范围出错", "请重新检查", "error");
+    } else if ($('#start').val() != "" && $('#end').val() != "") {
+        initVisitCountByRange($('#start').val(), $('#end').val());
+    }
+})
+
+//初始化新闻数目
 var initNewsCountByStatus = function() {
-    //初始化新闻数目
     $.ajax({
         url : "home/selectNewsCountByStatus",
         type : 'get',
@@ -48,6 +82,7 @@ var initNewsCountByStatus = function() {
     });
 };
 
+//今日、昨日发表
 var initNewsCountByDate = function() {
     var date = new Date();
     var qiantian = Format(new Date(date.getTime() - 2 * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
@@ -96,6 +131,60 @@ var initNewsCountByDate = function() {
     });
 };
 
+//今日、历史访客
+var initVisitCount = function(e) {
+    var date = null;
+    var yesterday = null;
+    var today = null;
+    if (e == "now") {
+        date = new Date();
+        yesterday = Format(new Date(date.getTime() - 24 * 60 * 60 * 1000), "yyyy-MM-dd");
+        today = Format(date, "yyyy-MM-dd");
+    } else if (e == "history") {
+        yesterday = "";
+        today = "";
+    }
+    var params = {
+        yesterday : yesterday,
+        today : today,
+        format : "day",
+    };
+    $.ajax({
+        url : 'home/selectVisitCountByDate',
+        type : 'post',
+        data : params,
+        dataType : 'json',
+        success : function(data) {
+            if (e == "now") {
+                var now = 0;
+                var yes = 0;
+                for (var i = 0; i < data.list.length; i++) {
+                    var time = Format(data.list[i].time, "yyyy-MM-dd");
+                    if (time == today) {
+                        now = data.list[i].count;
+                        $(".nowVisitors").html(data.list[i].count);
+                    }
+                    if (time == yesterday) {
+                        yes = data.list[i].count;
+                    }
+                }
+                var nowVisitorsPercent = level(now, yes);
+                $(".nowVisitorsPercent").html(nowVisitorsPercent);
+            } else if (e == "history") {
+                var num = 0;
+                for (var i = 0; i < data.list.length; i++) {
+                    num += data.list[i].count;
+                }
+                var sum = toThousands(num);
+                $(".visitors").html(sum);
+            }
+        },
+        error : function() {
+            layer.msg("访问接口错误！请检查后重试!")
+        }
+    });
+};
+
 //根据今天/昨天 计算出 增长率/下降率
 var level = function(now, yes) {
     var pm = now - yes;
@@ -108,7 +197,7 @@ var level = function(now, yes) {
         return Math.round(pm * 100) / 1.00 + '%' + level;
     }
     return Math.round(pm / yes * 100) / 1.00 + '%' + level;
-}
+};
 
 //获取前num个月的日期
 var dataMonth = function(num) {
@@ -131,7 +220,7 @@ var dataMonth = function(num) {
         arry[i] = year + "-" + mon;
     }
     return arry;
-}
+};
 
 //获取前num年的日期
 var dataYear = function(num) {
@@ -145,7 +234,7 @@ var dataYear = function(num) {
         arry[i] = year;
     }
     return arry;
-}
+};
 
 //格式化时间
 function Format(datetime, fmt) {
@@ -172,4 +261,17 @@ function Format(datetime, fmt) {
         if (new RegExp("(" + k + ")").test(fmt))
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+}
+
+var toThousands = function(num) {
+    var num = (num || 0).toString(),
+        result = '';
+    while (num.length > 3) {
+        result = ',' + num.slice(-3) + result;
+        num = num.slice(0, num.length - 3);
+    }
+    if (num) {
+        result = num + result;
+    }
+    return result;
 }

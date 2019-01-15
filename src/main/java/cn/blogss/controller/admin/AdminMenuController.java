@@ -2,8 +2,8 @@ package cn.blogss.controller.admin;/*
     create by LiQiang at 2018/4/22   
 */
 import cn.blogss.pojo.Menu;
-import cn.blogss.common.util.Page;
-import cn.blogss.common.util.Message;
+import cn.blogss.common.util.pojo.Page;
+import cn.blogss.common.util.pojo.Message;
 import cn.blogss.service.MenuService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

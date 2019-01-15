@@ -3,7 +3,7 @@ package cn.blogss.service.impl;/*
 */
 
 import cn.blogss.mapper.RaiseCatMapper;
-import cn.blogss.common.util.Message;
+import cn.blogss.common.util.pojo.Message;
 import cn.blogss.pojo.Pagination;
 import cn.blogss.pojo.RaiseCat;
 import cn.blogss.service.RaiseCatService;

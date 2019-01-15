@@ -22,4 +22,28 @@
         </if>
         group by DATE_FORMAT(addTime,'%Y-%m-%d')
     </select>
+
+    <select id="selectVisitCountByDate" resultType="map" parameterType="Map">
+        SELECT DATE_FORMAT(time,'%Y-%m-%d') as time,COUNT(*) AS count FROM visit
+        <where>
+            <if test="yesterday!=null and yesterday!='' and format=='day'">
+                and DATE_FORMAT(time,'%Y-%m-%d') BETWEEN #{yesterday} AND #{today}
+            </if>
+            <if test="yesterday!=null and yesterday!='' and format=='month'">
+                and DATE_FORMAT(time,'%Y-%m') BETWEEN #{yesterday} AND #{today}
+            </if>
+            <if test="yesterday!=null and yesterday!='' and format=='year'">
+                and DATE_FORMAT(time,'%Y') BETWEEN #{yesterday} AND #{today}
+            </if>
+        </where>
+        <if test="format=='day'">
+            GROUP BY DATE_FORMAT(time,'%Y-%m-%d')
+        </if>
+        <if test="format=='month'">
+            GROUP BY DATE_FORMAT(time,'%Y-%m')
+        </if>
+        <if test="format=='year'">
+            GROUP BY DATE_FORMAT(time,'%Y')
+        </if>
+    </select>
 </mapper>

@@ -2,8 +2,10 @@ package cn.blogss.controller.admin;/*
     create by LiQiang at 2018/4/22   
 */
 
-import cn.blogss.common.util.Message;
+import cn.blogss.annotation.AccessLimit;
+import cn.blogss.common.util.pojo.Message;
 import cn.blogss.service.HomeService;
+import cn.blogss.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,7 @@ public class HomeController {
         return map;
     }
 
+//    根据日期分组查询新闻发表数量(前天，昨天，今天)
     @RequestMapping(value = "home/selectNewsCountByDate", method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     public Map<String, Object> selectNewsCountByDate(@RequestParam(value = "status") String status,
@@ -52,4 +55,27 @@ public class HomeController {
         return returnMap;
     }
 
+    //根据日期(年、月、日)分组查询访客数量
+    @RequestMapping(value = "home/selectVisitCountByDate",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    @AccessLimit
+    public Map<String, Object> selectBlogListByDate(@RequestParam(value="format") String format,
+                                                    @RequestParam(value="yesterday") String yesterday,
+                                                    @RequestParam(value="today") String today) throws Exception{
+        Map<String, Object> map=new HashMap<String, Object>();
+        if(format!=""&&format!=null){
+            map.put("format", format);
+        }
+        if(yesterday!=""&&yesterday!=null){
+            map.put("yesterday", yesterday);
+        }
+        if(today!=""&&today!=null){
+            map.put("today", today);
+        }
+        List<?> list=homeService.selectVisitCountByDate(map);
+        Map<String, Object> returnMap=new HashMap<String, Object>();
+        returnMap.put("msg",new Message());
+        returnMap.put("list", list);
+        return returnMap;
+    }
 }

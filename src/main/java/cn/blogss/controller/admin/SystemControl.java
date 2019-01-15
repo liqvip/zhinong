@@ -2,10 +2,8 @@ package cn.blogss.controller.admin;/*
  *Created by liqiang on 2018/12/22
  */
 
-import cn.blogss.common.util.Message;
+import cn.blogss.common.util.pojo.Message;
 import cn.blogss.service.MenuService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;

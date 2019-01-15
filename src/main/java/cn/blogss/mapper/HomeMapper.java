@@ -8,4 +8,6 @@ public interface HomeMapper {
     List<?> selectNewsCountByStatus();
 
     List<?> selectNewsCountByDate(Map<String, Object> map);
+
+    List<?>  selectVisitCountByDate(Map<String, Object> map);
 }

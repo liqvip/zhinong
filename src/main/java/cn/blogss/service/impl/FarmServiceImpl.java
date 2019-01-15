@@ -3,12 +3,8 @@ package cn.blogss.service.impl;/*
 */
 
 import cn.blogss.mapper.FarmMapper;
-import cn.blogss.common.util.Message;
 import cn.blogss.pojo.Farm;
 import cn.blogss.service.FarmService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

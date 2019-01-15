@@ -3,8 +3,8 @@ package cn.blogss.controller.admin;/*
 */
 
 
-import cn.blogss.common.util.Message;
-import cn.blogss.common.util.Page;
+import cn.blogss.common.util.pojo.Message;
+import cn.blogss.common.util.pojo.Page;
 import cn.blogss.pojo.Slide;
 import cn.blogss.service.SlideService;
 import org.springframework.beans.factory.annotation.Autowired;
