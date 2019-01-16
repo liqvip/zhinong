@@ -1,6 +1,7 @@
 package cn.blogss.mapper;
 
 import cn.blogss.pojo.Visit;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -56,7 +57,9 @@ public interface VisitMapper {
 
     Long findVisitTimes(Visit visit);
 
-    public abstract List<Visit> selectVisitByPage(int pageIndex, int pageSize, Visit visit);
+    public abstract List<Visit> selectVisitByPage(@Param("pageIndex")int pageIndex,
+                                                  @Param("pageSize")int pageSize,
+                                                  @Param("visit")Visit visit);
 
     //用户访问记录批量删除
     public abstract void delBatch(String[] ids);

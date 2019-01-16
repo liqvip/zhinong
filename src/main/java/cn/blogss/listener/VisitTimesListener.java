@@ -53,10 +53,8 @@ public class VisitTimesListener implements ServletRequestListener {
 				visit.setUseragent(userAgent);
 				synchronized (this) {
 					if (visitServiceImpl.findVisitTimes(visit) == 0) {
-						visit.setPlatformtype(UserAgentUtil.getUserAgent(
-								userAgent).getPlatformtype());
-						visit.setBrowsertype(UserAgentUtil.getUserAgent(
-								userAgent).getBrowsertype());
+						visit.setPlatformtype(UserAgentUtil.getUserAgent(userAgent).getPlatformtype());
+						visit.setBrowsertype(UserAgentUtil.getUserAgent(userAgent).getBrowsertype());
 						visit.setUrl(request.getRequestURL().toString());
 						visit.setCity(new AddressUtil().getAddresses("ip="+visit.getIp(), "utf-8"));
 						visitServiceImpl.add(visit);

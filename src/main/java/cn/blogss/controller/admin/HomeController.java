@@ -35,18 +35,18 @@ public class HomeController {
     @RequestMapping(value = "home/selectNewsCountByDate", method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     public Map<String, Object> selectNewsCountByDate(@RequestParam(value = "status") String status,
-            @RequestParam(value = "qiantian") String qiantian,
-            @RequestParam(value = "today") String today)
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime)
             throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         if (status != "" && status != null) {
             map.put("status", status);
         }
-        if (qiantian != "" && qiantian != null) {
-            map.put("qiantian", qiantian);
+        if (startTime != "" && startTime != null) {
+            map.put("startTime", startTime);
         }
-        if (today != "" && today != null) {
-            map.put("today", today);
+        if (endTime != "" && endTime != null) {
+            map.put("endTime", endTime);
         }
         List<?> list = homeService.selectNewsCountByDate(map);
         Map<String, Object> returnMap = new HashMap<String, Object>();
@@ -60,17 +60,17 @@ public class HomeController {
     @ResponseBody
     @AccessLimit
     public Map<String, Object> selectBlogListByDate(@RequestParam(value="format") String format,
-                                                    @RequestParam(value="yesterday") String yesterday,
-                                                    @RequestParam(value="today") String today) throws Exception{
+                                                    @RequestParam(value="startTime") String startTime,
+                                                    @RequestParam(value="endTime") String endTime) throws Exception{
         Map<String, Object> map=new HashMap<String, Object>();
         if(format!=""&&format!=null){
             map.put("format", format);
         }
-        if(yesterday!=""&&yesterday!=null){
-            map.put("yesterday", yesterday);
+        if(startTime!=""&&startTime!=null){
+            map.put("startTime", startTime);
         }
-        if(today!=""&&today!=null){
-            map.put("today", today);
+        if(endTime!=""&&endTime!=null){
+            map.put("endTime", endTime);
         }
         List<?> list=homeService.selectVisitCountByDate(map);
         Map<String, Object> returnMap=new HashMap<String, Object>();

@@ -1,7 +1,7 @@
 <%--
   Created by liqiang at 2019/1/11 
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <%@include file="main_admin.jsp"%>
@@ -144,7 +144,8 @@
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="flot-chart">
-                                    <div class="flot-chart-content" id="echarts-line-chart"></div>
+                                    <div class="flot-chart-content" id="echarts-line-chart"
+                                         style="width:100%;height:200px;"></div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -198,5 +199,5 @@
 
     </div><%--container--%>
 </body>
-<script src="<%=basePath%>admin/js/home.js"></script>
+<script src="<%=basePath%>admin/js/home.js" charset="UTF-8"></script>
 </html>

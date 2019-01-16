@@ -14,8 +14,8 @@
     <select id="selectNewsCountByDate" resultType="Map" parameterType="Map">
         select DATE_FORMAT(addTime,'%Y-%m-%d') as addTime,count(*) as count from news
         where 1 = 1
-        <if test="qiantian != null and qiantian != ''">
-            and DATE_FORMAT(addTime,'%Y-%m-%d') BETWEEN #{qiantian} and #{today}
+        <if test="startTime != null and startTime != ''">
+            and DATE_FORMAT(addTime,'%Y-%m-%d') BETWEEN #{startTime} and #{endTime}
         </if>
         <if test="status != null and status != ''">
             and status = #{status}
@@ -26,14 +26,14 @@
     <select id="selectVisitCountByDate" resultType="map" parameterType="Map">
         SELECT DATE_FORMAT(time,'%Y-%m-%d') as time,COUNT(*) AS count FROM visit
         <where>
-            <if test="yesterday!=null and yesterday!='' and format=='day'">
-                and DATE_FORMAT(time,'%Y-%m-%d') BETWEEN #{yesterday} AND #{today}
+            <if test="startTime!=null and startTime!='' and format=='day'">
+                and DATE_FORMAT(time,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
             </if>
-            <if test="yesterday!=null and yesterday!='' and format=='month'">
-                and DATE_FORMAT(time,'%Y-%m') BETWEEN #{yesterday} AND #{today}
+            <if test="startTime!=null and startTime!='' and format=='month'">
+                and DATE_FORMAT(time,'%Y-%m') BETWEEN #{startTime} AND #{endTime}
             </if>
-            <if test="yesterday!=null and yesterday!='' and format=='year'">
-                and DATE_FORMAT(time,'%Y') BETWEEN #{yesterday} AND #{today}
+            <if test="startTime!=null and startTime!='' and format=='year'">
+                and DATE_FORMAT(time,'%Y') BETWEEN #{startTime} AND #{endTime}
             </if>
         </where>
         <if test="format=='day'">

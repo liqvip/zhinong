@@ -190,17 +190,11 @@
         select <include refid="Base_Column_List" />
         from visit
         where 1=1
-        <if test="visit.name != null and visit.name != ''">
-            and name like concat('%',#{visit.name},'%')
+        <if test="visit.ip != null and visit.ip != ''">
+            and ip like concat('%',#{visit.ip},'%')
         </if>
-        <if test="visit.username != null and visit.username != ''">
-            and username = #{visit.username}
-        </if>
-        <if test="visit.phone != null and visit.phone != ''">
-            and phone = #{visit.phone}
-        </if>
-        <if test="visit.status != null and visit.status != ''">
-            and status = #{visit.status}
+        <if test="visit.platformtype != null and visit.platformtype != ''">
+            and platformtype like concat('%',#{visit.platformtype},'%')
         </if>
         limit #{pageIndex},#{pageSize}
     </select>
@@ -208,25 +202,11 @@
     <!--总记录数-->
     <select id="totRecord" parameterType="Visit" resultType="int">
         SELECT count(*) from  visit where 1=1
-        <if test="name != null and name != ''">
-            and name like concat('%',#{name},'%')
+        <if test="ip != null and ip != ''">
+            and ip like concat('%',#{ip},'%')
         </if>
-        <if test="username != null and username != ''">
-            and username like concat('%',#{username},'%')
-        </if>
-        <if test="phone != null and phone != ''">
-            and phone like concat('%',#{phone},'%')
-        </if>
-        <if test="status != null and status != ''">
-            and status = #{status}
+        <if test="platformtype != null and platformtype != ''">
+            and platformtype like concat('%',#{platformtype},'%')
         </if>
     </select>
-
-    <delete id="delBatch">
-        delete from visit
-        where id in
-        <foreach close=")" collection="array" index="index" item="item" open="(" separator=",">
-            #{item}
-        </foreach>
-    </delete>
 </mapper>

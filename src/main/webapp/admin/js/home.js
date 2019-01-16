@@ -6,43 +6,9 @@ $(document).ready(function() {
     initNewsCountByDate(); //初始化昨日/今日新闻发表数目
     initVisitCount("now"); //初始化今日访客
     initVisitCount("history"); //初始化历史访客
-    //initVisitCountByWeek(7); //初始化num日访客
+    initVisitCountByWeek(7); //初始化num日访客
 
 });
-
-$('#start').datepicker({
-    keyboardNavigation : false,
-    forceParse : false,
-    autoclose : true,
-    format : 'mm/dd/yyyy',
-    todayHighlight : true,
-    endDate : new Date(),
-}).on('changeDate', function(ev) {
-    var start = ev.date.valueOf();
-    $('#start').val(Format(start, "yyyy-MM-dd"));
-    if ($('#end').val() != "" && $('#start').val() > $('#end').val()) {
-        swal("指定日期范围出错", "请重新检查", "error");
-    } else if ($('#start').val() != "" && $('#end').val() != "") {
-        initVisitCountByRange($('#start').val(), $('#end').val());
-    }
-});
-
-$('#end').datepicker({
-    keyboardNavigation : false,
-    forceParse : false,
-    autoclose : true,
-    format : 'mm/dd/yyyy',
-    todayHighlight : true,
-    endDate : new Date(),
-}).on('changeDate', function(ev) {
-    var end = ev.date.valueOf();
-    $('#end').val(Format(end, "yyyy-MM-dd"));
-    if ($('#start').val() != "" && $('#start').val() > $('#end').val()) {
-        swal("指定日期范围出错", "请重新检查", "error");
-    } else if ($('#start').val() != "" && $('#end').val() != "") {
-        initVisitCountByRange($('#start').val(), $('#end').val());
-    }
-})
 
 //初始化新闻数目
 var initNewsCountByStatus = function() {
@@ -89,8 +55,8 @@ var initNewsCountByDate = function() {
     var yesterday = Format(new Date(date.getTime() - 24 * 60 * 60 * 1000), "yyyy-MM-dd");
     var today = Format(date, "yyyy-MM-dd");
     var params = {
-        qiantian : qiantian,
-        today : today,
+        startTime : qiantian,
+        endTime : today,
         status : "1"
     };
     $.ajax({
@@ -145,8 +111,8 @@ var initVisitCount = function(e) {
         today = "";
     }
     var params = {
-        yesterday : yesterday,
-        today : today,
+        startTime : yesterday,
+        endTime : today,
         format : "day",
     };
     $.ajax({
@@ -197,6 +163,319 @@ var level = function(now, yes) {
         return Math.round(pm * 100) / 1.00 + '%' + level;
     }
     return Math.round(pm / yes * 100) / 1.00 + '%' + level;
+};
+
+$('#start').datepicker({
+    dateFormat: "yy-mm-dd",
+    showAnim:"slideDown",
+    minDate: new Date(2018, 1 - 1, 1),
+    maxDate: new Date(),
+    onSelect:function (dataText,inst) {
+        if ($('#end').val() != "" && new Date(dataText).getTime() > new Date($('#end').val()).getTime()) {
+            return ;
+        } else if (dataText != "" && $('#end').val() != "") {
+            initVisitCountByRange(dataText, $('#end').val());
+        }
+    }
+});
+
+$('#end').datepicker({
+    dateFormat: "yy-mm-dd",
+    maxDate: new Date(),
+    showAnim:"slideDown",
+    onSelect:function (dataText,inst) {
+        if ($('#start').val() != "" && new Date($('#start').val()).getTime() > new Date(dataText).getTime()) {
+            return ;
+        } else if ($('#start').val() != "" && dataText != "") {
+            initVisitCountByRange($('#start').val(), dataText);
+        }
+    }
+});
+
+var initEcharts = function(days, counts) {
+    var md = "日";
+    if (days[days.length - 1] == Format(new Date(), "yyyy-MM") || days[days.length - 1] == Format(new Date(), "yyyy/MM")) {
+        md = "月";
+    } else if (days[days.length - 1] == Format(new Date(), "yyyy")) {
+        md = "年";
+    }
+    var lineChart = echarts.init(document.getElementById("echarts-line-chart"));
+    var lineoption = {
+        title : {
+            text : '网站访问人数'
+        },
+        tooltip : {
+            trigger : 'axis'
+        },
+        legend : {
+            data : [ '近' + days.length + '' + md + '访问人数' ]
+        },
+        toolbox : {
+            show : true,
+            feature : {
+                dataZoom : {
+                    yAxisIndex : 'none'
+                },
+                dataView : {
+                    readOnly : false
+                },
+                magicType : {
+                    type : [ 'line', 'bar' ]
+                },
+                restore : {},
+                saveAsImage : {}
+            }
+        },
+        grid : {
+            x : 40,
+            x2 : 40,
+            y2 : 24
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : days
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                axisLabel : {
+                    formatter : '{value}'
+                },
+            }
+        ],
+        series : [
+            {
+                name : '近' + days.length + '' + md + '访问人数',
+                type : 'line',
+                data : counts,
+                markPoint : {
+                    data : [
+                        {
+                            type : 'max',
+                            name : '最大值'
+                        },
+                        {
+                            type : 'min',
+                            name : '最小值'
+                        }
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {
+                            type : 'average',
+                            name : '平均值'
+                        }
+                    ]
+                }
+            },
+        ]
+    };
+    lineChart.setOption(lineoption);
+
+    var min = counts[0];
+    var max = counts[0];
+    var all = 0;
+    for (var i = 0; i < counts.length; i++) {
+        all += counts[i];
+    }
+    for (var i = 1; i < counts.length; i++) {
+        if (counts[i] < min) {
+            min = counts[i];
+        }
+    }
+    for (var i = 1; i < counts.length; i++) {
+        if (counts[i] > max) {
+            max = counts[i];
+        }
+    }
+    $(".date").html('<span class="label label-danger ">' + days[0] + "——" + days[days.length - 1] + '</span>');
+    $(".num").html(days.length);
+    $(".md").html(md);
+    $(".high").html(max);
+    $(".low").html(min);
+    $(".all").html(all);
+};
+
+var initVisitCountByWeek = function(num) {
+    $(".year").removeClass("active");
+    $(".month").removeClass("active");
+    $(".day").addClass("active");
+    var date = new Date();
+    var startTime = "";
+    var endTime = "";
+    startTime = Format(new Date(date.getTime() - (num - 1) * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
+    endTime = Format(date, "yyyy-MM-dd");
+    var params = {
+        startTime : startTime,
+        endTime : endTime,
+        format : "day",
+    };
+    $.ajax({
+        url : 'home/selectVisitCountByDate',
+        type : 'post',
+        data : params,
+        dataType : 'json',
+        success : function(data) {
+            var days = new Array();
+            for (var i = num - 1, j = 0; i >= 0; i--, j++) {
+                days[j] = Format(new Date(date.getTime() - i * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
+            }
+            //快速初始化一个 大小为days的数组 并初始化全为0
+            var counts = Array.apply(null, Array(days.length)).map(function(item, i) {
+                return 0;
+            });
+
+            for (var j = 0; j < days.length; j++) {
+                for (var i = 0; i < data.list.length; i++) {
+                    var time = Format(data.list[i].time, "yyyy-MM-dd");
+                    if (days[j] == time) {
+                        counts[j] = data.list[i].count;
+                    }
+                }
+            }
+            if (num > 10) {
+                for (var i = num - 1, j = 0; i >= 0; i--, j++) {
+                    days[j] = Format(days[j], "MM/dd");
+                }
+            }
+            initEcharts(days, counts);
+        },
+        error : function() {
+            layer.msg("近日访客初始化错误,请重新操作!");
+        }
+    });
+};
+
+//指定日期初始化访客人数
+var initVisitCountByRange = function(startTime, endTime) {
+    var start = Date.parse(new Date(startTime));
+    var end = Date.parse(new Date(endTime));
+    var num = Math.abs(parseInt((end - start) / 1000 / 3600 / 24));
+    var params = {
+        startTime : startTime,
+        endTime : endTime,
+        format : "day",
+    };
+    $.ajax({
+        url : 'home/selectVisitCountByDate',
+        type : 'post',
+        data : params,
+        dataType : 'json',
+        success : function(data) {
+            var days = new Array();
+            for (var i = num, j = 0; i >= 0; i--, j++) {
+                days[j] = Format(new Date(end - i * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
+            }
+            //快速初始化一个 大小为days的数组 并初始化全为0
+            var counts = Array.apply(null, Array(days.length)).map(function(item, i) {
+                return 0;
+            });
+            for (var j = 0; j < days.length; j++) {
+                for (var i = 0; i < data.list.length; i++) {
+                    var time = Format(data.list[i].time, "yyyy-MM-dd");
+                    if (days[j] == time) {
+                        counts[j] = data.list[i].count;
+                    }
+                }
+            }
+            if (num > 10) {
+                for (var j = 0; j < days.length; j++) {
+                    days[j] = Format(days[j], "MM/dd");
+                }
+            }
+            initEcharts(days, counts);
+        },
+        error : function() {
+            layer.msg("指定日期访客初始化错误,请重新操作!");
+        }
+    });
+};
+
+var initVisitCountByMonth = function(num) {
+    $(".year").removeClass("active");
+    $(".day").removeClass("active");
+    $(".month").addClass("active");
+    var arr = new Array();
+    arr = dataMonth(num);
+    var startTime = arr[0];
+    var endTime = arr[arr.length - 1];
+    var params = {
+        startTime : startTime,
+        endTime : endTime,
+        format : "month",
+    };
+    $.ajax({
+        url : 'home/selectVisitCountByDate',
+        type : 'post',
+        data : params,
+        dataType : 'json',
+        success : function(data) {
+            var counts = Array.apply(null, Array(arr.length)).map(function(item, i) {
+                return 0;
+            });
+            for (var j = 0; j < arr.length; j++) {
+                for (var i = 0; i < data.list.length; i++) {
+                    var time = Format(data.list[i].time, "yyyy-MM");
+                    if (arr[j] == time) {
+                        counts[j] = data.list[i].count;
+                    }
+                }
+            }
+            if (num > 10) {
+                for (var j = 0; j < arr.length; j++) {
+                    arr[j] = Format(arr[j], "yyyy/MM");
+                }
+            }
+            initEcharts(arr, counts);
+        },
+        error : function() {
+            layer.msg("近日访客初始化错误,请重新操作!");
+        }
+    });
+};
+
+var initVisitCountByYear = function(num) {
+    $(".month").removeClass("active");
+    $(".day").removeClass("active");
+    $(".year").addClass("active");
+    var arr = new Array();
+    arr = dataYear(num);
+    console.log(arr);
+    var startTime = arr[0];
+    var endTime = arr[arr.length - 1];
+    var params = {
+        startTime : startTime,
+        endTime : endTime,
+        format : "year",
+    };
+    $.ajax({
+        url : 'home/selectVisitCountByDate',
+        type : 'post',
+        data : params,
+        dataType : 'json',
+        success : function(data) {
+            var counts = Array.apply(null, Array(arr.length)).map(function(item, i) {
+                return 0;
+            });
+            for (var j = 0; j < arr.length; j++) {
+                for (var i = 0; i < data.list.length; i++) {
+                    var time = Format(data.list[i].time, "yyyy");
+                    if (arr[j] == time) {
+                        counts[j] = data.list[i].count;
+                    }
+                }
+            }
+
+            initEcharts(arr, counts);
+        },
+        error : function() {
+            layer.msg("近日访客初始化错误,请重新操作!");
+        }
+    });
 };
 
 //获取前num个月的日期

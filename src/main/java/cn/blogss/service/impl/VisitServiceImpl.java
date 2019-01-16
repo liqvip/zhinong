@@ -32,28 +32,8 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    public void delBatch(String[] ids) {
-        visitMapper.delBatch(ids);
-    }
-
-    @Override
-    public void delOne(String id) {
-        visitMapper.deleteByPrimaryKey(Integer.parseInt(id));
-    }
-
-    @Override
-    public void edit(Visit visit) {
-        visitMapper.updateByPrimaryKeySelective(visit);
-    }
-
-    @Override
     public int totRecord(Visit visit) {
         return visitMapper.totRecord(visit);
     }
 
-
-    @Override
-    public Visit editShow(String id) {
-        return visitMapper.selectByPrimaryKey(Integer.parseInt(id));
-    }
 }

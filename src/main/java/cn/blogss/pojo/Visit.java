@@ -261,8 +261,8 @@ public class Visit {
 
     public Visit(){};
 
-    public Visit(String useragent,String platformtype){
-        this.useragent = useragent;
+    public Visit(String browsertype,String platformtype){
+        this.browsertype = browsertype;
         this.platformtype = platformtype;
     }
 }
