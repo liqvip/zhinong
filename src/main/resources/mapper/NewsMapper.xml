@@ -254,5 +254,23 @@
         #{item}
       </foreach>
     </delete>
+
+    <select id="selectPrevNews" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        id, title
+        from news where id &lt; #{id} and status=1 ORDER BY id DESC LIMIT 1
+    </select>
+
+    <select id="selectNextNews" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        id, title
+        from news where id &gt; #{id} and status=1 ORDER BY id ASC LIMIT 1
+    </select>
+
+    <select id="selectNewsByClick" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        from news ORDER BY clickNum DESC LIMIT 5
+    </select>
     
 </mapper>

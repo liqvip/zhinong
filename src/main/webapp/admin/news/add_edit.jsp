@@ -126,7 +126,7 @@
                         <div class="news_author">
                             <span class="glyphicon glyphicon-user"></span>liq
                             <c:if test="${!empty snews}">
-                                <span class="glyphicon glyphicon-time"></span>
+                                <span class="glyphicon glyphicon-calendar"></span>
                                 <fmt:formatDate value="${snews.addtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                                 <span>共<b> ${snews.clicknum} </b>人围观</span>
                             </c:if>

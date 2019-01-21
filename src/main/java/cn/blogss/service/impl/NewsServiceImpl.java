@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class NewsServiceImpl implements NewsService{
@@ -18,6 +19,7 @@ public class NewsServiceImpl implements NewsService{
     NewsMapper newsMapper;
     @Autowired
     NewsCatMapper newsCatMapper;
+    public static final AtomicInteger count = new AtomicInteger(0);
 
     @Override
     public List<News> selectNewsByPage(String pageIndex, int pageSize, News news) {
@@ -65,6 +67,32 @@ public class NewsServiceImpl implements NewsService{
 
     @Override
     public News selectNewsById(String id) {
-        return newsMapper.selectByPrimaryKey(Integer.parseInt(id));
+        News news = newsMapper.selectByPrimaryKey(Integer.parseInt(id));
+        if(news != null){
+            synchronized (news){
+                count.getAndIncrement();
+                news.setClicknum(news.getClicknum()+count.get());
+                if(count.get() >= 5){
+                    newsMapper.updateByPrimaryKeySelective(news);
+                    count.set(0);
+                }
+            }
+        }
+        return news;
+    }
+
+    @Override
+    public News selectNextNews(String id) {
+        return newsMapper.selectNextNews(id);
+    }
+
+    @Override
+    public News selectPrevNews(String id) {
+        return newsMapper.selectPrevNews(id);
+    }
+
+    @Override
+    public List<News> selectNewsByClick() {
+        return newsMapper.selectNewsByClick();
     }
 }

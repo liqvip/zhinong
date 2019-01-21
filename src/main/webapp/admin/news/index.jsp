@@ -122,7 +122,7 @@
                         <h3 class="news_title"></h3>
                         <div class="news_author">
                             <span class="glyphicon glyphicon-user"></span>liq
-                            <span class="glyphicon glyphicon-time"></span><i class="au02"></i>
+                            <span class="glyphicon glyphicon-calendar"></span><i class="au02"></i>
                             <span class="au03">共<b></b>人围观</span>
                         </div>
                         <div class="news_about">

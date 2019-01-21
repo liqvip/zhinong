@@ -32,4 +32,10 @@ public interface NewsService {
     News editShow(String id);
 
     News selectNewsById(String id);
+
+    News selectNextNews(String id);
+
+    News selectPrevNews(String id);
+
+    List<News> selectNewsByClick();
 }

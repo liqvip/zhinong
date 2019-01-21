@@ -23,7 +23,7 @@
                                     <a href="<%=basePath%>home/news/selectNewsById?id=${item.id}" target="_blank">${item.title}</a>
                                 </h3>
                                 <span class="newspic imgscale">
-                                <a href="<%=basePath%>home/news/selectNewsById?id=${item.id}">
+                                <a target="_blank" href="<%=basePath%>home/news/selectNewsById?id=${item.id}">
                                     <img src="${item.images}" alt="">
                                 </a>
                             </span>
@@ -33,7 +33,7 @@
                                     <span><fmt:formatDate value="${item.addtime}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
                                     <span>浏览(${item.clicknum})</span>
                                 </p>
-                                <a href="<%=basePath%>home/news/selectNewsById?id=${item.id}" class="viewmore">阅读原文</a>
+                                <a target="_blank" href="<%=basePath%>home/news/selectNewsById?id=${item.id}" class="viewmore">阅读原文</a>
                             </li>
                         </c:forEach>
                     </ul>

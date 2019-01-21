@@ -135,7 +135,24 @@ a.viewmore {
     padding-bottom: 15px;
     margin-bottom: 25px;
     position: relative;
-    border-bottom: #000 2px solid;
+}
+
+
+
+.cloud_hometitle::after {
+    content: "";
+    background-color: #282828;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    bottom: 0;
+    position: absolute;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+
 }
 
 .cloud ul {

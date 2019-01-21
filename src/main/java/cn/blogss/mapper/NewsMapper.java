@@ -70,4 +70,10 @@ public interface NewsMapper {
     public abstract void delBatch(String[] ids);
 
     public int totRecord(News newsCat);
+
+    News selectNextNews(String id);
+
+    News selectPrevNews(String id);
+
+    List<News> selectNewsByClick();
 }

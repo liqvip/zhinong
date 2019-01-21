@@ -1,12 +1,10 @@
 package cn.blogss.controller.home;/*
     create by LiQiang at 2018/4/22   
 */
-import cn.blogss.common.util.pojo.Message;
+import cn.blogss.annotation.AccessLimit;
 import cn.blogss.common.util.pojo.Page;
 import cn.blogss.pojo.News;
-import cn.blogss.pojo.NewsCat;
 import cn.blogss.service.NewsService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,11 +43,40 @@ public class NewsControllerHome {
     }
 
     //    select news by id
+    @AccessLimit
     @RequestMapping(value = "news/selectNewsById",method = {RequestMethod.POST,RequestMethod.GET})
     public String selectNewsById(@RequestParam("id") String id,Model model){
         News snews = newsService.selectNewsById(id);
+        selectPrevNews(id,model);
+        selectNextNews(id,model);
+        selectNewsByClick(model);
         model.addAttribute("snews",snews);
         return "home/news/info";
+    }
+
+    /**
+     * 查询后一篇博客信息
+     */
+    @RequestMapping(value = "news/selectNextNews")
+    public void selectNextNews(String id,Model model){
+        News news=newsService.selectNextNews(id);
+        model.addAttribute("nextNews",news);
+    }
+
+    /**
+     * 查询前一篇博客信息
+     */
+    @RequestMapping(value = "news/selectPrevNews")
+    public void selectPrevNews(String id,Model model){
+        News news=newsService.selectPrevNews(id);
+        model.addAttribute("preNews",news);
+    }
+
+//查询出点击前5的新闻
+    @RequestMapping(value = "news/selectNewsByClick")
+    public void selectNewsByClick(Model model){
+        List<News> news=newsService.selectNewsByClick();
+        model.addAttribute("clickNews",news);
     }
 
 }
