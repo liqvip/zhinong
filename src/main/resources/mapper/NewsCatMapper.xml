@@ -158,4 +158,9 @@
       update news_cat set num = num + 1 where id = #{catId};
     </update>
 
+    <select id="selectNewsCat" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from news_cat
+    </select>
+
 </mapper>

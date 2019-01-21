@@ -1,0 +1,212 @@
+.newnews {
+    background: #fff;
+    overflow: hidden;
+    padding: 20px;
+    clear: both;
+    border-radius: 3px;
+}
+
+.newnews ul {
+    overflow: hidden;
+}
+.newslist ul {
+    padding: 10px 0 0;
+}
+
+.newnews li {
+    border-bottom: #ccc 1px solid;
+    overflow: hidden;
+}
+
+.newnews li:hover img {
+    transform: scale(1.1);
+}
+
+.newslist li {
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    min-height: 120px;
+    z-index: 1;
+}
+
+ul, li {
+    list-style: none;
+}
+
+.hometitle {
+    font-size: 18px;
+    color: #282828;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    position: relative;
+    border-bottom: #000 2px solid;
+}
+
+h3.newstitle {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #757575;
+}
+
+h3.newstitle {
+    line-height: 30px;
+    height: 30px;
+    margin: 10px 0;
+}
+
+.newstitle {
+    font-size: 18px;
+}
+
+.newspic {
+    overflow: hidden;
+    width: 25%;
+    display: block;
+    float: left;
+    margin-right: 20px;
+    border-radius: 3px;
+    background: #333333;
+}
+
+.newspic img {
+    margin: auto;
+    width: 100%;
+    max-height: 160px;
+    min-height: 100px;
+    -moz-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.newstext {
+    font-size: 14px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    margin-top: 20px;
+}
+
+.newsinfo {
+    margin-top: 20px;
+    overflow: hidden;
+    color: #999;
+    line-height: 34px;
+}
+
+.newsinfo span {
+    margin: 0 5px;
+}
+
+a.viewmore {
+    display: block;
+    right: 10px;
+    bottom: 20px;
+    position: absolute;
+    padding: 3px 10px;
+    background: #338c22;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.whitebg {
+    background: #fff;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.cloud_hometitle {
+    font-size: 18px;
+    color: #282828;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    border-bottom: #000 2px solid;
+}
+
+.cloud ul {
+    overflow: hidden;
+    font-size: 14px;
+    padding-left: 0px;
+}
+
+.cloud ul a {
+    line-height: 24px;
+    display: block;
+    background: #999;
+    float: left;
+    padding: 3px 11px;
+    margin: 10px 10px 0 0;
+    border-radius: 3px;
+    -moz-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    transition: all 0.5s;
+    color: #FFF;
+}
+
+.cloud ul a:first-child {
+    background: #036564;
+}
+
+.cloud ul a:nth-child(8n-7) {
+    background: #8A9B0F
+}
+
+.cloud ul a:nth-child(8n-6) {
+    background: #EB6841
+}
+
+.cloud ul a:nth-child(8n-5) {
+    background: #3FB8AF
+}
+
+.cloud ul a:nth-child(8n-4) {
+    background: #FE4365
+}
+
+.cloud ul a:nth-child(8n-3) {
+    background: #FC9D9A
+}
+
+.cloud ul a:nth-child(8n-2) {
+    background: #EDC951
+}
+
+.cloud ul a:nth-child(8n-1) {
+    background: #C8C8A9
+}
+
+.cloud ul a:nth-child(8n) {
+    background: #83AF9B
+}
+
+.cloud ul a:first-child {
+    background: #036564
+}
+
+.cloud ul a:last-child {
+    background: #3299BB
+}
+
+.cloud ul a:hover {
+    border-radius: 0;
+    text-shadow: #000 1px 1px 1px
+}
+

@@ -1,23 +1,36 @@
- /*两个模态框的点击事件*/
-$(".goregister").click(function(){
-     $("#mymodal_login").modal("hide");
-     $("#mymodal_register").modal("show");
-});
 
-$(".gologin").click(function(){
-     $("#mymodal_login").modal("show");
-     $("#mymodal_register").modal("hide");
-});
+var initAllSlide = function () {
+    $.ajax({
+        url:"/home/slide/initAllSlide",
+        type:"GET",
+        dataType:"json",
+        success:function (data,status,jqXHR) {
+            if(data.msg.success){
+                var indicator = "";
+                var slide = "";
+                for(var i=0;i<data.slides.length;i++){
+                    if(i == 0){
+                        indicator += "<li data-target='#carousel-example-generic' " +
+                            "data-slide-to='"+i+"' class='active'></li>";
+                        slide += "<div class='item active'><img src='"+data.slides[i].image+"' alt='...' style='width: 1440px;height: 400px'>" +
+                            "<div class='carousel-caption'><p>"+data.slides[i].introduction+"</p></div></div>";
+                    }else{
+                        indicator += "<li data-target='#carousel-example-generic' " +
+                            "data-slide-to='"+i+"'></li>";
+                        slide += "<div class='item'><img src='"+data.slides[i].image+"' alt='...' style='width: 1440px;height: 400px'>" +
+                            "<div class='carousel-caption'><p>"+data.slides[i].introduction+"</p></div></div>";
+                    }
+                }
+            }
+            $(".carousel-indicators").html(indicator);
+            $(".carousel-inner").html(slide);
+        },
+        error:function (jqXHR) {
+            layer.mgs("接口服务错误，请检查后重试!");
+        }
+    });
+};
 
-// 回到顶部
-$(window).scroll(function(){
-    if($(window).scrollTop()<=100){
-        $(".gotop").fadeOut();
-    }else{
-        $(".gotop").fadeIn();
-    }
-});
-
-$(".gotop").click(function(){
-    $("html,body").animate({scrollTop:0},500);
+$(document).ready(function () {
+    initAllSlide();
 });

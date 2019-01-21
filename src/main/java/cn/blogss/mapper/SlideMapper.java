@@ -67,4 +67,6 @@ public interface SlideMapper {
     public abstract int delBatch(String[] ids);
 
     Slide editShow(String id);
+
+    List<Slide> selectSlide();
 }

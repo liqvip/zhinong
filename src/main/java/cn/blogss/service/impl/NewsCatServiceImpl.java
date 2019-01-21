@@ -45,4 +45,9 @@ public class NewsCatServiceImpl implements NewsCatService{
     public int totRecord(NewsCat newsCat) {
         return newsCatMapper.totRecord(newsCat);
     }
+
+    @Override
+    public List<NewsCat> selectNewsType() {
+        return newsCatMapper.selectNewsCat();
+    }
 }

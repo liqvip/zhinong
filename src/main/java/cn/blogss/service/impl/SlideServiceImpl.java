@@ -48,4 +48,9 @@ class SlideServiceImpl implements SlideService {
     public Slide editShow(String id) {
         return slideMapper.editShow(id);
     }
+
+    @Override
+    public List<Slide> selectSlide() {
+        return slideMapper.selectSlide();
+    }
 }

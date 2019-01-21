@@ -115,8 +115,8 @@ public class Pager extends TagSupport{
 				//结束行
 				int endSize = this.pageIndex==totalPageNum?this.totalNum:this.pageIndex*this.pageSize;
 				sb.append("<table align='center' class='baidu'>");
-				sb.append("<tr><td>"+pager.toString()+"</td></tr>");
-				sb.append("<tr><td>总共<font color='red'>"+totalNum+"</font>条记录,当前显示<font color='red'></font>"+startSize+"-"+endSize+"条记录</td></tr>");
+				sb.append("<tr><td style='text-align: center;'>"+pager.toString()+"</td></tr>");
+				sb.append("<tr><td>总共 <font color='red'>"+totalNum+"</font> 条记录,当前显示 <font color='red'></font>"+startSize+"-"+endSize+" 条记录</td></tr>");
 				sb.append("</table>");
 				
 		}else {

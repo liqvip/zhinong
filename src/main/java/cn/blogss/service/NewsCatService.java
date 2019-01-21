@@ -24,4 +24,5 @@ public interface NewsCatService {
 
     public int totRecord(NewsCat newsCat);
 
+    List<NewsCat> selectNewsType();
 }

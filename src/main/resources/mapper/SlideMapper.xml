@@ -163,4 +163,10 @@
     <delete id="delOne" parameterType="String">
         DELETE FROM slide WHERE id = #{id}
     </delete>
+
+    <select id="selectSlide" resultType="Slide">
+        select <include refid="Base_Column_List"></include>
+        from slide
+        order by sort asc
+    </select>
 </mapper>

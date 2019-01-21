@@ -23,4 +23,6 @@ public interface SlideService {
     void delOne(String id);
 
     Slide editShow(String id);
+
+    List<Slide> selectSlide();
 }

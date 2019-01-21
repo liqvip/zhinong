@@ -68,4 +68,6 @@ public interface NewsCatMapper {
     public List<NewsCat> newsAddShow();
 
     void increaseNumByCatId(Integer catId);
+
+    List<NewsCat> selectNewsCat();
 }

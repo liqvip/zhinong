@@ -1,11 +1,9 @@
-*{
-    font-size: 15px;
-}
 body{
 	font-family: "微软雅黑";
 	width: 1440px;
 	margin: 0 auto;
 	overflow-x: hidden;
+    background-color: #F6F6F6 !important;
 }
 
 a{

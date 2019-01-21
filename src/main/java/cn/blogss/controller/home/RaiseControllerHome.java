@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/home")
-public class RaiseHomeController {
+public class RaiseControllerHome {
     @Autowired
     HomeRaiseService homeRaiseService;
 
