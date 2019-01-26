@@ -76,4 +76,8 @@ public interface NewsMapper {
     News selectPrevNews(String id);
 
     List<News> selectNewsByClick();
+
+    List<News> selectNotices();
+
+    List<News> initNewsTab();
 }

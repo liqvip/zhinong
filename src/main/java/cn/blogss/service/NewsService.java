@@ -38,4 +38,8 @@ public interface NewsService {
     News selectPrevNews(String id);
 
     List<News> selectNewsByClick();
+
+    List<?> selectNotices();
+
+    Map<String,List<News>> initNewsTab();
 }

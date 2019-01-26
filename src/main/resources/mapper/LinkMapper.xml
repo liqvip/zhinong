@@ -168,4 +168,11 @@
       #{item}
     </foreach>
   </delete>
+
+  <select id="selectLink" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from link
+    where status = '1' order by sort asc
+  </select>
 </mapper>

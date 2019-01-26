@@ -272,5 +272,17 @@
         <include refid="Base_Column_List"></include>
         from news ORDER BY clickNum DESC LIMIT 5
     </select>
+
+    <select id="selectNotices" resultType="Map">
+      select n.id,n.title,n.cat_id from news n INNER JOIN news_cat nc on n.cat_id = nc.id and nc.name = "系统公告"
+    </select>
+
+    <select id="initNewsTab" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from news as a where 6 <![CDATA[>=]]>(
+        select count(*) from news as b where a.cat_id = b.cat_id
+        ) order by a.clickNum DESC
+    </select>
     
 </mapper>

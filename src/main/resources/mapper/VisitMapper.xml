@@ -196,7 +196,7 @@
         <if test="visit.platformtype != null and visit.platformtype != ''">
             and platformtype like concat('%',#{visit.platformtype},'%')
         </if>
-        limit #{pageIndex},#{pageSize}
+        order by time DESC limit #{pageIndex},#{pageSize}
     </select>
 
     <!--总记录数-->

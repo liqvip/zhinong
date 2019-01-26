@@ -2,6 +2,7 @@
   Created by liqiang at 2019/1/17 
 --%>
 <%@page contentType="text/html;charset=utf-8" language="java" %>
+<%@page pageEncoding="UTF-8" %>
 <div class="header">
     <div class="row" style="width: 100%;margin: 0px;">
         <div class="container" style="padding-left: 0px;padding-right: 0px;">
@@ -59,7 +60,7 @@
 <!-- 导航条 -->
 <nav style="height:103px;width:100%;position: relative;margin-top: 6px;">
     <div class="row" style="padding:20px 0px">
-        <div class="container" style="padding-right:0px;margin-left: 117px;">
+        <div class="container">
             <div class="col-xs-2 col-md-2" style="padding-left:0px;">
                 <a href=""><img src="<%=basePath%>home/images/logo.png" title="乐农" alt="乐农"></a>
             </div>
@@ -70,7 +71,7 @@
                 }
             </style>
             <div class="col-xs-10 col-md-10" style="margin:6px 0px;padding-right: 0px;padding-left:0px;">
-                <nav class="navbar" style="width:100%;margin-left: 15px;">
+                <nav class="navbar">
                     <ul class="nav navbar-nav column">
                         <li>
                             <a href="<%=basePath%>" alt="首页" style=" " class="">首页</a>
@@ -116,10 +117,8 @@
                             line-height: 36px;
                             border-radius: 5px;
                             position: relative;
-                            width: 220px;
                             z-index: 105;
                             margin-top:10px;
-                            margin-right:23px;
                             overflow:hidden;
                         }
                         .Search button,.Search input{
@@ -149,7 +148,7 @@
                         });
                     </script>
 
-                    <div class="Search" style="left: 44px;">
+                    <div class="Search">
                         <form action="/search" method="GET">
                             <input type="text" name="name" placeholder="搜索" class="searchinput">
                             <button type="submit" class="btn btn-primary1">搜索</button>

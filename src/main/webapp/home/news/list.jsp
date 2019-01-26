@@ -30,7 +30,7 @@
                                 <p class="newstext">${item.introduction}</p>
                                 <p class="newsinfo">
                                     <span>liq</span>
-                                    <span><fmt:formatDate value="${item.addtime}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+                                    <span><fmt:formatDate value="${item.addtime}" pattern="yyyy-MM-dd HH:mm"/></span>
                                     <span>浏览(${item.clicknum})</span>
                                 </p>
                                 <a target="_blank" href="<%=basePath%>home/news/selectNewsById?id=${item.id}" class="viewmore">阅读原文</a>

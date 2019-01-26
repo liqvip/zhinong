@@ -208,7 +208,7 @@
             type : 'post',
             data : params,
             dataType : 'json',
-            success : function(data) {
+            success : function(data,status,jqXHR) {
                 if (data.success) {
                     $("#modal-form").modal('hide');
                     layer.msg("更新成功!");
@@ -217,7 +217,7 @@
                     },1000);
                 }
             },
-            error : function() {
+            error : function(jqXHR) {
                 layer.msg("更新错误,请重新操作");
             }
         });

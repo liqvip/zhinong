@@ -2,6 +2,7 @@ package cn.blogss.controller.home;/*
     create by LiQiang at 2018/4/22   
 */
 import cn.blogss.annotation.AccessLimit;
+import cn.blogss.common.util.pojo.Message;
 import cn.blogss.common.util.pojo.Page;
 import cn.blogss.pojo.News;
 import cn.blogss.service.NewsService;
@@ -72,11 +73,37 @@ public class NewsControllerHome {
         model.addAttribute("preNews",news);
     }
 
-//查询出点击前5的新闻
+    /**
+     * 查询出点击前5的新闻
+     */
     @RequestMapping(value = "news/selectNewsByClick")
     public void selectNewsByClick(Model model){
         List<News> news=newsService.selectNewsByClick();
         model.addAttribute("clickNews",news);
     }
 
+    /*
+    *初始化首页公告
+    **/
+    @RequestMapping(value = "news/initNotice",method = {RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Map<String,Object> initNotice(){
+        Map<String,Object> map = new HashMap<>();
+        List<?> news = newsService.selectNotices();
+        map.put("msg",new Message());
+        map.put("notices",news);
+        return map;
+    }
+
+    /*
+     *初始化首页公告
+     **/
+    @RequestMapping(value = "news/initNewsTab",method = {RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Map<String,Object> initNewsTab(){
+        Map<String,List<News>> map = newsService.initNewsTab();
+        Map<String, Object> returnMap=new HashMap<String, Object>();
+        returnMap.put("news",map);
+        return returnMap;
+    }
 }

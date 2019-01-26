@@ -50,4 +50,9 @@ public class LinkServiceImpl implements LinkService{
     public Link editShow(String id) {
         return linkMapper.selectByPrimaryKey(Integer.parseInt(id));
     }
+
+    @Override
+    public List<Link> selectLink() {
+        return linkMapper.selectLink();
+    }
 }

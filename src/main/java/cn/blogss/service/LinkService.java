@@ -24,4 +24,6 @@ public interface LinkService {
     public int totRecord(Link link);
 
     Link editShow(String id);
+
+    List<Link> selectLink();
 }

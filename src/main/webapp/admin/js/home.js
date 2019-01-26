@@ -1,4 +1,4 @@
-$(document).ready(function() {
+﻿$(document).ready(function() {
     $("#end").val(Format(new Date(), "yyyy-MM-dd"));
     $("#start").val(Format(new Date().getTime() - 6 * 24 * 60 * 60 * 1000, "yyyy-MM-dd"));
     initNewsCountByStatus(); //初始化已发表/草稿箱/垃圾箱新闻数目

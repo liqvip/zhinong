@@ -10,7 +10,10 @@ import cn.blogss.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -94,5 +97,26 @@ public class NewsServiceImpl implements NewsService{
     @Override
     public List<News> selectNewsByClick() {
         return newsMapper.selectNewsByClick();
+    }
+
+    @Override
+    public List<?> selectNotices() {
+        return newsMapper.selectNotices();
+    }
+
+    @Override
+    public Map<String,List<News>> initNewsTab() {
+        Map<String,List<News>> map = new HashMap<>();
+        List<News> list =  newsMapper.initNewsTab();
+        for(News news:list){
+            if(map.containsKey(news.getNewsCat().getName())){
+                map.get(news.getNewsCat().getName()).add(news);
+            }else{
+                List<News> nList = new ArrayList<>();
+                nList.add(news);
+                map.put(news.getNewsCat().getName(),nList);
+            }
+        }
+        return map;
     }
 }

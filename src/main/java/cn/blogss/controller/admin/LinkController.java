@@ -51,7 +51,7 @@ public class LinkController {
 
 
     //    友情链接添加
-    @RequestMapping(value = "link/add",method = {RequestMethod.POST})
+    @RequestMapping(value = "link/add",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     public  Message linkAdd(@ModelAttribute Link link){
         link.setAddtime(new Date());

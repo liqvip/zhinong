@@ -1,6 +1,8 @@
 <%--
   Created by liqiang at 2018/10/14 
 --%>
+<%@page contentType="text/html;charset=utf-8" language="java" %>
+<%@page pageEncoding="UTF-8" %>
 <%
     //项目名
     String path = request.getContextPath();
@@ -18,7 +20,7 @@
 <link rel="stylesheet" href="<%=basePath%>public/bs/css/bootstrap.css">
 <link rel="stylesheet" href="<%=basePath%>public/css/validationEngine.jquery.css">
 <%--必须在引入bootstrap.js之前导入--%>
-<script src="<%=basePath%>public/js/jquery.js"></script>
+<script src="<%=basePath%>public/js/jquery.js" charset="UTF-8" type="text/javascript"></script>
 <script src="<%=basePath%>public/bs/js/bootstrap.js"></script>
 <script src="<%=basePath%>public/js/docs.min.js"></script>
 <script src="<%=basePath%>public/js/bootstrap-select.min.js"></script>

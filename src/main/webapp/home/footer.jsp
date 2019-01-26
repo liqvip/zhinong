@@ -2,10 +2,9 @@
   Created by liqiang at 2019/1/17 
 --%>
 <%@page contentType="text/html;charset=utf-8" language="java" %>
-<footer class="footer">
-    <div class="" style="width: 1200px;margin: 0 auto">
+    <div class="row">
         <div class="container">
-            <div class="row">
+            <div class="footer whitebg" style="background-color: #333;color: #fff;">
                 <div class="col-md-3"><img src="<%=basePath%>home/images/logo.png" alt="" style="margin-top: 20px;"></div>
                 <div class="col-md-6">
                     <div class="footer_menu">
@@ -28,7 +27,7 @@
             </div>
         </div>
     </div>
-</footer>
+
 <script>
     $(document).ready(function () {
     // 回到顶部

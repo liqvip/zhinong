@@ -1,4 +1,4 @@
-jQuery(function() {
+﻿jQuery(function() {
     var $ = jQuery,    // just in case. Make sure it's not an other libaray.
     
         $wrap = $('#uploader'),

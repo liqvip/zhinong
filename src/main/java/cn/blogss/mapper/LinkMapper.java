@@ -62,4 +62,6 @@ public interface LinkMapper {
     public abstract void delBatch(String[] ids);
 
     public int totRecord(Link link);
+
+    List<Link> selectLink();
 }
