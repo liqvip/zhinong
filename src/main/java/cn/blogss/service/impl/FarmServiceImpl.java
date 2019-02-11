@@ -42,6 +42,11 @@ public class FarmServiceImpl implements FarmService{
     }
 
     @Override
+    public List<Farm> raiseAddShow() {
+        return farmMapper.raiseAddShow();
+    }
+
+    @Override
     public Farm editShow(String id) {
         return farmMapper.editShow(id);
     }

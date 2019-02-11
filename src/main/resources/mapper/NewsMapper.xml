@@ -230,6 +230,7 @@
       <if test="news.status != null and news.status != ''">
         and status = #{news.status}
       </if>
+      order by addTime DESC
       limit #{pageIndex},#{pageSize}
     </select>
   

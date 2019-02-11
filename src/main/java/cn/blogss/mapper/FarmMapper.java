@@ -69,4 +69,6 @@ public interface FarmMapper {
     public abstract int delBatch(String[] ids);
 
     Farm editShow(String id);
+
+    List<Farm> raiseAddShow();
 }

@@ -155,5 +155,9 @@
             #{item}
         </foreach>
     </delete>
+
+    <select id="raiseAddShow" resultType="Farm">
+        select id,name from farm
+    </select>
     
 </mapper>

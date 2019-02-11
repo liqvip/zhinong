@@ -2,81 +2,81 @@ package cn.blogss.controller.admin;/*
     create by LiQiang at 2018/4/22   
 */
 
+import cn.blogss.common.util.pojo.Message;
+import cn.blogss.common.util.pojo.Page;
 import cn.blogss.pojo.RaiseCat;
 import cn.blogss.service.RaiseCatService;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/")
 public class RaiseCatController {
     @Autowired
     HttpServletRequest request;
-
     @Autowired
     private RaiseCatService raiseCatService;
 
-    public RaiseCatController(){
-        System.out.println("RaiseCatController:我被注入啦");
+    @RequestMapping(value = "raiseCat",method = {RequestMethod.GET,RequestMethod.POST})
+    public String raiseCatList(@ModelAttribute RaiseCat raiseCat,Model model,
+                              @RequestParam(value = "pageIndex",defaultValue = "1") String pageIndex){
+        List<RaiseCat> raiseCatList = raiseCatService.selectRaiseCatByPage(pageIndex, Page.pageSize,raiseCat);
+        String submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
+                request.getContextPath()+"/admin/raiseCat?pageIndex={0}";
+
+        if(!StringUtils.isEmpty(raiseCat.getName()))
+            submitUrl += "&name="+raiseCat.getName();
+
+        int totalNum = raiseCatService.totRecord(raiseCat);
+        Page page = new Page();
+        page.setPageIndex(Integer.parseInt(pageIndex));
+        page.setTotalNum(totalNum);
+        page.setSubmitUrl(submitUrl);
+        model.addAttribute("raiseCat",raiseCat);
+        model.addAttribute("page",page);
+        model.addAttribute("raiseCats",raiseCatList);
+
+        return  "admin/raise_cat/index";
     }
 
-//    后台农资分类添加
-    @RequestMapping(value = "/raise_cat/add",method = RequestMethod.POST,produces = "application/json;charset=utf-8")
+
+    //    后台农资分类添加
+    @RequestMapping(value = "raiseCat/add",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
-    public String raiseCatAdd(@ModelAttribute RaiseCat raiseCat ){
-        //model处理
-        System.out.println("父ID："+raiseCat.getParentId());
-        System.out.println("名称："+raiseCat.getCatName());
-
-        String jsonStr = raiseCatService.raiseCatAdd(raiseCat);
-        return  jsonStr;
+    public  Message raiseCatAdd(@ModelAttribute RaiseCat raiseCat){
+        raiseCat.setAddtime(new Date());
+        raiseCatService.add(raiseCat);
+        return new Message();
     }
 
-//    后台农资分类查看,分页
-//    procudes解决数据返回到客户端乱码,response对象无效
-    @RequestMapping(value = "/raise_cat/scan/{pageNow}",method = RequestMethod.GET,produces = "appplication/json;" +
-            "charset=utf-8")
+    //  删除单个农资分类
+    @RequestMapping(value = "raiseCat/delOne",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-        public String raiseCatScan(@PathVariable int pageNow) throws JsonProcessingException {
-           String str  = raiseCatService.raiseCatSelectAll(pageNow);
-           return  str;
+    public Message raiseCatDelOne(@RequestParam("id")String id){
+        raiseCatService.delOne(id);
+        return new Message();
     }
 
-//    后台农资分类删除
-    @RequestMapping(value = "raise_cat/delete/{raiseCatId}",method = RequestMethod.GET)
-    public void raiseCatDelete(@PathVariable int raiseCatId,HttpServletResponse response) throws IOException {
-        raiseCatService.raiseCatDelete(raiseCatId);
-        //设置响应头
-        response.setHeader("content-type","text/html;charset=utf-8");
-        //获取PrintWrite输出流
-        PrintWriter out = response.getWriter();
-        out.write("success");
-    }
-
-
-//    农资分类信息修改
-    @RequestMapping(value = "raise_cat/modify",method = RequestMethod.POST)
-    public void raiseCatModify(HttpServletResponse response,@ModelAttribute RaiseCat raiseCat) throws IOException {
-
-        raiseCatService.raiseCatModify(raiseCat);
-        response.setContentType("text/html;charset=utf=8");
-        response.getWriter().write("success");
-    }
-
-//    查找所有的农资分类
-    @RequestMapping(value = "/raise_cat/scanall",method = RequestMethod.GET,produces = "appplication/json;" +
-            "charset=utf-8")
+    @RequestMapping(value = "raiseCat/delBatch",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public String raiseCatScanAll() throws JsonProcessingException {
-        String str  = raiseCatService.raiseCatSelectAll2();
-        return  str;
+    public Message raiseCatDelBatch(@RequestParam("ids")String[] ids){
+        raiseCatService.delBatch(ids);
+        return new Message();
+    }
+
+    //    农资分类修改
+    @RequestMapping(value = "raiseCat/edit",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public Message raiseCatEdit(@ModelAttribute RaiseCat raiseCat){
+        raiseCat.setAddtime(new Date());
+        raiseCatService.edit(raiseCat);
+        return new Message();
     }
 }

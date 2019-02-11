@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -84,7 +85,7 @@ public class HomeRaiseServiceImpl implements HomeRaiseService{
         Raise raise = raiseMapper.raiseDetail(raiseId);
         model.addAttribute("raiseDetail",raise);
         model.addAttribute("raiseMount",raiseMount);
-        model.addAttribute("totalMoney",raiseMount*raise.getMarketPrice());
+        model.addAttribute("totalMoney",raise.getPrice().multiply(BigDecimal.valueOf(raiseMount)));
     }
 
 //    订单付款

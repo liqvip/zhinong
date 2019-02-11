@@ -3,22 +3,26 @@ package cn.blogss.service;/*
 */
 
 import cn.blogss.pojo.RaiseCat;
-import com.fasterxml.jackson.core.JsonProcessingException;
+
+import java.util.List;
 
 public interface RaiseCatService {
 
+    public abstract List<RaiseCat> selectRaiseCatByPage(String pageIndex, int pageSize, RaiseCat raiseCat);
+
     //农资分类添加
-    public abstract String raiseCatAdd(RaiseCat raiseCat);
+    public abstract void add(RaiseCat raiseCat);
 
-    //农资分类查看
-    public abstract String raiseCatSelectAll(int pagenow) throws JsonProcessingException;
+    //农资分类批量删除
+    public abstract void delBatch(String[] ids);
 
-    //农资分类删除
-    public abstract void raiseCatDelete(int raiseCatId);
+    //删除一条
+    void delOne(String id);
 
-//    农资分类修改
-    public abstract void raiseCatModify(RaiseCat raiseCat);
+    //    农资分类修改
+    public abstract void edit(RaiseCat raiseCat);
 
-//    查找所有的农资分类
-    public String raiseCatSelectAll2();
+    public int totRecord(RaiseCat raiseCat);
+
+    List<RaiseCat> selectRaiseType();
 }

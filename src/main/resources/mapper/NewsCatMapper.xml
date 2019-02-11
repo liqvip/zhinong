@@ -123,7 +123,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <!--后台菜单查看,分页-->
+  <!--后台新闻查看,分页-->
   <select id="selectNewsCatByPage" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from news_cat

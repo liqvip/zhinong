@@ -25,5 +25,7 @@ public interface FarmService {
     //删除一条
     void delOne(String id);
 
+    List<Farm> raiseAddShow();
+
     Farm editShow(String id);
 }
