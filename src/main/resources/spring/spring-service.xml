@@ -10,13 +10,6 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!--排除对controller包中Controller annotation bean的管理-->
-    <context:component-scan base-package="cn.blogss.controller">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
-
     <!--扫描serviceimpl-->
-    <context:component-scan base-package="cn.blogss.service.impl"></context:component-scan>
-
-
+    <context:component-scan base-package="cn.blogss.service.impl"/>
 </beans>

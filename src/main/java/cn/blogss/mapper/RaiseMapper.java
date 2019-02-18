@@ -3,6 +3,7 @@ package cn.blogss.mapper;
 import cn.blogss.pojo.Raise;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface RaiseMapper {
@@ -58,8 +59,11 @@ public interface RaiseMapper {
                                                   @Param("pageSize")int pageSize,
                                                   @Param("raise")Raise raise);
 
-    //新闻分类批量删除
+    //农资批量删除
     public abstract void delBatch(String[] ids);
 
     public int totRecord(Raise raiseCat);
+
+    /*秒杀，减少库存*/
+    public int reduceAmount(@Param("id") int id,@Param("killTime") Date killTime);
 }

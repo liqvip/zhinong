@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/*
+* DAO 层工作演变为:接口设计+SQL编写
+* DAO 拼接等逻辑在Service层完成
+* */
+
 @Service
 public class FarmServiceImpl implements FarmService{
     @Autowired

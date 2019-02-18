@@ -96,4 +96,13 @@ public class UserRoles {
     public void setRoleName(String roleName) {
         this.roleName = roleName == null ? null : roleName.trim();
     }
+
+    @Override
+    public String toString() {
+        return "UserRoles{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", roleName='" + roleName + '\'' +
+                '}';
+    }
 }

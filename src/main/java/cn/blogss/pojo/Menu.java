@@ -57,4 +57,16 @@ public class Menu {
     public void setMurl(String murl) {
         this.murl = murl;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", murl='" + murl + '\'' +
+                ", priority=" + priority +
+                ", isParent=" + isParent +
+                ", pid=" + pid +
+                '}';
+    }
 }

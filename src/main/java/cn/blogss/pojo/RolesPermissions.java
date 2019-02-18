@@ -96,4 +96,13 @@ public class RolesPermissions {
     public void setPermission(String permission) {
         this.permission = permission == null ? null : permission.trim();
     }
+
+    @Override
+    public String toString() {
+        return "RolesPermissions{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                ", permission='" + permission + '\'' +
+                '}';
+    }
 }

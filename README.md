@@ -6,6 +6,3 @@
 *2019.1.11 add home page*  
 ![后台主页](./home.png)
 
-
-
-

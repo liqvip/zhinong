@@ -162,4 +162,15 @@ public class NewsCat {
     public void setAddtime(Date addtime) {
         this.addtime = addtime;
     }
+
+    @Override
+    public String toString() {
+        return "NewsCat{" +
+                "id=" + id +
+                ", pid=" + pid +
+                ", name='" + name + '\'' +
+                ", num=" + num +
+                ", addtime=" + addtime +
+                '}';
+    }
 }

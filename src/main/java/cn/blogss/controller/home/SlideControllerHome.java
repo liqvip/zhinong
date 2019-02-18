@@ -21,7 +21,7 @@ public class SlideControllerHome {
 
     @RequestMapping(value = "slide/initAllSlide",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
-    public Map<String,Object> slideAdd(){
+    public Map<String,Object> initAllSlide(){
         Map<String,Object> map = new HashMap<>();
         List<Slide> slides = slideService.selectSlide();
         map.put("msg",new Message());

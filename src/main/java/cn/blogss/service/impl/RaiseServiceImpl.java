@@ -2,18 +2,24 @@ package cn.blogss.service.impl;/*
     create by LiQiang at 2018/5/14   
 */
 
+import cn.blogss.common.util.enums.KillStatEnum;
+import cn.blogss.dto.Exposer;
+import cn.blogss.dto.KillExecution;
+import cn.blogss.exception.raise.KillCloseException;
+import cn.blogss.exception.raise.KillException;
+import cn.blogss.exception.raise.RepeatKillException;
 import cn.blogss.mapper.RaiseCatMapper;
 import cn.blogss.mapper.RaiseMapper;
+import cn.blogss.mapper.RaiseOrdersMapper;
 import cn.blogss.pojo.Raise;
 import cn.blogss.pojo.RaiseCat;
+import cn.blogss.pojo.RaiseOrders;
 import cn.blogss.service.RaiseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -22,6 +28,10 @@ public class RaiseServiceImpl implements RaiseService{
     RaiseMapper raiseMapper;
     @Autowired
     RaiseCatMapper raiseCatMapper;
+    @Autowired
+    RaiseOrdersMapper raiseOrdersMapper;
+
+    private final String salt = "dfdfilk**4545@#@$))@#";
 
     @Override
     public List<Raise> selectRaiseByPage(String pageIndex, int pageSize, Raise raise) {
@@ -68,5 +78,68 @@ public class RaiseServiceImpl implements RaiseService{
     @Override
     public Raise selectRaiseById(String id) {
         return raiseMapper.selectByPrimaryKey(Integer.parseInt(id));
+    }
+
+    @Override
+    public Exposer exportKillUrl(int id) {
+        Raise raise = raiseMapper.selectByPrimaryKey(id);
+        if (raise == null)
+            return new Exposer(false,id);
+        Date startTime = raise.getStartTime();
+        Date endTime = raise.getEndTime();
+        //系统当前时间
+        Date nowTime = new Date();
+        if(nowTime.getTime() < startTime.getTime() ||
+                nowTime.getTime() > endTime.getTime()){
+            return new Exposer(false,id,nowTime.getTime(),startTime.getTime(),
+                    endTime.getTime());
+        }
+        //转化为特定字符串的过程，不可逆
+        String md5 = getMD5(id);
+        return new Exposer(true,md5,id);
+    }
+
+    private String getMD5(int id) {
+        String base = id + "/" + salt;
+        String md5 = DigestUtils.md5DigestAsHex(base.getBytes());
+        return md5;
+    }
+
+    @Override
+    public KillExecution executeKill(String md5,RaiseOrders raiseOrders) throws KillException, RepeatKillException,
+            KillCloseException {
+        int raiseId = raiseOrders.getRaiseId();
+        if(md5 == null || !md5.equals(getMD5(raiseId))){
+            throw new KillException("kill data rewrite");
+        }
+        //执行秒杀逻辑：减库存 + 记录购买行为
+        Date nowTime = new Date();
+
+        try {
+            int updateAmount = raiseMapper.reduceAmount(raiseOrders.getRaiseId(),nowTime);
+            if(updateAmount <= 0){
+                //没有更新到记录，秒杀结束
+                throw new KillCloseException("kill is closed");
+            }else{
+                //记录购买行为
+                int insertCount = raiseOrdersMapper.insertSelective(raiseOrders);
+                //唯一:raiseId,userId
+                if(insertCount <= 0){
+                    //重复秒杀
+                    throw new RepeatKillException("kill repeated");
+                }else{
+                    //秒杀成功
+                    raiseOrders = raiseOrdersMapper.queryByIdWithSucKill(raiseId,raiseOrders.getUserId());
+                    return new KillExecution(raiseId, KillStatEnum.SUCCESS,raiseOrders);
+                }
+            }
+        } catch (KillCloseException e1){
+            throw e1;
+        } catch (RepeatKillException e2){
+            throw e2;
+        } catch (Exception e){
+            //所有编译期异常，转化为运行时异常，能够回滚
+            throw new KillException("kill inner error:"+e.getMessage());
+        }
     }
 }

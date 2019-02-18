@@ -162,4 +162,15 @@ public class Farm {
     public void setAddtime(Date addtime) {
         this.addtime = addtime;
     }
+
+    @Override
+    public String toString() {
+        return "Farm{" +
+                "id=" + id +
+                ", introduction='" + introduction + '\'' +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", addtime=" + addtime +
+                '}';
+    }
 }

@@ -265,4 +265,18 @@ public class Visit {
         this.browsertype = browsertype;
         this.platformtype = platformtype;
     }
+
+    @Override
+    public String toString() {
+        return "Visit{" +
+                "id=" + id +
+                ", ip='" + ip + '\'' +
+                ", useragent='" + useragent + '\'' +
+                ", city='" + city + '\'' +
+                ", url='" + url + '\'' +
+                ", browsertype='" + browsertype + '\'' +
+                ", platformtype='" + platformtype + '\'' +
+                ", time=" + time +
+                '}';
+    }
 }

@@ -194,4 +194,16 @@ public class Slide {
     public void setAddtime(Date addtime) {
         this.addtime = addtime;
     }
+
+    @Override
+    public String toString() {
+        return "Slide{" +
+                "id=" + id +
+                ", introduction='" + introduction + '\'' +
+                ", url='" + url + '\'' +
+                ", image='" + image + '\'' +
+                ", sort=" + sort +
+                ", addtime=" + addtime +
+                '}';
+    }
 }

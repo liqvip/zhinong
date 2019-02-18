@@ -322,4 +322,20 @@ public class Users {
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", image='" + image + '\'' +
+                ", paypwd='" + paypwd + '\'' +
+                ", status=" + status +
+                ", createtime=" + createtime +
+                '}';
+    }
 }

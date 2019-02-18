@@ -194,4 +194,16 @@ public class Link {
     public void setAddtime(Date addtime) {
         this.addtime = addtime;
     }
+
+    @Override
+    public String toString() {
+        return "Link{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", sort=" + sort +
+                ", status=" + status +
+                ", addtime=" + addtime +
+                '}';
+    }
 }

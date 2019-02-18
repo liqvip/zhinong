@@ -194,4 +194,16 @@ public class RaiseCat {
     public void setAddtime(Date addtime) {
         this.addtime = addtime;
     }
+
+    @Override
+    public String toString() {
+        return "RaiseCat{" +
+                "id=" + id +
+                ", pid=" + pid +
+                ", name='" + name + '\'' +
+                ", num=" + num +
+                ", status=" + status +
+                ", addtime=" + addtime +
+                '}';
+    }
 }
