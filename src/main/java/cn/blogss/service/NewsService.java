@@ -31,11 +31,11 @@ public interface NewsService {
 
     News editShow(String id);
 
-    News selectNewsById(String id);
+    News selectNewsById(Integer id);
 
-    News selectNextNews(String id);
+    News selectNextNews(Integer id);
 
-    News selectPrevNews(String id);
+    News selectPrevNews(Integer id);
 
     List<News> selectNewsByClick();
 

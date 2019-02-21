@@ -2,18 +2,16 @@ package cn.blogss.service;/*
     create by LiQiang at 2018/4/22   
 */
 
-import cn.blogss.dto.Exposer;
-import cn.blogss.dto.KillExecution;
+import cn.blogss.dto.raise.Exposer;
+import cn.blogss.dto.raise.KillExecution;
 import cn.blogss.exception.raise.KillCloseException;
 import cn.blogss.exception.raise.KillException;
 import cn.blogss.exception.raise.RepeatKillException;
 import cn.blogss.pojo.Raise;
 import cn.blogss.pojo.RaiseCat;
 import cn.blogss.pojo.RaiseOrders;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.List;
-import java.util.Map;
 
 /*
 * 业务接口：站在"使用者"角度设计接口
@@ -42,13 +40,13 @@ public interface RaiseService {
 
     Raise editShow(String id);
 
-    Raise selectRaiseById(String id);
+    Raise selectRaiseById(Integer id);
 
     /*
     * 秒杀开启时输出秒杀接口地址
     * 否则输出系统时间和秒杀时间
     * */
-    Exposer exportKillUrl(int id);
+    Exposer exportKillUrl(Integer id);
 
     /*
     * 执行秒杀操作

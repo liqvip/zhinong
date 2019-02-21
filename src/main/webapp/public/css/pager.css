@@ -1,6 +1,11 @@
 /*
 *baidu
 */
+.baidu{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .baidu a{
 	display: inline-block;
 	width: 30px;
@@ -34,3 +39,4 @@
     line-height: 32px;
     text-align: center;
 }
+

@@ -4,12 +4,12 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <html>
 <head>
-    <%@include file="../main_home.jsp"%>
+    <%@include file="../common/main_home.jsp"%>
     <link rel="stylesheet" href="<%=basePath%>home/css/news_list.css">
     <title>列表页</title>
 </head>
 <body>
-<%@include file="../header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <article>
     <div class="row">
         <div class="container">
@@ -20,10 +20,10 @@
                         <c:forEach items="${news}" var="item" varStatus="id">
                             <li>
                                 <h3 class="newstitle">
-                                    <a href="<%=basePath%>home/news/selectNewsById?id=${item.id}" target="_blank">${item.title}</a>
+                                    <a href="<%=basePath%>home/news/${item.id}/selectNewsById" target="_blank">${item.title}</a>
                                 </h3>
                                 <span class="newspic imgscale">
-                                <a target="_blank" href="<%=basePath%>home/news/selectNewsById?id=${item.id}">
+                                <a target="_blank" href="<%=basePath%>home/news/${item.id}/selectNewsById">
                                     <img src="${item.images}" alt="">
                                 </a>
                             </span>
@@ -33,7 +33,7 @@
                                     <span><fmt:formatDate value="${item.addtime}" pattern="yyyy-MM-dd HH:mm"/></span>
                                     <span>浏览(${item.clicknum})</span>
                                 </p>
-                                <a target="_blank" href="<%=basePath%>home/news/selectNewsById?id=${item.id}" class="viewmore">阅读原文</a>
+                                <a target="_blank" href="<%=basePath%>home/news/${item.id}/selectNewsById" class="viewmore">阅读原文</a>
                             </li>
                         </c:forEach>
                     </ul>
@@ -51,7 +51,7 @@
         </div>
     </div>
 </article>
-<%@include file="../footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 <!-- 回到顶部 -->
 <div class="gotop" style="display: none;"></div>
 </body>

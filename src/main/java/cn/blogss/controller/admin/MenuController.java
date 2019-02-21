@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/")
-public class AdminMenuController {
+public class MenuController {
     @Autowired
     HttpServletRequest request;
 

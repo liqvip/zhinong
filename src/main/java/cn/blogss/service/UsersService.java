@@ -2,6 +2,9 @@ package cn.blogss.service;/*
     create by LiQiang at 2018/4/22   
 */
 
+import cn.blogss.dto.users.SignInExecution;
+import cn.blogss.dto.users.SignUpExecution;
+import cn.blogss.exception.users.*;
 import cn.blogss.pojo.Users;
 
 import java.util.List;
@@ -25,4 +28,12 @@ public interface UsersService {
     public int totRecord(Users users);
 
     Users editShow(String id);
+
+    /*用户登录*/
+    public SignInExecution signIn(String userName, String passsword) throws
+            SignInException,UserNameErrorException;
+
+    /*新用户注册*/
+    public SignUpExecution signUp(Users users) throws
+            SignUpException,RepeatUserNameException;
 }

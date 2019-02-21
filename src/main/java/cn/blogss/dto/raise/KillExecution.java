@@ -1,8 +1,8 @@
-package cn.blogss.dto;/*
+package cn.blogss.dto.raise;/*
  *Created by liqiang on 2019/2/18
  */
 
-import cn.blogss.common.util.enums.KillStatEnum;
+import cn.blogss.common.util.enums.raise.KillStatEnum;
 import cn.blogss.pojo.RaiseOrders;
 
 public class KillExecution {

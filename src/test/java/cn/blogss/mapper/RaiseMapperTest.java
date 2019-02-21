@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /*
  *Created by liqiang on 2019/2/16
- */public class RaiseMapperTest {
+ */public class RaiseMapperTest extends BaseMapperTest{
 
     @Test
     public void insertSelective() {

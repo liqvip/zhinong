@@ -16,6 +16,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%--自定义分页标签--%>
 <%@ taglib prefix="m" uri="MyPager-tag"%>
+<link rel="shortcut icon" href="<%=basePath%>home/images/favicon.ico">
+<link rel="stylesheet" href="<%=basePath%>public/css/pager.css" />
 <link rel="stylesheet" href="<%=basePath%>home/css/home.css">
 <link rel="stylesheet" href="<%=basePath%>public/bs/css/bootstrap.css">
 <link rel="stylesheet" href="<%=basePath%>public/css/validationEngine.jquery.css">

@@ -87,10 +87,10 @@ var initNewsTab = function () {
                 for (var i = 0; i < data[type].length; i++) {
                     var id = data[type][i].id;
                     if (i < 2) {
-                        newspic += "<li><a href=/home/news/selectNewsById?id=" + id + " target='_blank'><img src=" + data[type][i].images + "> <span>" + data[type][i].title + "</span></a></li>";
+                        newspic += "<li><a href='/home/news/"+id+"/selectNewsById' target='_blank'><img src=" + data[type][i].images + "> <span>" + data[type][i].title + "</span></a></li>";
                     }
                     if (i >= 1) {
-                        newslist += "<li><i></i><a href=/home/news/selectNewsById?id=" + id + " target='_blank'>" + data[type][i].title + "<p>" + data[type][i].introduction + "</p></a></li>";
+                        newslist += "<li><i></i><a href='/home/news/"+id+"/selectNewsById' target='_blank'>" + data[type][i].title + "<p>" + data[type][i].introduction + "</p></a></li>";
                     }
                 }
                 newspic += "</ul></div>"

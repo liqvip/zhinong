@@ -2,7 +2,6 @@ package cn.blogss.controller.admin;/*
     create by LiQiang at 2018/4/22   
 */
 
-
 import cn.blogss.common.util.pojo.Message;
 import cn.blogss.common.util.pojo.Page;
 import cn.blogss.pojo.News;
@@ -38,7 +37,7 @@ public class NewsController {
 
         if(!StringUtils.isEmpty(news.getTitle()))
             submitUrl += "&name="+news.getTitle();
-        if(news.getCatId() != null && news.getCatId().toString() != "")
+        if(news.getCatId() != null)
             submitUrl += "&catId="+news.getCatId();
         if(!StringUtils.isEmpty(news.getStatus()))
             submitUrl += "&status="+news.getStatus();
@@ -96,7 +95,7 @@ public class NewsController {
     //    select news by id
     @RequestMapping(value = "news/selectNewsById",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
-    public Map<String,Object> selectNewsById(@RequestParam("id") String id){
+    public Map<String,Object> selectNewsById(@RequestParam("id") Integer id){
         Map<String,Object> map = new HashMap<>();
         News snews = newsService.selectNewsById(id);
         Message msg = new Message();

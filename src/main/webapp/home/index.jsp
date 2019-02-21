@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <%@include file="main_home.jsp"%>
+    <%@include file="common/main_home.jsp"%>
     <link rel="stylesheet" href="<%=basePath%>home/css/index.css">
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -14,7 +14,7 @@
     <title>知农之家官方网站-互联网养殖</title>
 </head>
 <body>
-    <%@include file="header.jsp"%>
+    <%@include file="common/header.jsp"%>
     <!-- 轮播图 -->
     <div class="row">
         <div class="container">
@@ -129,7 +129,7 @@
             </div>
         </div>
 
-        <%@include file="footer.jsp"%>
+        <%@include file="common/footer.jsp"%>
     </div>
 
     <!-- 回到顶部 -->

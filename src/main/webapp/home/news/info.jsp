@@ -4,12 +4,12 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <html>
 <head>
-    <%@include file="../main_home.jsp"%>
+    <%@include file="../common/main_home.jsp"%>
     <link rel="stylesheet" href="<%=basePath%>home/css/news_info.css">
     <title>详情页</title>
 </head>
 <body>
-<%@include file="../header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <article>
     <div class="tool-box">
         <!-- 分享 -->
@@ -126,7 +126,7 @@
                                     <span>无</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<%=basePath%>home/news/selectNewsById?id=${preNews.id}">${preNews.title}</a>
+                                    <a href="<%=basePath%>home/news/${preNews.id}/selectNewsById">${preNews.title}</a>
                                 </c:otherwise>
                             </c:choose>
                         </span>
@@ -138,7 +138,7 @@
                                     <span>无</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<%=basePath%>home/news/selectNewsById?id=${nextNews.id}">${nextNews.title}</a>
+                                    <a href="<%=basePath%>home/news/${nextNews.id}/selectNewsById">${nextNews.title}</a>
                                 </c:otherwise>
                             </c:choose>
                         </span>
@@ -154,7 +154,7 @@
                             <li>
                                 <i><img src="${item.images}" alt=""></i>
                                 <p>
-                                    <a href="<%=basePath%>home/news/selectNewsById?id=${item.id}">
+                                    <a href="<%=basePath%>home/news/${item.id}/selectNewsById">
                                         <c:choose>
                                             <c:when test="${fn:length(item.title) > 10}">
                                                 <c:out value="${fn:substring(item.title, 0, 10)} ......" />
@@ -174,7 +174,7 @@
         </div>
     </div>
 </article>
-<%@include file="../footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 <!-- 回到顶部 -->
 <div class="gotop" style="display: none;"></div>
 </body>

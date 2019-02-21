@@ -9,14 +9,7 @@ import javax.annotation.Resource;
 
 import static org.junit.Assert.*;
 
-/*
- *Created by liqiang on 2019/2/16
- * junit启动时加载springIOC 容器
- * 告诉junit配置文件
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-dao.xml")
-public class RaiseOrdersMapperTest {
+public class RaiseOrdersMapperTest extends BaseMapperTest{
     @Resource
     RaiseOrdersMapper raiseOrdersMapper;
 

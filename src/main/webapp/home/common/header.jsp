@@ -30,13 +30,13 @@
                     <c:choose>
                         <c:when test="${user == null}">
                             <li>
-                                <a href="<%=basePath%>home/login">
+                                <a href="<%=basePath%>home/signin">
                                     <span class="glyphicon glyphicon-user"></span>
                                     <span>登录</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="<%=basePath%>home/reg">
+                                <a href="<%=basePath%>home/signup">
                                     <span class="glyphicon glyphicon-cog"></span>
                                     <span>注册</span>
                                 </a>

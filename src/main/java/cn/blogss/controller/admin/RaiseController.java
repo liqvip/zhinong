@@ -38,14 +38,12 @@ public class RaiseController {
                            @RequestParam(value = "pageIndex",defaultValue = "1") String pageIndex){
         String submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
                 request.getContextPath()+"/admin/raise?pageIndex={0}";
-        System.out.println(raise.getCatId());
-        System.out.println(raise.getStatus());
 
         if(!StringUtils.isEmpty(raise.getName()))
             submitUrl += "&name="+raise.getName();
-        if(raise.getCatId() != null && raise.getCatId().toString() != "")
+        if(raise.getCatId() != null)
             submitUrl += "&catId="+raise.getCatId();
-        if(raise.getStatus() != null && raise.getStatus().toString() != "")
+        if(raise.getStatus() != null)
             submitUrl += "&status="+raise.getStatus();
 
         List<Raise> raiseList = raiseService.selectRaiseByPage(pageIndex, Page.pageSize,raise);
@@ -95,18 +93,6 @@ public class RaiseController {
     public Message raiseEdit(@ModelAttribute Raise raise){
         raiseService.edit(raise);
         return new Message();
-    }
-
-    //    select raise by id
-    @RequestMapping(value = "raise/selectRaiseById",method = {RequestMethod.POST,RequestMethod.GET})
-    @ResponseBody
-    public Map<String,Object> selectRaiseById(@RequestParam("id") String id){
-        Map<String,Object> map = new HashMap<>();
-        Raise sraise = raiseService.selectRaiseById(id);
-        Message msg = new Message();
-        map.put("sraise",sraise);
-        map.put("msg",msg);
-        return map;
     }
 
     @RequestMapping(value = "raise/addShow",method = {RequestMethod.POST,RequestMethod.GET})

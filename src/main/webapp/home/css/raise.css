@@ -1,3 +1,12 @@
+.whitebg {
+	background: #fff;
+	background-color: rgb(255, 255, 255);
+	border-radius: 3px;
+	padding: 20px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
 .content{
 	border-top: 1px solid #bcddc3;
 	margin: 0 auto 25px;

@@ -71,9 +71,9 @@ public interface NewsMapper {
 
     public int totRecord(News newsCat);
 
-    News selectNextNews(String id);
+    News selectNextNews(Integer id);
 
-    News selectPrevNews(String id);
+    News selectPrevNews(Integer id);
 
     List<News> selectNewsByClick();
 

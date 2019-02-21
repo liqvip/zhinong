@@ -7,6 +7,7 @@ import cn.blogss.common.util.pojo.Message;
 import cn.blogss.common.util.pojo.Page;
 import cn.blogss.pojo.Link;
 import cn.blogss.service.LinkService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +31,9 @@ public class LinkController {
         String submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
                 request.getContextPath()+"/admin/link?pageIndex={0}";
         
-        if(link.getName() != null && link.getName() != "")
+        if(StringUtils.isNotEmpty(link.getName()))
             submitUrl += "&name="+link.getName();
-        if(link.getStatus() != null && link.getStatus().toString() != "")
+        if(link.getStatus() != null)
             submitUrl += "&status="+link.getStatus();
 
         List<Link> linkList = linkService.selectLinkByPage(pageIndex, Page.pageSize,link);

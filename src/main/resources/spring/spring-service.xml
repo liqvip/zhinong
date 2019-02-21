@@ -12,4 +12,14 @@
 
     <!--扫描serviceimpl-->
     <context:component-scan base-package="cn.blogss.service.impl"/>
+
+    <!--配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据库连接池-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--配置基于注解的声明式事务
+        默认使用注解来管理事务行为-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

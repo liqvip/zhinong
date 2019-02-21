@@ -40,7 +40,7 @@ public class UsersController {
             submitUrl += "&username="+users.getUsername();
         if(StringUtils.isNotEmpty(users.getPhone()))
             submitUrl += "&username="+users.getUsername();
-        if(users.getStatus() != null && users.getStatus().toString() != "")
+        if(users.getStatus() != null)
             submitUrl += "&status="+users.getStatus();
         
         List<Users> usersList = usersService.selectUsersByPage(pageIndex, Page.pageSize,users);
@@ -62,7 +62,7 @@ public class UsersController {
     @RequestMapping(value = "users/add",method = {RequestMethod.POST})
     @ResponseBody
     public  Message usersAdd(@ModelAttribute Users users){
-        users.setCreatetime(new Date());
+        users.setCreateTime(new Date());
         usersService.add(users);
         return new Message();
     }

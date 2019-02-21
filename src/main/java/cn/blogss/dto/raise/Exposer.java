@@ -1,4 +1,4 @@
-package cn.blogss.dto;/*
+package cn.blogss.dto.raise;/*
  *Created by liqiang on 2019/2/18
  */
 

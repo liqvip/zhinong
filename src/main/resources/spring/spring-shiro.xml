@@ -15,7 +15,7 @@
         <property name="securityManager" ref="securityManager"/>
         <!-- loginUrl：没有登录的用户请求需要登录的页面时自动跳转到登录页面，不是必须的属性，
         不输入地址的话会自动寻找项目web项目的根目录下的”/login.jsp”页面。 -->
-        <property name="loginUrl" value="/login.html"/>
+        <property name="loginUrl" value="/admin/login.html"/>
         <!-- 未授权的跳转页面 -->
         <property name="unauthorizedUrl" value="/403.html"/>
         <!-- 过滤器链 -->

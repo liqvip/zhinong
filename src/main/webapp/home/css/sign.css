@@ -1,0 +1,184 @@
+.sign {
+    height: 100%;
+    min-height: 750px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.sign .main {
+	width: 400px;
+	margin: 40px auto 0;
+	padding: 50px 50px 30px;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 8px rgba(0,0,0,.1);
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.sign .reset-title, .sign .title {
+    margin: 0 auto 50px;
+    padding: 10px;
+    font-weight: 400;
+    color: #969696;
+}
+
+.sign .reset-title .active, .sign .title .active {
+    font-weight: 700;
+    color: #ea6f5a;
+    border-bottom: 2px solid #ea6f5a;
+}
+
+.sign .reset-title a, .sign .title a {
+    padding: 10px;
+    color: #969696;
+}
+
+a {
+    cursor: pointer;
+}
+
+.sign .reset-title b, .sign .title b {
+    padding: 10px;
+}
+
+b, strong {
+    font-weight: 700;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.sign form {
+    margin-bottom: 30px;
+}
+
+form {
+    margin: 0 0 20px;
+    margin-bottom: 20px;
+}
+
+.sign form .restyle {
+    margin-bottom: 0;
+}
+
+.sign form .input-prepend {
+    position: relative;
+    width: 100%;
+}
+
+.sign form .restyle input {
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+}
+
+.sign form .input-prepend input {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 0;
+    padding: 4px 12px 4px 35px;
+    border: 1px solid #c8c8c8;
+    border-bottom-color: rgb(200, 200, 200);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-radius: 0 0 4px 4px;
+    background-color: hsla(0,0%,71%,.1);
+    vertical-align: middle;
+}
+
+.sign form .input-prepend i {
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    font-size: 18px;
+    color: #969696;
+}
+
+.sign .remember-btn {
+    float: left;
+    margin: 15px 0;
+}
+
+.sign .remember-btn span {
+    margin-left: 5px;
+    font-size: 15px;
+    color: #969696;
+    vertical-align: middle;
+}
+
+.sign .forget-btn {
+    float: right;
+    position: relative;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.sign .forget-btn a {
+    color: #999;
+}
+
+.sign .forget-btn a:hover {
+    color: #333;
+}
+
+.sign .forget-btn .dropdown-menu a {
+    padding: 10px 20px;
+    color: #333;
+}
+
+.sign .sign-in-button, .sign .sign-up-button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 9px 18px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    background: #42c02e;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    clear: both;
+}
+
+.sign .sign-up-msg {
+    margin: 10px 0;
+    padding: 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    color: #969696;
+}
+
+.sign .sign-up-msg a, .sign .sign-up-msg a:hover {
+    color: #3194d0;
+}
+
+.noty_message{
+    visibility: hidden;
+    font-size: 13px; 
+    line-height: 16px; 
+    text-align: center; 
+    padding: 10px; 
+    width: auto; 
+    position: relative; 
+    font-weight: bold;
+}
+
+.noty_text{
+    position: absolute;
+    display: block;
+    left: 580px;
+    top: 35px;
+    color: #ea6f5a;
+    border: 1px #ea6f5a solid;
+    padding: 8px 35px 8px;
+    border-radius: 5px;
+}
+
+
+
+
+
+

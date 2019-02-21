@@ -1,4 +1,4 @@
-package cn.blogss.common.util.enums;/*
+package cn.blogss.common.util.enums.raise;/*
  *Created by liqiang on 2019/2/18
  */
 

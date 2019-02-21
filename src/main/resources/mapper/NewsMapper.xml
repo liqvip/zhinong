@@ -256,13 +256,13 @@
       </foreach>
     </delete>
 
-    <select id="selectPrevNews" parameterType="String" resultMap="BaseResultMap">
+    <select id="selectPrevNews" parameterType="Integer" resultMap="BaseResultMap">
         SELECT
         id, title
         from news where id &lt; #{id} and status=1 ORDER BY id DESC LIMIT 1
     </select>
 
-    <select id="selectNextNews" parameterType="String" resultMap="BaseResultMap">
+    <select id="selectNextNews" parameterType="Integer" resultMap="BaseResultMap">
         SELECT
         id, title
         from news where id &gt; #{id} and status=1 ORDER BY id ASC LIMIT 1

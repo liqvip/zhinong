@@ -27,7 +27,7 @@ public class NewsControllerHome {
                            @RequestParam(value = "pageIndex",defaultValue = "1") String pageIndex){
         String submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
                 request.getContextPath()+"/home/news/selectNewsByCatId?pageIndex={0}";
-        if(news.getCatId() != null && news.getCatId().toString() != "")
+        if(news.getCatId() != null)
             submitUrl += "&catId="+news.getCatId();
 
         List<News> newsList = newsService.selectNewsByPage(pageIndex, Page.pageSize,news);
@@ -45,8 +45,8 @@ public class NewsControllerHome {
 
     //    select news by id
     @AccessLimit
-    @RequestMapping(value = "news/selectNewsById",method = {RequestMethod.POST,RequestMethod.GET})
-    public String selectNewsById(@RequestParam("id") String id,Model model){
+    @RequestMapping(value = "news/{id}/selectNewsById",method = {RequestMethod.POST,RequestMethod.GET})
+    public String selectNewsById(@PathVariable("id") Integer id,Model model){
         News snews = newsService.selectNewsById(id);
         selectPrevNews(id,model);
         selectNextNews(id,model);
@@ -59,7 +59,7 @@ public class NewsControllerHome {
      * 查询后一篇博客信息
      */
     @RequestMapping(value = "news/selectNextNews")
-    public void selectNextNews(String id,Model model){
+    public void selectNextNews(Integer id,Model model){
         News news=newsService.selectNextNews(id);
         model.addAttribute("nextNews",news);
     }
@@ -68,7 +68,7 @@ public class NewsControllerHome {
      * 查询前一篇博客信息
      */
     @RequestMapping(value = "news/selectPrevNews")
-    public void selectPrevNews(String id,Model model){
+    public void selectPrevNews(Integer id,Model model){
         News news=newsService.selectPrevNews(id);
         model.addAttribute("preNews",news);
     }

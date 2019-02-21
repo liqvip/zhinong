@@ -69,8 +69,8 @@ public class NewsServiceImpl implements NewsService{
     }
 
     @Override
-    public News selectNewsById(String id) {
-        News news = newsMapper.selectByPrimaryKey(Integer.parseInt(id));
+    public News selectNewsById(Integer id) {
+        News news = newsMapper.selectByPrimaryKey(id);
         if(news != null){
             synchronized (news){
                 count.getAndIncrement();
@@ -85,12 +85,12 @@ public class NewsServiceImpl implements NewsService{
     }
 
     @Override
-    public News selectNextNews(String id) {
+    public News selectNextNews(Integer id) {
         return newsMapper.selectNextNews(id);
     }
 
     @Override
-    public News selectPrevNews(String id) {
+    public News selectPrevNews(Integer id) {
         return newsMapper.selectPrevNews(id);
     }
 

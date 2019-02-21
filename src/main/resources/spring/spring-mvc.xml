@@ -15,11 +15,16 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!--扩充了注解驱动，可以将请求参数绑定到控制器参数-->
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <!--1:开启springMVC注解模式-->
+    <!--简化配置:
+        (1) 自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter
+        (2) 提供一系列:数据绑定，数字和日期的format @NumberFormat,@DataTimeFormat,
+            xml,json默认读写支持
+        -->
+    <mvc:annotation-driven/>
 
     <!--  放行css,js,images等静态资源 -->
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler/>
 
     <!--文件上传-->
     <!--200*1024*1024即200M resolverLazily属性启用是为了推迟文件解析,以便捕获文件大小异常-->
