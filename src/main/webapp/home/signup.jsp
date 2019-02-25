@@ -12,7 +12,7 @@
 <%@include file="common/header.jsp"%>
 <div class="sign">
     <div class="noty_message">
-        <span class="noty_text">手机号码/邮箱地址或密码不能为空</span>
+        <span class="noty_text"></span>
     </div>
     <div class="main">
         <h4 class="title">
@@ -23,7 +23,7 @@
             </div>
         </h4>
         <div>
-            <form id="" action="" accept-charset="UTF-8" method="post">
+            <form id="sign_up_form" action="" accept-charset="UTF-8" method="post">
                 <!-- 正常登录登录名输入框 -->
                 <div class="input-prepend restyle js-normal">
                     <input placeholder="账号" name="username"  type="text">
@@ -34,8 +34,8 @@
                     <input placeholder="设置密码" name="password" type="password">
                     <i class="glyphicon glyphicon-lock"></i>
                 </div>
-                <button class="sign-in-button" type="button">
-                    <span id="sign-in-loading"></span>
+                <button class="sign-up-button" type="button" id="sign_up_btn">
+                    <span id="sign-up-loading"></span>
                     注册
                 </button>
                 <p class="sign-up-msg">点击 “注册” 即表示您同意并愿意遵守知农<br>
@@ -49,4 +49,10 @@
     </div>
 </div>
 </body>
+<script src="<%=basePath%>home/js/sign.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        sign.init.signUp();
+    });
+</script>
 </html>

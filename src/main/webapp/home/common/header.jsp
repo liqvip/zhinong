@@ -16,36 +16,43 @@
                 <ul class="header-right topullist">
                     <li>
                         <a href="">
-                            <span class="glyphicon glyphicon-user"></span>
                             <span>你好，欢迎来到知农之家！</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="<%=basePath%>home/user">
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span>个人中心</span>
-                        </a>
-                    </li>
-
                     <c:choose>
                         <c:when test="${user == null}">
                             <li>
+                                <span class="glyphicon glyphicon-user">  </span>
+                            </li>
+                            <li>
                                 <a href="<%=basePath%>home/signin">
-                                    <span class="glyphicon glyphicon-user"></span>
                                     <span>登录</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="<%=basePath%>home/signup">
-                                    <span class="glyphicon glyphicon-cog"></span>
                                     <span>注册</span>
                                 </a>
                             </li>
                         </c:when>
                         <c:otherwise>
                             <li>
-                                <a href="<%=basePath%>home/signout">
-                                    <span class="glyphicon glyphicon-cog"></span>
+                                <a href="<%=basePath%>home/user">
+                                    <span>
+                                        <c:choose>
+                                            <c:when test="${empty user.image}">
+                                                <img src="<%=basePath%>home/user/default.jpg" class="userphoto">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${user.image}" class="userphoto">
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </span>
+                                    <span>${user.name}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<%=basePath%>home/user/logout">
                                     <span>退出</span>
                                 </a>
                             </li>
@@ -80,18 +87,12 @@
                             <a href="<%=basePath%>home/raise" alt="掘金农场" style="" class="">掘金农场</a>
                         </li>
                         <li>
-                            <a href="<%=basePath%>home/market" alt="欢乐集市" style="" class="">欢乐集市</a>
-                        </li>
-                        <li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 新闻资讯 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                             </ul>
-                        </li>
-                        <li>
-                            <a href="<%=basePath%>home/user" alt="用户中心" style="" class="">用户中心</a>
                         </li>
                         <li>
                             <a href="<%=basePath%>home/about" alt="关于我们" style="" class="">关于我们</a>

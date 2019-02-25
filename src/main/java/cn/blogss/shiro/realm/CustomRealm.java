@@ -60,16 +60,15 @@ public class CustomRealm extends AuthorizingRealm{
 	}
 
 	//shiro认证
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
 		System.out.println("用户认证...");
 		//从主体传过来的认证信息中，获得用户名
 		String userName = (String)token.getPrincipal();
-		
 		//通过用户名到数据库中获取凭证
 		String password = getPasswordByUsersName(userName);
 		if(password == null)
 			return null;
-		
+
 		SimpleAuthenticationInfo authenticationInfo = 
 				new SimpleAuthenticationInfo(userName,password,"customRealm");
 		//加盐
@@ -86,7 +85,7 @@ public class CustomRealm extends AuthorizingRealm{
 		Users user = usersMapper.getUsersByUsersName(userName);
 		if(user != null)
 			return user.getPassword();
-					
+
 		return null;
 	}
 	

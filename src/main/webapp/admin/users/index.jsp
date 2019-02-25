@@ -77,7 +77,7 @@
                                 </c:choose>
                             </td>
                             <td style="width: 200px">
-                                <fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                <fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                             </td>
                             <td style="width: 250px">
                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-form"

@@ -15,17 +15,19 @@
         <property name="securityManager" ref="securityManager"/>
         <!-- loginUrl：没有登录的用户请求需要登录的页面时自动跳转到登录页面，不是必须的属性，
         不输入地址的话会自动寻找项目web项目的根目录下的”/login.jsp”页面。 -->
-        <property name="loginUrl" value="/admin/login.html"/>
+        <property name="loginUrl" value="/login.html"/>
         <!-- 未授权的跳转页面 -->
         <property name="unauthorizedUrl" value="/403.html"/>
         <!-- 过滤器链 -->
         <property name="filterChainDefinitions">
             <value>
-                /home/login = anon
+                /home/user/signin = anon
+                /home/user/signup = anon
                 /admin/login = anon
                 /testRole1 = roles["admin","admin1"]
                 /testRole = rolesOr["admin","admin1"]
                 /admin/** = authc
+                /home/user/** = user
                 <!-- /testPerms = perms["user:delete"]
                 /testPerms1 = perms["user:delete","user:update"] -->
             </value>
@@ -79,8 +81,9 @@
     </bean>
     <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="simpleCookie">
         <constructor-arg value="rememberMe"></constructor-arg>
-        <!-- cookie的失效时间，默认为-1,即关闭浏览器。单位为seconds(秒),一天 -->
-        <property name="maxAge" value="86400"></property>
+        <!-- cookie的失效时间，默认为-1,即关闭浏览器。单位为seconds(秒) -->
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="604800"/><!--7天-->
     </bean>
 
     <!-- 通过注解配置授权 -->

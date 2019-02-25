@@ -2,6 +2,7 @@ package cn.blogss.service.impl;/*
     create by LiQiang at 2018/5/14   
 */
 
+import cn.blogss.common.util.ConstantUtil;
 import cn.blogss.common.util.enums.users.SignInEnum;
 import cn.blogss.common.util.enums.users.SignUpEnum;
 import cn.blogss.dto.users.SignInExecution;
@@ -10,9 +11,13 @@ import cn.blogss.exception.users.*;
 import cn.blogss.mapper.UsersMapper;
 import cn.blogss.pojo.Users;
 import cn.blogss.service.UsersService;
+import cn.blogss.shiro.ShiroMd5Util;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Service;;
 import java.util.List;
 
 @Service
@@ -60,23 +65,23 @@ public class UsersServiceImpl implements UsersService{
     * 用户登录
     * */
     @Override
-    public SignInExecution signIn(String userName, String passsword)
-            throws SignInException, UserNameErrorException,PasswordErrorException {
-        SignInExecution signInExecution;
+    public SignInExecution signIn(String username, String passsword, Boolean rememberMe)
+            throws AuthenticationException,SignInException{
+        UsernamePasswordToken token = new UsernamePasswordToken(username,passsword);
+        Subject subject = SecurityUtils.getSubject();
+        rememberMe = rememberMe == null ? false : rememberMe;
+        token.setRememberMe(rememberMe);
+
         try {
-            Users users = usersMapper.getUsersByUsersName(userName);
-            if(users == null)
-                /*用户名错误*/
-                throw new UserNameErrorException("userName is error");
-            if(!users.getPassword().equals(passsword))
-                /*密码错误*/
-                throw new PasswordErrorException("password is error");
+            if(!subject.isAuthenticated()){
+                subject.login(token);
                 /*登录成功*/
-             return new SignInExecution(SignInEnum.SUCCESS);
-        }catch (UserNameErrorException e1){
+                subject.getSession().setAttribute(ConstantUtil.SESSION_NAME,usersMapper.getUsersByUsersName(username));
+            }
+            /*已经登录或登录成功的返回*/
+            return new SignInExecution(SignInEnum.SUCCESS);
+        }catch (AuthenticationException e1){
             throw  e1;
-        }catch (PasswordErrorException e2){
-            throw e2;
         }catch (Exception e){
             throw new SignInException("sign inner error:"+e.getMessage());
         }
@@ -86,14 +91,13 @@ public class UsersServiceImpl implements UsersService{
     * 用户注册
     * */
     @Override
-    public SignUpExecution signUp(Users users)
-            throws SignUpException, RepeatUserNameException {
-        SignUpExecution signUpExecution;
+    public SignUpExecution signUp(Users users) throws SignUpException, RepeatUserNameException {
+        users.setPassword(ShiroMd5Util.getMd5Password(users));
         try {
             int count = usersMapper.insertSelective(users);
             if(count <=0 )
                 /*用户名已被注册*/
-                throw new RepeatUserNameException("userName is already been registered");
+                throw new RepeatUserNameException("username is already been registered");
             /*注册成功*/
             return new SignUpExecution(SignUpEnum.SUCCESS);
         }catch (RepeatUserNameException e1){

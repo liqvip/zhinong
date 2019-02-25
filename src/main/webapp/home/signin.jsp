@@ -11,7 +11,7 @@
     <%@include file="common/header.jsp"%>
     <div class="sign">
         <div class="noty_message">
-            <span class="noty_text">手机号码/邮箱地址或密码不能为空</span>
+            <span class="noty_text"></span>
         </div>
         <div class="main">
             <h4 class="title">
@@ -22,7 +22,7 @@
                 </div>
             </h4>
             <div>
-                <form id="" action="" accept-charset="UTF-8" method="post">
+                <form id="sign_in_form" action="" accept-charset="UTF-8" method="post">
                     <!-- 正常登录登录名输入框 -->
                     <div class="input-prepend restyle js-normal">
                         <input placeholder="账号" name="username"  type="text">
@@ -34,12 +34,12 @@
                         <i class="glyphicon glyphicon-lock"></i>
                     </div>
                     <div class="remember-btn">
-                        <input value="true" checked="checked" name="" type="checkbox"><span>记住我</span>
+                        <input value="true" name="rememberMe" type="checkbox"><span>记住我</span>
                     </div>
                     <div class="forget-btn btn-group">
                         <a>忘记密码?</a>
                     </div>
-                    <button class="sign-in-button" type="button">
+                    <button class="sign-in-button" type="button" id="sign_in_btn">
                         <span id="sign-in-loading"></span>
                         登录
                     </button>
@@ -48,4 +48,10 @@
         </div>
     </div>
 </body>
+<script src="<%=basePath%>home/js/sign.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        sign.init.signIn();
+    });
+</script>
 </html>

@@ -6,7 +6,11 @@ import cn.blogss.dto.users.SignInExecution;
 import cn.blogss.dto.users.SignUpExecution;
 import cn.blogss.exception.users.*;
 import cn.blogss.pojo.Users;
+import org.apache.shiro.authc.AccountException;
+import org.apache.shiro.authc.AuthenticationException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface UsersService {
@@ -30,8 +34,7 @@ public interface UsersService {
     Users editShow(String id);
 
     /*用户登录*/
-    public SignInExecution signIn(String userName, String passsword) throws
-            SignInException,UserNameErrorException;
+    public SignInExecution signIn(String userName, String passsword, Boolean rememBerMe) throws AuthenticationException;
 
     /*新用户注册*/
     public SignUpExecution signUp(Users users) throws

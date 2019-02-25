@@ -19,7 +19,7 @@ a{
 }
 
 .topullist li{
-    margin-left:15px;
+    margin-left:10px;
     cursor: pointer;
 }
 
@@ -30,6 +30,13 @@ a{
 
 .topullist li a:hover{
     color:#eee;
+}
+
+.userphoto {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px #eee;
 }
 
 .header-right{

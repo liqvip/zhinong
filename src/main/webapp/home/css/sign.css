@@ -156,7 +156,6 @@ form {
 }
 
 .noty_message{
-    visibility: hidden;
     font-size: 13px; 
     line-height: 16px; 
     text-align: center; 
@@ -168,13 +167,14 @@ form {
 
 .noty_text{
     position: absolute;
-    display: block;
-    left: 580px;
-    top: 35px;
-    color: #ea6f5a;
+    display: none;
+    left: 639px;
+    top: 20px;
+    color: #fff;
     border: 1px #ea6f5a solid;
     padding: 8px 35px 8px;
     border-radius: 5px;
+    background-color: #ea6f5a;
 }
 
 

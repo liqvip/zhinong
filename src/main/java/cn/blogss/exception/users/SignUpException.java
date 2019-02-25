@@ -2,7 +2,7 @@ package cn.blogss.exception.users;/*
  *Created by liqiang on 2019/2/21
  */
 
-public class SignUpException extends Exception {
+public class SignUpException extends RuntimeException {
     public SignUpException(String message) {
         super(message);
     }

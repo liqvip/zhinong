@@ -4,7 +4,7 @@ package cn.blogss.common.util.enums.users;/*
 
 public enum SignInEnum {
     SUCCESS(1,"登录成功"),
-    USERNAMEORPWD_ERROR(-1,"用户名或密码错误"),
+    ACCOUNT_ERROR(-1,"账号或密码错误"),
     INNER_ERROR(-2,"系统异常");
 
     private int status;

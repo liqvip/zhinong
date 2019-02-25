@@ -49,11 +49,11 @@
     -->
     insert into users (id, username, password, 
       name, phone, email, image, 
-      paypwd, status, createTime
+      paypwd, status, create_time
       )
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
-      #{paypwd,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
+      #{paypwd,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.blogss.pojo.Users">
@@ -90,8 +90,8 @@
       <if test="status != null">
         status,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="createTime != null">
+        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -122,8 +122,8 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -158,8 +158,8 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -178,7 +178,7 @@
       image = #{image,jdbcType=VARCHAR},
       paypwd = #{paypwd,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      createTime = #{createtime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
