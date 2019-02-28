@@ -53,13 +53,35 @@ var initNotice = function () {
     });
 };
 
+var initRecommended = function () {
+  $.ajax({
+      url:"/home/raise/initRecommended",
+      type:"GET",
+      dataType:"JSON",
+      success:function (data,satus,jqXHR) {
+          if(data.msg.success){
+              data = data.raises;
+              var recommended = "";
+              for(var i=0;i<data.length;i++){
+                  recommended += '<div class="col-md-4"> <a href="/home/raise/'+data[i].id+'/detail"> <img src="'+data[i].images+'" alt=""> </a>'+
+                  '<a href=""> <h2>'+data[i].name+'</h2> </a> <h3> <span>周期：'+data[i].cycle+'个月</span> <span>单价: ￥'+data[i].price+'元</span> </h3> </div>';
+              }
+              $(".recommend").html(recommended);
+          }
+      },
+      error:function (jqXHR) {
+          layer.msg("养殖推荐接口错误，请检查后重试！");
+      }
+  });
+};
+
 var initNewsTab = function () {
     $.ajax({
         url:"/home/news/initNewsTab",
         type:"GET",
         dataType:"JSON",
         success:function (data,status,jqXHR) {
-            var data = data.news;
+            data = data.news;
             var tab_button = "";
             var indexTab = 0;
             for (var type in data) {
@@ -121,7 +143,7 @@ var initAllLink = function () {
             }
         },
         error:function (jqXHR) {
-            layer.msg("友情链接接口错误，请检查后重试！")
+            layer.msg("友情链接接口错误，请检查后重试！");
         }
     });
 }
@@ -130,6 +152,7 @@ $(document).ready(function () {
     initNotice();
     initNewsTab();
     initAllLink();
+    initRecommended();
     $('.tab_buttons').on('click',"li",function(){
         $(this).addClass('newscurrent').siblings().removeClass('newscurrent');
         $('.newstab>div:eq('+$(this).index()+')').show().siblings().hide();

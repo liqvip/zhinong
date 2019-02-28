@@ -48,7 +48,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </span>
-                                    <span>${user.name}</span>
+                                    <span>${user.username}</span>
                                 </a>
                             </li>
                             <li>
@@ -101,44 +101,39 @@
                     </ul>
                     <style>
                         .btn-primary1{
-                            border-radius:0px;
-                            color:#fff;
-                            background-color:#338c22;
-                            border-color:#338c22
-                        }
-                        .btn-primary1:hover{
-                            color:#fff;
-                            background-color:#2d9920;
-                            border-color:#2d9920;
+                            border-radius: 35px 0px 0px 0px;
+                            color: #fff;
+                            background: #338c22;
                         }
                         .Search{
-                            float:right;
-                            border:1px solid #338c22;
+                            border-bottom: 1px solid #338c22;
+                            float: right;
                             height: 36px;
                             line-height: 36px;
-                            border-radius: 5px;
                             position: relative;
+                            width: 200px;
                             z-index: 105;
-                            margin-top:10px;
-                            overflow:hidden;
+                            margin-top: 10px;
+                            overflow: hidden;
                         }
                         .Search button,.Search input{
-                            border:none #338c22;
-                            outline :0px;
+                            border: none;
+                            outline: 0px;
+                            background-color: #F6F6F6;
                         }
                         .Search button{
                             height: 34px;
-                            width: 80px;
-                            font-size: 16px;
+                            font-size: 12px;
                             margin:0;
                             float:right;
+                            background-color: #00B83F;
                         }
-                        .Search input{
-                            height: 30px;
+                        .Search input {
+                            height: 40px;
                             line-height: 30px;
-                            padding:7px;
-                            width:135px;
-                            margin-left:2px;
+                            padding: 7px;
+                            margin-left: 2px;
+                            font-size: 14px;
                         }
 
                     </style>
@@ -148,34 +143,15 @@
                             $('.column li a').not($(this)).removeClass('uline');
                         });
                     </script>
-
                     <div class="Search">
-                        <form action="/search" method="GET">
-                            <input type="text" name="name" placeholder="搜索" class="searchinput">
-                            <button type="submit" class="btn btn-primary1">搜索</button>
+                        <form action="/home/raise" method="post">
+                            <input name="name" placeholder="找农资" class="searchinput" autocomplete="off" type="text">
+                            <button type="submit" class="btn btn-primary1">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
                         </form>
                     </div>
                 </nav>
-                <script>
-                    $('.searchinput').focus(function(){
-                        $(this).attr({'placeholder':'输入农资名称'});
-                        $('.Search').animate({
-                            'width':'267px'
-                        },500);
-                        $(this).animate({
-                            'width':'183px'
-                        },500);
-                    });
-                    $('.searchinput').blur(function(){
-                        $(this).css({'width':'135px'}).attr({'placeholder':'农资搜索'});
-                        $('.Search').animate({
-                            'width':'220px'
-                        },500);
-                        $(this).animate({
-                            'width':'135px'
-                        },500);
-                    });
-                </script>
             </div>
         </div>
     </div>

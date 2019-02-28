@@ -17,6 +17,7 @@
     <!--配置多对一关联关系-->
     <association column="raise_id" property="raise" javaType="cn.blogss.pojo.Raise"
                  select="cn.blogss.mapper.RaiseMapper.selectByPrimaryKey"></association>
+
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
@@ -165,4 +166,38 @@
       SELECT <include refid="Base_Column_List"/>
       from raise_orders WHERE raise_id = #{raiseId} AND user_id = #{userId}
   </select>
+
+    <select id="queryByRaiseId" parameterType="Integer" resultType="Map">
+        SELECT u.name,r.amount,r.create_time from users u
+        INNER  join raise_orders r ON u.id = r.user_id
+        WHERE raise_id = #{raiseId}
+    </select>
+
+    <!--后台订单查看,分页-->
+    <select id="selectRaiseOrdersByPage" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from raise_orders
+        where 1=1
+        <if test="raise_orders.status != null and raise_orders.status != ''">
+            and status = #{raise_orders.status}
+        </if>
+        order by create_time DESC
+        limit #{pageIndex},#{pageSize}
+    </select>
+
+    <!--总记录数-->
+    <select id="totRecord" parameterType="RaiseOrders" resultType="int">
+        SELECT count(*) from  raise_orders where 1=1
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+    </select>
+
+    <delete id="delBatch">
+        delete from raise_orders
+        where id in
+        <foreach close=")" collection="array" index="index" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
+    </delete>
 </mapper>

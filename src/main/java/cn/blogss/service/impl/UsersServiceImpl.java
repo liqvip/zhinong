@@ -66,7 +66,7 @@ public class UsersServiceImpl implements UsersService{
     * */
     @Override
     public SignInExecution signIn(String username, String passsword, Boolean rememberMe)
-            throws AuthenticationException,SignInException{
+            throws AuthenticationException,SignInException,RepeatSignInException{
         UsernamePasswordToken token = new UsernamePasswordToken(username,passsword);
         Subject subject = SecurityUtils.getSubject();
         rememberMe = rememberMe == null ? false : rememberMe;
@@ -74,14 +74,20 @@ public class UsersServiceImpl implements UsersService{
 
         try {
             if(!subject.isAuthenticated()){
+                /*会话内未登录过*/
                 subject.login(token);
                 /*登录成功*/
                 subject.getSession().setAttribute(ConstantUtil.SESSION_NAME,usersMapper.getUsersByUsersName(username));
+                return new SignInExecution(SignInEnum.SUCCESS);
+            }else{
+                /*会话内重复登录*/
+                throw new RepeatSignInException("repeat signin exception");
             }
-            /*已经登录或登录成功的返回*/
-            return new SignInExecution(SignInEnum.SUCCESS);
-        }catch (AuthenticationException e1){
+        }catch (RepeatSignInException e1){
             throw  e1;
+        }
+        catch (AuthenticationException e2){
+            throw  e2;
         }catch (Exception e){
             throw new SignInException("sign inner error:"+e.getMessage());
         }

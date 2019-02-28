@@ -6,6 +6,7 @@ import cn.blogss.common.util.enums.raise.KillStatEnum;
 import cn.blogss.dto.raise.Exposer;
 import cn.blogss.dto.raise.KillExecution;
 import cn.blogss.exception.raise.KillCloseException;
+import cn.blogss.exception.raise.KillDataRewriteException;
 import cn.blogss.exception.raise.KillException;
 import cn.blogss.exception.raise.RepeatKillException;
 import cn.blogss.mapper.RaiseCatMapper;
@@ -36,6 +37,11 @@ public class RaiseServiceImpl implements RaiseService{
     @Override
     public List<Raise> selectRaiseByPage(String pageIndex, int pageSize, Raise raise) {
         return raiseMapper.selectRaiseByPage((Integer.parseInt(pageIndex)-1)*pageSize,pageSize,raise);
+    }
+
+    @Override
+    public List<Raise> initRecommended() {
+        return raiseMapper.initRecommended();
     }
 
     @Override
@@ -113,17 +119,19 @@ public class RaiseServiceImpl implements RaiseService{
     * 2.保证事务方法的执行时间尽可能短，不要穿插其他网络操作RPC/HTTP请求或者剥离到事务方法外部
     * 3.不是所有的方法都需要事务，例只有一条修改操作，只读操作不需要事务控制
     * */
-    public KillExecution executeKill(String md5,RaiseOrders raiseOrders) throws KillException, RepeatKillException,
-            KillCloseException {
+    public KillExecution executeKill(String md5,RaiseOrders raiseOrders) throws KillException,
+            RepeatKillException, KillDataRewriteException,KillCloseException {
         int raiseId = raiseOrders.getRaiseId();
-        if(md5 == null || !md5.equals(getMD5(raiseId))){
-            throw new KillException("kill data rewrite");
+        Integer amount = raiseOrders.getAmount();
+        if(md5 == null || !md5.equals(getMD5(raiseId)) || amount == null){
+            throw new KillDataRewriteException("kill data rewrite");
         }
         //执行秒杀逻辑：减库存 + 记录购买行为
         Date nowTime = new Date();
 
         try {
-            int updateAmount = raiseMapper.reduceAmount(raiseOrders.getRaiseId(),nowTime);
+            int updateAmount = raiseMapper.reduceAmount(raiseOrders.getRaiseId(),
+                    raiseOrders.getAmount(),nowTime);
             if(updateAmount <= 0){
                 //没有更新到记录，秒杀结束
                 throw new KillCloseException("kill is closed");

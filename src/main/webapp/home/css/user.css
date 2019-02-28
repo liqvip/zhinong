@@ -1,12 +1,18 @@
+.whitebg {
+    background: #fff;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
 .content{
-	border-top: 1px solid #ccc;
     margin-bottom: 25px;
 }
 
 .head{
 	width: 100%;
 	overflow: hidden;
-    color: #848484;
     margin: 0 auto 22px;
     padding: 34px 0 0px;
 }
@@ -48,7 +54,6 @@
 
 .section01 h5{
     text-align: center;
-    color: #909090;
 }
 
 .section01 a{
@@ -58,16 +63,10 @@
 
 .list-group-item:not(.active){
     line-height: 30px;
-    color: #8c8c8c !important;
 }
 
 .center th{
-    color: #a6a6a6;
     font-size: 16px;
-}
-
-.center td{
-    color: #a6a6a6;
 }
 
 .set{
@@ -85,7 +84,6 @@
 }
 
 .set ul>li>span{
-    color: #959595;
     display: inline-block;
     width: 110px;
     text-align: left;
@@ -106,7 +104,6 @@
 .order_head{
     background-color: #ece9e1;
     height: 75px;
-    color: #888;
 }
 
 .order_head ul{
@@ -136,12 +133,10 @@
 
 .order_content ul li div{
     overflow: hidden;
-    color: #898989;
 }
 
 .num_time{
     line-height: 50px;
-    color: #888;
 }
 
 .order_content img{
@@ -155,7 +150,6 @@
 .order_content ul li div h2{
     font-size: 16px;
     margin: 39px 0 13px;
-    color: #888;
  }
 
  .order_content ul li div h3{

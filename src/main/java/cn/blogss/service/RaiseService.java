@@ -22,6 +22,8 @@ public interface RaiseService {
 
     public abstract List<Raise> selectRaiseByPage(String pageIndex, int pageSize, Raise raise);
 
+    public abstract List<Raise> initRecommended();
+
     //农资添加
     public abstract void add(Raise raise);
 

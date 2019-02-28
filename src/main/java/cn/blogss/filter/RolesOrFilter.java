@@ -19,9 +19,9 @@ public class RolesOrFilter extends AuthorizationFilter{
 		Subject subject = getSubject(request, response);
 		String[] roles = (String[]) mappedValue;
 		
-		if(roles == null || roles.length == 0)
+		if(roles == null || roles.length == 0)//没有角色限制，有权限访问
 			return true;
-		for(String role : roles) {
+		for(String role : roles) {//若当前用户是rolesArray中的任何一个，则有权限访问
 			if(subject.hasRole(role))
 				return true;
 		}

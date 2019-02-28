@@ -237,8 +237,15 @@
         <if test="raise.status != null and raise.status != ''">
             and status = #{raise.status}
         </if>
-        order by addTime DESC
+        order by start_time DESC
         limit #{pageIndex},#{pageSize}
+    </select>
+
+    <!--初始化首页推荐-->
+    <select id="initRecommended" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List" />
+      from raise order by start_time DESC
+      limit 0,6
     </select>
 
     <!--总记录数-->
@@ -266,11 +273,11 @@
     <!--秒杀，减少库存-->
     <update id="reduceAmount">
         UPDATE raise
-        set stock = stock - 1
+        set stock = stock - #{amount}
         WHERE id = #{id}
         and start_time <![CDATA[ <= ]]> #{killTime}
         and end_time >= #{killTime}
-        and stock > 0
+        and stock >= #{amount}
     </update>
 
 </mapper>

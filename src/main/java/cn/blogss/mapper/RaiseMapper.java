@@ -59,11 +59,15 @@ public interface RaiseMapper {
                                                   @Param("pageSize")int pageSize,
                                                   @Param("raise")Raise raise);
 
+    public abstract List<Raise> initRecommended();
+
     //农资批量删除
     public abstract void delBatch(String[] ids);
 
     public int totRecord(Raise raiseCat);
 
     /*秒杀，减少库存*/
-    public int reduceAmount(@Param("id") int id,@Param("killTime") Date killTime);
+    public int reduceAmount(@Param("id") int id,
+                            @Param(("amount")) int amount,
+                            @Param("killTime") Date killTime);
 }

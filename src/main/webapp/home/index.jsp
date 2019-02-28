@@ -75,63 +75,32 @@
         }
     </script>
 
-
-    <!-- content -->
-    <div class="content" style="width: 100%;">
-        <div class="recommend">
-            <div style="position: relative;width: 1200px;margin: 0 auto">
-                <div class="title"></div>
-                <div class="pd01">
-                    <a href="">
-                        <img src="<%=basePath%>home/images/recommend/pd01.jpg" alt="" width="671" height="316">
-                    </a>
-                    <div class="pd_text">
-                        <h2>盐池滩羊</h2>
-                        <h4>全身是宝的裘皮良种绵羊</h4>
-                        <h4>养成周期：4个月</h4>
-                        <h4>价　　格：120.00元/份</h4>
-                        <h4>养成收益：6.00元/份</h4>
-                        <a href="/raise/index/1" class="raise">立即认养  &gt;</a>
-                    </div>
-                </div>
-                <div class="pd02">
-                    <div class="pd_text">
-                        <h2>巴马香猪</h2>
-                        <h4>生态养殖，肉质细嫩，食之甚感鲜香</h4>
-                        <h4>养成周期：6个月</h4>
-                        <h4>价　　格：160.00元/份</h4>
-                        <h4>养成收益：12.80元/份</h4>
-                        <a href="" class="raise">立即认养  &gt;</a>
-                    </div>
-                    <a href="">
-                        <img src="<%=basePath%>home/images/recommend/pd02.jpg" alt="" width="671" height="316">
-                    </a>
-                </div>
-            </div>
+    <!-- Recommand -->
+    <div class="row">
+        <div class="container recommend">
         </div>
-
-        <div class="row">
-            <div class="container">
-                <div class="tab_box whitebg">
-                    <div class="tab_buttons"><ul></ul></div>
-                    <div class="newstab"></div>
-                </div>
-            </div>
-        </div>
-
-        <%--友情链接--%>
-        <div class="row">
-            <div class="container">
-                <div class="flink whitebg">
-                    <h4 class="title">友情链接</h4>
-                    <ul></ul>
-                </div>
-            </div>
-        </div>
-
-        <%@include file="common/footer.jsp"%>
     </div>
 
+    <%--newsTab--%>
+    <div class="row">
+        <div class="container">
+            <div class="tab_box whitebg">
+                <div class="tab_buttons"><ul></ul></div>
+                <div class="newstab"></div>
+            </div>
+        </div>
+    </div>
+
+    <%--友情链接--%>
+    <div class="row">
+        <div class="container">
+            <div class="flink whitebg">
+                <h4 class="title">友情链接</h4>
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+    <%@include file="common/footer.jsp"%>
     <!-- 回到顶部 -->
     <div class="gotop" style="display: none;"></div>
 </body>

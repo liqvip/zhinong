@@ -10,11 +10,12 @@
 </head>
 <body>
     <%@include file="../common/header.jsp"%>
-    <div class="raise_banner"><img src="<%=basePath%>home/images/raise_detail/1.jpg" alt=""></div>
-
     <div class="content">
     	<div class="raise_detail_content" style="width: 1200px;margin: 0 auto">
-    		<div class="detail_head">
+			<div class="raise_banner">
+				<img src="<%=basePath%>home/images/raise_detail/1.jpg" alt="">
+			</div>
+			<div class="detail_head">
 	    		<ol class="breadcrumb">
 				  <li><a href="<%=basePath%>home/raise?catId=${sraise.catId}">${sraise.raiseCat.name}</a></li>
 				  <li class="active">${sraise.name}</li>
@@ -22,7 +23,7 @@
     		</div>
     		<div class="raise_detail_body">
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-8" style="background-color: #FFFFFF">
 						<div class="section01">
 							<img src="${sraise.images}" alt="">
 							<h2>${sraise.name}</h2>
@@ -57,10 +58,10 @@
 							<dl>
 								<dt>购买数量:</dt>
 								<span class="reduce"></span>
-								<input name="" value="1" class="num" type="text">
+								<input name="amount" value="1" class="num" type="text">
 								<span class="add"></span>
 							</dl>
-							<a href="" class="btn01">立即认养</a>
+							<a href="" id="kill_btn"></a>
 						</div>
 						<script>
 							$(".reduce").click(function(){
@@ -91,15 +92,18 @@
 						<div class="section02">
 							<h3 >购买记录</h3>
 							<em ></em>
-							<div>用户</div> <div data-v-e5176284="">数量</div>
+							<div>用户</div>
+							<div data-v-e5176284="">数量</div>
 							<div>时间</div>
 							<span>
 								<ul>
-									<li>
-    									<b>176****2011</b>
-    									<b>25</b>
-    									<b>2018-03-29</b>
-									</li>
+                                    <c:forEach items="${raiseOrders}" var="item" varStatus="id">
+                                        <li>
+    									    <b>${item.name}</b>
+    									    <b>${item.amount}</b>
+    									    <b><fmt:formatDate value="${item.create_time}" pattern="yyyy-MM-dd"/></b>
+									    </li>
+                                    </c:forEach>
 								</ul>
 							</span>
 						</div>
@@ -139,13 +143,16 @@
     <script src="https://cdn.bootcss.com/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
     <script type="text/javascript" src="<%=basePath%>home/js/raise.js"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            raiseKill.detail.init({
+                id:${sraise.id},
+                startTime:${sraise.startTime.time},
+                endTime:${sraise.endTime.time}
+            });
+        });
         $(function () {
             //使用EL表达式传入参数
-           raiseKill.detail.init({
-               id:${sraise.id},
-               startTime:${sraise.startTime.time},
-               endTime:${sraise.endTime.time}
-           });
+           
         });
     </script>
 </body>

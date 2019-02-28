@@ -7,20 +7,17 @@ import cn.blogss.dto.users.SignInExecution;
 import cn.blogss.dto.users.SignInResult;
 import cn.blogss.dto.users.SignUpExecution;
 import cn.blogss.dto.users.SignUpResult;
+import cn.blogss.exception.users.RepeatSignInException;
 import cn.blogss.exception.users.RepeatUserNameException;
 import cn.blogss.pojo.Users;
 import cn.blogss.service.UsersService;
 import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/home/")
@@ -39,10 +36,13 @@ public class UsersControllerHome {
             /*登录成功*/
             signInExecution = usersService.signIn(username,password,rememberMe);
             result = new SignInResult<>(true,signInExecution);
-        } catch (AuthenticationException e1) {
+        }catch (RepeatSignInException e1){
+            signInExecution = new SignInExecution(SignInEnum.REPEAT_SIGNIN);
+            result = new SignInResult<>(false,signInExecution);
+        } catch (AuthenticationException e2) {
             signInExecution = new SignInExecution(SignInEnum.ACCOUNT_ERROR);
             result = new SignInResult<>(false,signInExecution);
-        } catch (Exception e2) {
+        } catch (Exception e3) {
             signInExecution = new SignInExecution(SignInEnum.INNER_ERROR);
             result = new SignInResult<>(false,signInExecution);
         }
@@ -73,5 +73,23 @@ public class UsersControllerHome {
         if(subject.isAuthenticated())
             subject.logout();
         return "redirect:/home/signin";
+    }
+
+    @RequestMapping(value = "user",method = {RequestMethod.POST,RequestMethod.GET})
+    public String person(){
+        /*个人中心*/
+        return "home/user/index";
+    }
+
+    @RequestMapping(value = "user/order",method = {RequestMethod.POST,RequestMethod.GET})
+    public String order(){
+        /*用户订单*/
+        return "home/user/user_order";
+    }
+
+    @RequestMapping(value = "user/personal",method = {RequestMethod.POST,RequestMethod.GET})
+    public String personal(){
+        /*用户个人设置*/
+        return "home/user/user_personal";
     }
 }

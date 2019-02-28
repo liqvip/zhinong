@@ -5,7 +5,7 @@ package cn.blogss.common.util.pojo;/*
 public class Page {
     private int pageIndex;
     private int totalNum;
-    public static final int pageSize = 5;
+    public static final int pageSize = 6;
     private String submitUrl;
 
 

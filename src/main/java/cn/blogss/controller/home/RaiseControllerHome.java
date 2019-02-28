@@ -2,17 +2,22 @@ package cn.blogss.controller.home;/*
     create by LiQiang at 2018/4/22   
 */
 
+import cn.blogss.common.util.ConstantUtil;
 import cn.blogss.common.util.enums.raise.KillStatEnum;
+import cn.blogss.common.util.pojo.Message;
 import cn.blogss.common.util.pojo.Page;
 import cn.blogss.dto.raise.Exposer;
 import cn.blogss.dto.raise.KillExecution;
 import cn.blogss.dto.raise.KillResult;
 import cn.blogss.exception.raise.KillCloseException;
+import cn.blogss.exception.raise.KillDataRewriteException;
 import cn.blogss.exception.raise.RepeatKillException;
 import cn.blogss.pojo.Raise;
 import cn.blogss.pojo.RaiseCat;
 import cn.blogss.pojo.RaiseOrders;
+import cn.blogss.pojo.Users;
 import cn.blogss.service.FarmService;
+import cn.blogss.service.RaiseOrdersService;
 import cn.blogss.service.RaiseService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +26,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/home/")
 public class RaiseControllerHome {
     @Autowired
     RaiseService raiseService;
+    @Autowired
+    RaiseOrdersService raiseOrdersService;
 
     @Autowired
     HttpServletRequest request;
-
-    @Autowired
-    private FarmService farmService;
 
     @RequestMapping(value = "raise",method = {RequestMethod.GET,RequestMethod.POST})
     public String raiseList(@ModelAttribute Raise raise, Model model,
@@ -64,6 +70,17 @@ public class RaiseControllerHome {
         return  "home/raise/index";
     }
 
+    /*初始化首页推荐*/
+    @RequestMapping(value = "raise/initRecommended",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public Map<String,Object> initRecommended(){
+        Map<String,Object> map = new HashMap<>();
+        List<Raise> raises = raiseService.initRecommended();
+        map.put("msg",new Message());
+        map.put("raises",raises);
+        return map;
+    }
+
     //    select raise by id
     @RequestMapping(value = "raise/{id}/detail",method = {RequestMethod.POST,RequestMethod.GET})
     public String selectRaiseById(@PathVariable("id") Integer id,Model model){
@@ -74,7 +91,8 @@ public class RaiseControllerHome {
         if(sraise == null){
             return "forward:/home/raise";
         }
-
+        List<?> raiseOrders = raiseOrdersService.queryByRaiseId(id);
+        model.addAttribute("raiseOrders",raiseOrders);
         model.addAttribute("sraise",sraise);
         return "home/raise/detail";
     }
@@ -95,17 +113,22 @@ public class RaiseControllerHome {
 
     @RequestMapping(value = "raise/{md5}/execution",method = {RequestMethod.POST})
     @ResponseBody
-    public KillResult<KillExecution> execute(@PathVariable("md5") String md5, RaiseOrders raiseOrders){
+    public KillResult<KillExecution> execute(@PathVariable("md5") String md5,
+                                             HttpServletRequest request,RaiseOrders raiseOrders){
         KillResult<KillExecution> result;
         KillExecution execution;
-
+        Users user = (Users)request.getSession().getAttribute(ConstantUtil.SESSION_NAME);
+        raiseOrders.setUserId(user.getId());
         try {
             execution = raiseService.executeKill(md5,raiseOrders);
             result = new KillResult<>(true,execution);
-        }catch (RepeatKillException e){
+        }catch (KillDataRewriteException e1){
+            execution = new KillExecution(raiseOrders.getRaiseId(), KillStatEnum.DATA_REWRITE);
+            result = new KillResult<>(true,execution);
+        }catch (RepeatKillException e2){
             execution = new KillExecution(raiseOrders.getRaiseId(), KillStatEnum.REPEAT_KILL);
             result = new KillResult<>(true,execution);
-        }catch (KillCloseException e){
+        }catch (KillCloseException e3){
             execution = new KillExecution(raiseOrders.getRaiseId(), KillStatEnum.END);
             result = new KillResult<>(true,execution);
         }catch (Exception e){

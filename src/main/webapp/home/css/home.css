@@ -61,6 +61,10 @@ a{
     color: #338c22;
 }
 
+.nav > li {
+    font-size: 17px !important;
+    color: #333;
+}
 
 .footer .footer_menu{
     margin: 20px 0px;

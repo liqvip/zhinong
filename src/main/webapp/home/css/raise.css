@@ -8,7 +8,6 @@
 }
 
 .content{
-	border-top: 1px solid #bcddc3;
 	margin: 0 auto 25px;
 }
 
@@ -75,6 +74,7 @@
 	margin-bottom: 28px;
 	overflow: hidden;
 	border: 1px solid #dcdcdc;
+	background-color: #FFFFFF;
 }
 
 .raise_item .icon01{
@@ -159,6 +159,17 @@
 	color: #fff;
 	margin: 18px auto 0;
 	background-color: #02bf6d;
+	border-radius: 6px;
+	text-align: center;
+	line-height: 48px;
+}
+
+.raise_item .raise_btn02{
+	width: 268px;
+	height: 48px;
+	color: #FFFFFF;
+	margin: 18px auto 0;
+	background-color: #d9534f;;
 	border-radius: 6px;
 	text-align: center;
 	line-height: 48px;

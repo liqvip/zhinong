@@ -4,7 +4,7 @@ package cn.blogss.common.util.enums.users;/*
 
 public enum SignUpEnum {
     SUCCESS(1,"注册成功"),
-    REPEAT_USERNAME(-1,"用户名重复"),
+    REPEAT_USERNAME(-1,"用户名已被注册"),
     INNER_ERROR(-2,"系统异常");
 
     private int status;

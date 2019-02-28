@@ -1,8 +1,6 @@
 .content{
-	border-top: 1px solid #bcddc3;
 	margin: 0 auto 25px;
 	background: url(../images/raise_detail/bottom.jpg) no-repeat bottom;
-	overflow: hidden;
 }
 
 .raise_banner{
@@ -152,7 +150,7 @@
 	margin: 0 2px;
 }
 
-.btn01{
+.raise_btn01{
 	width: 230px;
 	height: 48px;
 	color: #fff;
@@ -163,9 +161,11 @@
 	text-align: center;
 	line-height: 48px;
 	float: left;
+	font-size: 17px;
+	font-weight: bold;
 }
 
-.btn03{
+.raise_btn03{
 	display: block;
 	width: 230px	;
 	height: 48px;
@@ -173,6 +173,19 @@
 	margin-left: 0px;
 	border-radius: 6px;
 	background-color: #b5b5b5;
+	text-align: center;
+	line-height: 48px;
+	float: left;
+}
+
+.raise_btn02{
+	display: block;
+	width: 230px;
+	height: 48px;
+	color: #FFFFFF;
+	background-color: #d9534f;
+	margin-left: 0px;
+	border-radius: 6px;
 	text-align: center;
 	line-height: 48px;
 	float: left;

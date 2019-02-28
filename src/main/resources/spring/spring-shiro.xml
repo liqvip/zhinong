@@ -15,7 +15,7 @@
         <property name="securityManager" ref="securityManager"/>
         <!-- loginUrl：没有登录的用户请求需要登录的页面时自动跳转到登录页面，不是必须的属性，
         不输入地址的话会自动寻找项目web项目的根目录下的”/login.jsp”页面。 -->
-        <property name="loginUrl" value="/login.html"/>
+        <property name="loginUrl" value="/home/signin"/>
         <!-- 未授权的跳转页面 -->
         <property name="unauthorizedUrl" value="/403.html"/>
         <!-- 过滤器链 -->
@@ -23,11 +23,12 @@
             <value>
                 /home/user/signin = anon
                 /home/user/signup = anon
+                /home/raise/*/execution = authc
+                /home/user/** = user
                 /admin/login = anon
+                /admin/** = authc
                 /testRole1 = roles["admin","admin1"]
                 /testRole = rolesOr["admin","admin1"]
-                /admin/** = authc
-                /home/user/** = user
                 <!-- /testPerms = perms["user:delete"]
                 /testPerms1 = perms["user:delete","user:update"] -->
             </value>
@@ -49,10 +50,10 @@
         <property name="rememberMeManager" ref="cookieRememberMeManager"></property>
     </bean>
 
+    <!--Realm-->
     <bean id="realm" class="cn.blogss.shiro.realm.CustomRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
-
     <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
         <property name="hashAlgorithmName" value="md5"/>
         <property name="hashIterations" value="1"/>
@@ -69,7 +70,6 @@
     <!-- <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" id="sessionManager">
 		<property name="sessionDAO" ref="redisSessionDao"></property>
     </bean> -->
-
     <bean class="cn.blogss.session.RedisSessionDao" id="redisSessionDao"></bean>
 
     <!-- CacheManager -->
