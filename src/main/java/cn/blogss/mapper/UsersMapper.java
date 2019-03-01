@@ -69,4 +69,10 @@ public interface UsersMapper {
     public abstract void delBatch(String[] ids);
 
     public int totRecord(Users users);
+
+    public int queryUserByIDAndPwd(@Param("id") Integer id,@Param("password") String password);
+
+    public int queryByField(Object field);
+
+    void updatePwdById(@Param("id") Integer id,@Param("password") String password);
 }

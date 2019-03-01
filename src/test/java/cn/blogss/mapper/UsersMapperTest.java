@@ -31,4 +31,10 @@ public class UsersMapperTest extends BaseMapperTest{
         Users users = usersMapper.getUsersByUsersName(userName);
         System.out.println(users.toString());
     }
+
+    @Test
+    public void queryUserByIDAndPwd() {
+        int count = usersMapper.queryUserByIDAndPwd(20,"dsfdsfsd");
+        System.out.println("count:"+count);
+    }
 }

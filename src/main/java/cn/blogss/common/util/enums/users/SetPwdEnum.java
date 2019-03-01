@@ -1,16 +1,17 @@
 package cn.blogss.common.util.enums.users;/*
- *Created by liqiang on 2019/2/21
+ *Created by liqiang on 2019/3/1
  */
 
-public enum SignInEnum {
-    SUCCESS(1,"登录成功"),
-    ACCOUNT_ERROR(-1,"账号或密码错误"),
-    REPEAT_SIGNIN(-2,"您已登录，请勿重复操作"),
+public enum SetPwdEnum {
+    SUCCESS(1,"修改成功"),
+    PRE_PASSWORD_ERROR(-1,"原始密码错误"),
+    PWD_INCONSISTENT(-2,"两次密码不一致"),
+    TIMEOUT(-99,"登录超时，请重新登录"),
     INNER_ERROR(-100,"系统异常");
     private int status;
     private String statusInfo;
 
-    SignInEnum(int status, String statusInfo) {
+    SetPwdEnum(int status, String statusInfo) {
         this.status = status;
         this.statusInfo = statusInfo;
     }
@@ -31,8 +32,8 @@ public enum SignInEnum {
         this.statusInfo = statusInfo;
     }
 
-    public static SignInEnum statusOf(int index){
-        for(SignInEnum status:values()){
+    public static SetPwdEnum statusOf(int index){
+        for(SetPwdEnum status:values()){
             if(status.getStatus() == index)
                 return status;
         }

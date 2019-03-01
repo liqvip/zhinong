@@ -35,31 +35,102 @@
     margin-top: 0px;
 }
 
-.section01{
-    height:166px;
+.profile{
+    height: 166px;
     border-radius: 5px;
     border: 1px solid #ccc;
-}
-
-.section01 div{
-    height: 100%;
-    border-left: 1px dashed #bfbfbf;
-    padding-top: 40px;
-}
-
-.section01 h4{
     text-align: center;
-    color: #02bf6d;
+    padding: 24px 0 24px;
 }
 
-.section01 h5{
+.profile img{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+    border-radius: 50px;
+    margin: 0 auto;
     text-align: center;
+    overflow: hidden;
 }
 
-.section01 a{
-    display: block;
-    margin: 10px 20px 10px;
+.profile p{
+    line-height: 24px;
+    width: 160px;
+    margin: 8px auto 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
+.common-title{
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.line {
+    height: 1px;
+    background-color: #d0d6d9;
+    margin-top: 12px;
+}
+
+.itemBox {
+    height: 88px;
+    overflow: hidden;
+    margin: auto;
+    border-bottom: 1px solid #d9dde1;
+}
+
+.itemBox .left {
+    width: 60px;
+    float: left;
+    font-size: 28px;
+    color: #d9dde1;
+    line-height: 98px;
+    padding-left: 24px;
+}
+
+.itemBox .center {
+    padding-top: 22px;
+    width: 510px;
+    float: left;
+    margin-left: 20px;
+}
+
+.itemBox p {
+    line-height: 24px;
+    font-size: 12px;
+}
+
+.itemBox .font1 {
+    color: #2b333b;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.itemBox .font2 {
+    color: #93999f;
+    font-size: 14px;
+}
+
+.itemBox .font3 {
+    color: #2b333b;
+    font-size: 14px;
+}
+
+.itemBox .font4 {
+    color: #f01414;
+    font-size: 14px;
+}
+
+.itemBox .right {
+    float: right;
+    padding-right: 12px;
+    margin-top: 28px;
+}
+
+
 
 .list-group-item:not(.active){
     line-height: 30px;
@@ -67,38 +138,6 @@
 
 .center th{
     font-size: 16px;
-}
-
-.set{
-    width: 486px;
-    margin: 56px auto 56px;
-    overflow: hidden;
-}
-
-.set ul>li{
-    list-style: none;
-}
-
-.set ul>li>em{
-    padding-right: 10px;
-}
-
-.set ul>li>span{
-    display: inline-block;
-    width: 110px;
-    text-align: left;
-    line-height: 49px;
-}
-
-.set>ul>li>a{
-    width: 97px;
-    margin-left: 60px;
-}
-
-.ren_set{
-    display: none;
-    margin-top: 50px;
-    display: none;
 }
 
 .order_head{

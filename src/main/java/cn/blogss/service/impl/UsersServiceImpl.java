@@ -3,10 +3,8 @@ package cn.blogss.service.impl;/*
 */
 
 import cn.blogss.common.util.ConstantUtil;
-import cn.blogss.common.util.enums.users.SignInEnum;
-import cn.blogss.common.util.enums.users.SignUpEnum;
-import cn.blogss.dto.users.SignInExecution;
-import cn.blogss.dto.users.SignUpExecution;
+import cn.blogss.common.util.enums.users.*;
+import cn.blogss.dto.users.*;
 import cn.blogss.exception.users.*;
 import cn.blogss.mapper.UsersMapper;
 import cn.blogss.pojo.Users;
@@ -97,8 +95,9 @@ public class UsersServiceImpl implements UsersService{
     * 用户注册
     * */
     @Override
-    public SignUpExecution signUp(Users users) throws SignUpException, RepeatUserNameException {
-        users.setPassword(ShiroMd5Util.getMd5Password(users));
+    public SignUpExecution signUp(Users users) throws
+            SignUpException, RepeatUserNameException {
+        users.setPassword(ShiroMd5Util.getMd5Password(users.getPassword()));
         try {
             int count = usersMapper.insertSelective(users);
             if(count <=0 )
@@ -111,5 +110,119 @@ public class UsersServiceImpl implements UsersService{
         }catch (Exception e){
             throw  new SignUpException("signUp inner error:"+e.getMessage());
         }
+    }
+
+
+    /*验证用户的密码是否正确*/
+    @Override
+    public VerifyExecution verifyCheck(String password) throws
+            PwdException, ErrorPwdException, TimeOutException {
+        Users user = getUser();
+        try {
+            if(user == null ){
+                /*登录超时*/
+                throw new TimeOutException("login timeout");
+            }
+            int count = usersMapper.queryUserByIDAndPwd(user.getId(),ShiroMd5Util.getMd5Password(password));
+            if(count <= 0){
+                /*密码错误*/
+                throw new ErrorPwdException("error password");
+            }else{
+                return new VerifyExecution(VerifyEnum.SUCCESS);
+            }
+        }catch (TimeOutException e1){
+            throw e1;
+        }catch (ErrorPwdException e2){
+            throw e2;
+        }catch (Exception e){
+            throw new PwdException("verify inner error:"+e.getMessage());
+        }
+    }
+
+    @Override
+    public BindExecution bindEmail(String email) throws
+            BindException, EmailBindException,TimeOutException {
+        Users user = getUser();
+        try {
+            if(user == null ){
+                /*登录超时*/
+                throw new TimeOutException("login timeout");
+            }
+            int count = usersMapper.queryByField(email);
+            if(count > 0){
+                /**/
+                throw new EmailBindException("email had been binding");
+            }else{
+                return new BindExecution(BindEnum.SUCCESS);
+            }
+        }catch (TimeOutException e1){
+            throw e1;
+        }catch (EmailBindException e2){
+            throw e2;
+        }catch (Exception e){
+            throw new BindException("bind inner error:"+e.getMessage());
+        }
+    }
+
+    @Override
+    public BindExecution bindPhone(String phone) throws
+            BindException, PhoneBindException, TimeOutException {
+        Users user = getUser();
+        try {
+            if(user == null ){
+                /*登录超时*/
+                throw new TimeOutException("login timeout");
+            }
+            int count = usersMapper.queryByField(phone);
+            if(count > 0){
+                /**/
+                throw new PhoneBindException("phone had been binding");
+            }else{
+                return new BindExecution(BindEnum.SUCCESS);
+            }
+        }catch (TimeOutException e1){
+            throw e1;
+        }catch (PhoneBindException e2){
+            throw e2;
+        }catch (Exception e){
+            throw new BindException("bind inner error:"+e.getMessage());
+        }
+    }
+
+    @Override
+    public SetPwdExecution setPwd(String oldPwd, String newPwd, String secNewPwd) throws
+            PwdException, ErrorPwdException, DiffPwdException, TimeOutException {
+        Users user = getUser();
+        try {
+            if(user == null ){
+                /*登录超时*/
+                throw new TimeOutException("login timeout");
+            }
+            int count = usersMapper.queryUserByIDAndPwd(user.getId(),ShiroMd5Util.getMd5Password(oldPwd));
+            if(count <= 0){
+                /*密码错误*/
+                throw new ErrorPwdException("error password");
+            }else if(!newPwd.equals(secNewPwd)){
+                /*两次密码不一致*/
+                throw new DiffPwdException("The two password is inconsistent.");
+            }else{
+                /*修改密码*/
+                usersMapper.updatePwdById(user.getId(),ShiroMd5Util.getMd5Password(newPwd));
+                return new SetPwdExecution(SetPwdEnum.SUCCESS);
+            }
+        }catch (TimeOutException e1){
+            throw e1;
+        }catch (ErrorPwdException e2){
+            throw e2;
+        } catch (DiffPwdException e3){
+            throw e3;
+        }catch (Exception e){
+            throw new PwdException("bind inner error:"+e.getMessage());
+        }
+    }
+
+
+    private Users getUser() {
+        return (Users) SecurityUtils.getSubject().getPrincipal();
     }
 }

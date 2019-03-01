@@ -245,4 +245,18 @@
         select rp.permission from user_roles ur INNER  JOIN roles_permissions rp
         on ur.role_name = rp.role_name where ur.username = #{userName}
     </select>
+
+    <!--根据用户ID和密码来查询用户-->
+    <select id="queryUserByIDAndPwd" resultType="Integer">
+        SELECT count(*) from users
+        WHERE id = #{id} and password = #{password}
+    </select>
+
+    <!--查询某一个字段-->
+    <select id="queryByField" resultType="Integer">
+        SELECT COUNT(*) from users
+        WHERE email = #{field}
+    </select>
+
+    <!--更新用户密码-->
 </mapper>

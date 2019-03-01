@@ -16,10 +16,6 @@
                 <span></span>
                 <h1>用户中心</h1>
             </div>
-            <div class="row">
-                <%@include file="top.jsp"%>
-            </div>
-
             <div class="row" style="margin-top: 30px;">
                 <div class="col-md-2">
                     <%@include file="left.jsp"%>

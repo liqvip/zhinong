@@ -7,16 +7,18 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
 public class ShiroMd5Util {
-    public static String  getMd5Password(Users user) {
-        String hashAlgorithmName = "MD5";//加密方式
+    /*加密方法*/
+    private static final String ALGORITHM_NAME = "MD5";
+    /*加密次数*/
+    private static final int HASH_ITERATIONS = 1;
 
-        Object source =user.getPassword();//密码原值
+    public static String  getMd5Password(String password) {
 
-        ByteSource salt = ByteSource.Util.bytes(user.getUsername());//盐值
+        Object source = password;//密码原值
 
-        int hashIterations = 1;//加密次数
+        //ByteSource salt = ByteSource.Util.bytes(user.getUsername());//盐值
 
-        SimpleHash hash = new SimpleHash(hashAlgorithmName,source);
+        SimpleHash hash = new SimpleHash(ALGORITHM_NAME,source);
 
         return hash.toString();
     }

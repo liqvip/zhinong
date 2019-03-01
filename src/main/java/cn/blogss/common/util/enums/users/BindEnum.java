@@ -1,16 +1,18 @@
 package cn.blogss.common.util.enums.users;/*
- *Created by liqiang on 2019/2/21
+ *Created by liqiang on 2019/3/1
  */
 
-public enum SignInEnum {
-    SUCCESS(1,"登录成功"),
-    ACCOUNT_ERROR(-1,"账号或密码错误"),
-    REPEAT_SIGNIN(-2,"您已登录，请勿重复操作"),
+public enum BindEnum {
+    SUCCESS(1,"绑定成功"),
+    EMAIL_BIND(-1,"该邮箱已被绑定"),
+    PHONE_BIND(-2,"该手机号已被绑定"),
+    TIMEOUT(-99,"登录超时，请重新登录"),
     INNER_ERROR(-100,"系统异常");
+    ;
     private int status;
     private String statusInfo;
 
-    SignInEnum(int status, String statusInfo) {
+    BindEnum(int status, String statusInfo) {
         this.status = status;
         this.statusInfo = statusInfo;
     }
@@ -31,8 +33,8 @@ public enum SignInEnum {
         this.statusInfo = statusInfo;
     }
 
-    public static SignInEnum statusOf(int index){
-        for(SignInEnum status:values()){
+    public static BindEnum getStatusOf(int index){
+        for(BindEnum status:values()){
             if(status.getStatus() == index)
                 return status;
         }

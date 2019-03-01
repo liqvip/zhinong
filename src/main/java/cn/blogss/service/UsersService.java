@@ -2,15 +2,11 @@ package cn.blogss.service;/*
     create by LiQiang at 2018/4/22   
 */
 
-import cn.blogss.dto.users.SignInExecution;
-import cn.blogss.dto.users.SignUpExecution;
+import cn.blogss.dto.users.*;
 import cn.blogss.exception.users.*;
 import cn.blogss.pojo.Users;
-import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface UsersService {
@@ -39,4 +35,20 @@ public interface UsersService {
     /*新用户注册*/
     public SignUpExecution signUp(Users users) throws
             SignUpException,RepeatUserNameException;
+
+    /*验证身份*/
+    public VerifyExecution verifyCheck(String password) throws
+            PwdException,ErrorPwdException,TimeOutException;
+
+    /*邮箱绑定*/
+    public BindExecution bindEmail(String email) throws
+            BindException,EmailBindException,TimeOutException;
+
+    /*手机绑定*/
+    public BindExecution bindPhone(String phone) throws
+            BindException,PhoneBindException,TimeOutException;
+
+    /*修改密码*/
+    public SetPwdExecution setPwd(String oldPwd,String newPwd,String secNewPwd) throws
+            PwdException,ErrorPwdException,DiffPwdException,TimeOutException;
 }

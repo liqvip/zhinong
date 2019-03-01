@@ -1,14 +1,9 @@
 package cn.blogss.controller.home;/*
     create by LiQiang at 2018/4/22   
 */
-import cn.blogss.common.util.enums.users.SignInEnum;
-import cn.blogss.common.util.enums.users.SignUpEnum;
-import cn.blogss.dto.users.SignInExecution;
-import cn.blogss.dto.users.SignInResult;
-import cn.blogss.dto.users.SignUpExecution;
-import cn.blogss.dto.users.SignUpResult;
-import cn.blogss.exception.users.RepeatSignInException;
-import cn.blogss.exception.users.RepeatUserNameException;
+import cn.blogss.common.util.enums.users.*;
+import cn.blogss.dto.users.*;
+import cn.blogss.exception.users.*;
 import cn.blogss.pojo.Users;
 import cn.blogss.service.UsersService;
 import org.apache.ibatis.annotations.Param;
@@ -24,6 +19,32 @@ import org.springframework.web.bind.annotation.*;
 public class UsersControllerHome {
     @Autowired
     private UsersService usersService;
+
+    @RequestMapping(value = "user/logout",method = {RequestMethod.POST,RequestMethod.GET})
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.isAuthenticated())
+            subject.logout();
+        return "redirect:/home/signin";
+    }
+
+    @RequestMapping(value = "user",method = {RequestMethod.POST,RequestMethod.GET})
+    public String person(){
+        /*个人中心*/
+        return "home/user/index";
+    }
+
+    @RequestMapping(value = "user/order",method = {RequestMethod.POST,RequestMethod.GET})
+    public String order(){
+        /*用户订单*/
+        return "home/user/user_order";
+    }
+
+    @RequestMapping(value = "user/binding",method = {RequestMethod.POST,RequestMethod.GET})
+    public String binding(){
+        /*账号绑定*/
+        return "home/user/user_binding";
+    }
 
     @RequestMapping(value = "user/signin",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
@@ -67,29 +88,94 @@ public class UsersControllerHome {
         return result;
     }
 
-    @RequestMapping(value = "user/logout",method = {RequestMethod.POST,RequestMethod.GET})
-    public String logout(){
-        Subject subject = SecurityUtils.getSubject();
-        if(subject.isAuthenticated())
-            subject.logout();
-        return "redirect:/home/signin";
+
+    @RequestMapping(value = "user/verifycheck",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public VerifyResult<VerifyExecution> verifycheck(@Param("password")String password){
+        VerifyResult<VerifyExecution> result;
+        VerifyExecution verifyExecution;
+        try {
+            verifyExecution = usersService.verifyCheck(password);
+            result = new VerifyResult<>(true,verifyExecution);
+        }catch (TimeOutException e1){
+            verifyExecution = new VerifyExecution(VerifyEnum.TIMEOUT);
+            result = new VerifyResult<>(false,verifyExecution);
+        }catch (ErrorPwdException e2){
+            verifyExecution = new VerifyExecution(VerifyEnum.ERROR_PASSWORD);
+            result = new VerifyResult<>(false,verifyExecution);
+        }catch (Exception e){
+            verifyExecution = new VerifyExecution(VerifyEnum.INNER_ERROR);
+            result = new VerifyResult<>(false,verifyExecution);
+        }
+        return result;
     }
 
-    @RequestMapping(value = "user",method = {RequestMethod.POST,RequestMethod.GET})
-    public String person(){
-        /*个人中心*/
-        return "home/user/index";
+    @RequestMapping(value = "user/bindemail",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public BindResult<BindExecution> bindEmail(@Param("email")String email){
+        BindResult<BindExecution> result;
+        BindExecution bindExecution;
+        try {
+            bindExecution = usersService.bindEmail(email);
+            result = new BindResult<>(true,bindExecution);
+        }catch (TimeOutException e1){
+            bindExecution = new BindExecution(BindEnum.TIMEOUT);
+            result = new BindResult<>(false,bindExecution);
+        }catch (EmailBindException e2){
+            bindExecution = new BindExecution(BindEnum.EMAIL_BIND);
+            result = new BindResult<>(false,bindExecution);
+        }catch (Exception e){
+            bindExecution = new BindExecution(BindEnum.INNER_ERROR);
+            result = new BindResult<>(false,bindExecution);
+        }
+        return result;
     }
 
-    @RequestMapping(value = "user/order",method = {RequestMethod.POST,RequestMethod.GET})
-    public String order(){
-        /*用户订单*/
-        return "home/user/user_order";
+    @RequestMapping(value = "user/bindphone",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public BindResult<BindExecution> bindphone(@Param("phone")String phone){
+        BindResult<BindExecution> result;
+        BindExecution bindExecution;
+        try {
+            bindExecution = usersService.bindEmail(phone);
+            result = new BindResult<>(true,bindExecution);
+        }catch (TimeOutException e1){
+            bindExecution = new BindExecution(BindEnum.TIMEOUT);
+            result = new BindResult<>(false,bindExecution);
+        }catch (PhoneBindException e2){
+            bindExecution = new BindExecution(BindEnum.PHONE_BIND);
+            result = new BindResult<>(false,bindExecution);
+        }catch (Exception e){
+            bindExecution = new BindExecution(BindEnum.INNER_ERROR);
+            result = new BindResult<>(false,bindExecution);
+        }
+        return result;
     }
 
-    @RequestMapping(value = "user/personal",method = {RequestMethod.POST,RequestMethod.GET})
-    public String personal(){
-        /*用户个人设置*/
-        return "home/user/user_personal";
+    @RequestMapping(value = "user/setpwd",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public SetPwdResult<SetPwdExecution> setpwd(@Param("oldPwd")String oldPwd,
+                                                @Param("newPwd")String newPwd,
+                                                @Param("secNewPwd")String secNewPwd){
+        SetPwdResult<SetPwdExecution> result;
+        SetPwdExecution setPwdExecution;
+        try {
+            setPwdExecution = usersService.setPwd(oldPwd,newPwd,secNewPwd);
+            result = new SetPwdResult<>(true,setPwdExecution);
+        }catch (TimeOutException e1){
+            setPwdExecution = new SetPwdExecution(SetPwdEnum.TIMEOUT);
+            result = new SetPwdResult<>(false,setPwdExecution);
+        }catch (ErrorPwdException e2){
+            setPwdExecution = new SetPwdExecution(SetPwdEnum.PRE_PASSWORD_ERROR);
+            result = new SetPwdResult<>(false,setPwdExecution);
+        }catch (DiffPwdException e3){
+            setPwdExecution = new SetPwdExecution(SetPwdEnum.PWD_INCONSISTENT);
+            result = new SetPwdResult<>(false,setPwdExecution);
+        }catch (Exception e){
+            setPwdExecution = new SetPwdExecution(SetPwdEnum.INNER_ERROR);
+            result = new SetPwdResult<>(false,setPwdExecution);
+        }
+        return result;
     }
+
 }
