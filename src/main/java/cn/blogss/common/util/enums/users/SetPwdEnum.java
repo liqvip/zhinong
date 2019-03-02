@@ -6,6 +6,7 @@ public enum SetPwdEnum {
     SUCCESS(1,"修改成功"),
     PRE_PASSWORD_ERROR(-1,"原始密码错误"),
     PWD_INCONSISTENT(-2,"两次密码不一致"),
+    NULL_PASSWORD(-3, "密码不能为空"),
     TIMEOUT(-99,"登录超时，请重新登录"),
     INNER_ERROR(-100,"系统异常");
     private int status;

@@ -31,13 +31,7 @@ public class UsersControllerHome {
     @RequestMapping(value = "user",method = {RequestMethod.POST,RequestMethod.GET})
     public String person(){
         /*个人中心*/
-        return "home/user/index";
-    }
-
-    @RequestMapping(value = "user/order",method = {RequestMethod.POST,RequestMethod.GET})
-    public String order(){
-        /*用户订单*/
-        return "home/user/user_order";
+        return "home/user/user_binding";
     }
 
     @RequestMapping(value = "user/binding",method = {RequestMethod.POST,RequestMethod.GET})
@@ -100,7 +94,10 @@ public class UsersControllerHome {
         }catch (TimeOutException e1){
             verifyExecution = new VerifyExecution(VerifyEnum.TIMEOUT);
             result = new VerifyResult<>(false,verifyExecution);
-        }catch (ErrorPwdException e2){
+        }catch (NullPwdException e2){
+            verifyExecution = new VerifyExecution(VerifyEnum.NULL_PASSWORD);
+            result = new VerifyResult<>(false,verifyExecution);
+        }catch (ErrorPwdException e3){
             verifyExecution = new VerifyExecution(VerifyEnum.ERROR_PASSWORD);
             result = new VerifyResult<>(false,verifyExecution);
         }catch (Exception e){
@@ -137,7 +134,7 @@ public class UsersControllerHome {
         BindResult<BindExecution> result;
         BindExecution bindExecution;
         try {
-            bindExecution = usersService.bindEmail(phone);
+            bindExecution = usersService.bindPhone(phone);
             result = new BindResult<>(true,bindExecution);
         }catch (TimeOutException e1){
             bindExecution = new BindExecution(BindEnum.TIMEOUT);
@@ -164,6 +161,9 @@ public class UsersControllerHome {
             result = new SetPwdResult<>(true,setPwdExecution);
         }catch (TimeOutException e1){
             setPwdExecution = new SetPwdExecution(SetPwdEnum.TIMEOUT);
+            result = new SetPwdResult<>(false,setPwdExecution);
+        }catch (NullPwdException e2){
+            setPwdExecution = new SetPwdExecution(SetPwdEnum.NULL_PASSWORD);
             result = new SetPwdResult<>(false,setPwdExecution);
         }catch (ErrorPwdException e2){
             setPwdExecution = new SetPwdExecution(SetPwdEnum.PRE_PASSWORD_ERROR);

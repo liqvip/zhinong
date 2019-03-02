@@ -5,6 +5,7 @@ package cn.blogss.common.util.enums.users;/*
 public enum VerifyEnum {
     SUCCESS(1,"验证通过"),
     ERROR_PASSWORD(-1,"密码错误"),
+    NULL_PASSWORD(-2,"密码不能为空"),
     TIMEOUT(-99,"登录超时，请重新登录"),
     INNER_ERROR(-100,"系统异常");
     private int status;

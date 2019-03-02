@@ -72,7 +72,14 @@ public interface UsersMapper {
 
     public int queryUserByIDAndPwd(@Param("id") Integer id,@Param("password") String password);
 
-    public int queryByField(Object field);
+    public int queryByEmail(String email);
 
-    void updatePwdById(@Param("id") Integer id,@Param("password") String password);
+    int queryByPhone(String phone);
+
+    int updateEmailById(@Param("id") Integer id,@Param("email") String email);
+
+    int updatePhoneById(@Param("id") Integer id,@Param("phone") String phone);
+
+    int updatePwdById(@Param("id") Integer id,@Param("password") String password);
+
 }

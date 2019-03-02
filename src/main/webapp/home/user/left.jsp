@@ -12,6 +12,5 @@
 </div>
 <div class="list-group" style="text-align: center;">
     <a href="<%=basePath%>home/user/binding" class="list-group-item">账号绑定</a>
-    <a href="<%=basePath%>home/user" class="list-group-item">用户中心</a>
     <a href="<%=basePath%>home/user/order" class="list-group-item">我的订单</a>
 </div>

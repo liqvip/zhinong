@@ -22,7 +22,7 @@ public class RaiseOrdersMapperTest extends BaseMapperTest{
 
     @Test
     public void queryByRaiseId() {
-        List<?> raiseOrders = raiseOrdersMapper.queryByRaiseId(2);
+        List<?> raiseOrders = raiseOrdersMapper.querySomeByRaiseId(2);
         System.out.println("raiseOrders:"+raiseOrders.toString());
     }
 }

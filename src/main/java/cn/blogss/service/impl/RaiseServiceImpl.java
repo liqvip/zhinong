@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -124,6 +125,7 @@ public class RaiseServiceImpl implements RaiseService{
         int raiseId = raiseOrders.getRaiseId();
         Integer amount = raiseOrders.getAmount();
         if(md5 == null || !md5.equals(getMD5(raiseId)) || amount == null){
+            /*用户篡改数据*/
             throw new KillDataRewriteException("kill data rewrite");
         }
         //执行秒杀逻辑：减库存 + 记录购买行为
@@ -137,6 +139,8 @@ public class RaiseServiceImpl implements RaiseService{
                 throw new KillCloseException("kill is closed");
             }else{
                 //记录购买行为
+                Raise raise = raiseMapper.selectByPrimaryKey(raiseId);
+                raiseOrders.setPayment(raise.getPrice().multiply(new BigDecimal(amount)));
                 int insertCount = raiseOrdersMapper.insertSelective(raiseOrders);
                 //唯一:raiseId,userId
                 if(insertCount <= 0){

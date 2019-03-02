@@ -17,30 +17,32 @@
                 <h1>用户中心</h1>
             </div>
             <div class="row" style="margin-top: 30px;">
-                <div class="col-md-2">
-                    <%@include file="left.jsp"%>
-                </div>
-                <div class="col-md-10" style="border-radius: 5px;border: 1px solid #ccc;background-color: #FFFFFF">
-                    <button class="btn btn-warning" type="button" style="margin: 20px auto">即将到期的养殖项目
-                        <span class="badge">4</span>
-                    </button>
-                    <div class="center">
-                       <table class="table table-hover" >
-                            <tr>
-                                <th>商品名称</th>
-                                <th>数量</th>
-                                <th>收益类型</th>
-                                <th>收益</th>
-                                <th>结束时间</th>
-                            </tr>
-                            <tr>
-                                <td>第15-3期巴马香猪</td>
-                                <td>22</td>
-                                <td>现金收益</td>
-                                <td>12.80元</td>
-                                <td>2018-10-02</td>
-                            </tr>
-                       </table> 
+                <div class="container">
+                    <div class="col-md-2">
+                        <%@include file="left.jsp"%>
+                    </div>
+                    <div class="col-md-10" style="border-radius: 5px;border: 1px solid #ccc;background-color: #FFFFFF">
+                        <button class="btn btn-warning" type="button" style="margin: 20px auto">即将到期的养殖项目
+                            <span class="badge">4</span>
+                        </button>
+                        <div class="center">
+                            <table class="table table-hover" >
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>数量</th>
+                                    <th>收益类型</th>
+                                    <th>收益</th>
+                                    <th>结束时间</th>
+                                </tr>
+                                <tr>
+                                    <td>第15-3期巴马香猪</td>
+                                    <td>22</td>
+                                    <td>现金收益</td>
+                                    <td>12.80元</td>
+                                    <td>2018-10-02</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

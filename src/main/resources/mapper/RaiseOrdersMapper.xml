@@ -167,7 +167,13 @@
       from raise_orders WHERE raise_id = #{raiseId} AND user_id = #{userId}
   </select>
 
-    <select id="queryByRaiseId" parameterType="Integer" resultType="Map">
+    <select id="queryByUserId" resultMap="BaseResultMap" parameterType="Integer">
+        SELECT <include refid="Base_Column_List"/>
+        FROM raise_orders WHERE user_id = #{userId}
+        ORDER by create_time DESC
+    </select>
+
+    <select id="querySomeByRaiseId" parameterType="Integer" resultType="Map">
         SELECT u.name,r.amount,r.create_time from users u
         INNER  join raise_orders r ON u.id = r.user_id
         WHERE raise_id = #{raiseId}

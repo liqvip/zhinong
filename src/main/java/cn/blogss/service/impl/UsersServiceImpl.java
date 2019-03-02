@@ -116,7 +116,7 @@ public class UsersServiceImpl implements UsersService{
     /*验证用户的密码是否正确*/
     @Override
     public VerifyExecution verifyCheck(String password) throws
-            PwdException, ErrorPwdException, TimeOutException {
+            PwdException, NullPwdException,ErrorPwdException, TimeOutException {
         Users user = getUser();
         try {
             if(user == null ){
@@ -132,8 +132,10 @@ public class UsersServiceImpl implements UsersService{
             }
         }catch (TimeOutException e1){
             throw e1;
-        }catch (ErrorPwdException e2){
+        }catch (NullPwdException e2){
             throw e2;
+        }catch (ErrorPwdException e3){
+            throw e3;
         }catch (Exception e){
             throw new PwdException("verify inner error:"+e.getMessage());
         }
@@ -148,11 +150,15 @@ public class UsersServiceImpl implements UsersService{
                 /*登录超时*/
                 throw new TimeOutException("login timeout");
             }
-            int count = usersMapper.queryByField(email);
+            int count = usersMapper.queryByEmail(email);
             if(count > 0){
                 /**/
                 throw new EmailBindException("email had been binding");
             }else{
+                usersMapper.updateEmailById(user.getId(),email);
+                /*刷新session*/
+                user.setEmail(email);
+                setUser(user);
                 return new BindExecution(BindEnum.SUCCESS);
             }
         }catch (TimeOutException e1){
@@ -173,11 +179,15 @@ public class UsersServiceImpl implements UsersService{
                 /*登录超时*/
                 throw new TimeOutException("login timeout");
             }
-            int count = usersMapper.queryByField(phone);
+            int count = usersMapper.queryByPhone(phone);
             if(count > 0){
                 /**/
                 throw new PhoneBindException("phone had been binding");
             }else{
+                usersMapper.updatePhoneById(user.getId(),phone);
+                /*刷新session*/
+                user.setPhone(phone);
+                setUser(user);
                 return new BindExecution(BindEnum.SUCCESS);
             }
         }catch (TimeOutException e1){
@@ -191,7 +201,7 @@ public class UsersServiceImpl implements UsersService{
 
     @Override
     public SetPwdExecution setPwd(String oldPwd, String newPwd, String secNewPwd) throws
-            PwdException, ErrorPwdException, DiffPwdException, TimeOutException {
+            PwdException, ErrorPwdException, NullPwdException,DiffPwdException, TimeOutException {
         Users user = getUser();
         try {
             if(user == null ){
@@ -212,8 +222,10 @@ public class UsersServiceImpl implements UsersService{
             }
         }catch (TimeOutException e1){
             throw e1;
-        }catch (ErrorPwdException e2){
+        }catch (NullPwdException e2){
             throw e2;
+        }catch (ErrorPwdException e3){
+            throw e3;
         } catch (DiffPwdException e3){
             throw e3;
         }catch (Exception e){
@@ -223,6 +235,10 @@ public class UsersServiceImpl implements UsersService{
 
 
     private Users getUser() {
-        return (Users) SecurityUtils.getSubject().getPrincipal();
+        return (Users) SecurityUtils.getSubject().getSession().getAttribute(ConstantUtil.SESSION_NAME);
+    }
+
+    private void setUser(Users user) {
+        SecurityUtils.getSubject().getSession().setAttribute(ConstantUtil.SESSION_NAME,user);
     }
 }

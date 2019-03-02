@@ -252,11 +252,27 @@
         WHERE id = #{id} and password = #{password}
     </select>
 
-    <!--查询某一个字段-->
-    <select id="queryByField" resultType="Integer">
+    <!--查询邮箱-->
+    <select id="queryByEmail" resultType="Integer">
         SELECT COUNT(*) from users
-        WHERE email = #{field}
+        WHERE email = #{email}
     </select>
 
-    <!--更新用户密码-->
+    <!--查询手机-->
+    <select id="queryByPhone" resultType="Integer">
+        SELECT COUNT(*) from users
+        WHERE phone = #{phone}
+    </select>
+
+    <update id="updateEmailById">
+        update users SET email = #{email} WHERE id = #{id}
+    </update>
+
+    <update id="updatePhoneById">
+        update users SET phone = #{phone} WHERE id = #{id}
+    </update>
+
+    <update id="updatePwdById">
+        update users SET password = #{password} WHERE id = #{id}
+    </update>
 </mapper>

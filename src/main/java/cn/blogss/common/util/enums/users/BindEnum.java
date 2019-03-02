@@ -8,7 +8,6 @@ public enum BindEnum {
     PHONE_BIND(-2,"该手机号已被绑定"),
     TIMEOUT(-99,"登录超时，请重新登录"),
     INNER_ERROR(-100,"系统异常");
-    ;
     private int status;
     private String statusInfo;
 

@@ -130,79 +130,48 @@
     margin-top: 28px;
 }
 
-
-
-.list-group-item:not(.active){
-    line-height: 30px;
+.keybox{
+    height: 96px;
+    text-align: center;
 }
 
-.center th{
+.keybox span{
+    color: #d0d6d9;
+    font-size: 80px;
+}
+
+.font1{
+    color: #2b333b;
     font-size: 16px;
+    font-weight: 700;
+    text-align: center;
 }
 
-.order_head{
-    background-color: #ece9e1;
-    height: 75px;
+.table tbody tr td{
+    vertical-align: middle;
 }
 
-.order_head ul{
-    list-style: none;
-    padding-left: 15px;
-    line-height: 75px;
+.table tbody tr th{
+    vertical-align: middle;
 }
 
-.order_head ul li{
+th,td{
+    text-align: center;
+}
+
+td img{
+    display: block;
     float: left;
-    font-size: 18px;
-    text-align: left;
-}
-
-.order_content ul{
-    list-style: none;
-    padding-left: 15px;
-}
-
-.order_content ul li{
-    overflow: hidden;
-}
-
-.order_content ul li:nth-child(odd){
-    border-bottom: 1px solid #ccc;
-}
-
-.order_content ul li div{
-    overflow: hidden;
-}
-
-.num_time{
-    line-height: 50px;
-}
-
-.order_content img{
-    height: 88px;
     width: 88px;
-    display: block;
-    margin-top: 16px;
+    height: 88px;
+    margin: 16px 26px 16px 21px;
+    border-radius: 3px;
+    border: 1px solid #eee;
+}
+
+td h2{
+    font-size: 16px;
 }
 
 
-.order_content ul li div h2{
-    font-size: 16px;
-    margin: 39px 0 13px;
- }
-
- .order_content ul li div h3{
-    font-size: 16px;
- }
-
- .order_detail a{
-    color: #f18d26;
-    display: block;
-    margin: 39px 0 13px;
- }
-
- .modal-body p{
-    color: #a5a5a5;
-    margin: 0 0 16px 30px;
- }
 

@@ -56,7 +56,9 @@ public interface RaiseOrdersMapper {
 
     RaiseOrders queryByIdWithSucKill(@Param("raiseId") int raiseId, @Param("userId") int userId);
 
-    List<?> queryByRaiseId(int raiseId);
+    List<RaiseOrders> queryByUserId(@Param("userId")Integer userId);
+
+    List<?> querySomeByRaiseId(int raiseId);
 
     public abstract List<RaiseOrders> selectRaiseOrdersByPage(@Param("pageIndex") int pageIndex,
                   @Param("pageSize") int pageSize, @Param("raiseOrders") RaiseOrders raiseOrders);

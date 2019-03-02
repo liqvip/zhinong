@@ -3,12 +3,17 @@ package cn.blogss.service;/*
 */
 
 import cn.blogss.pojo.RaiseOrders;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface RaiseOrdersService {
 
     public abstract List<RaiseOrders> selectRaiseOrdersByPage(int pageIndex, int pageSize, RaiseOrders raiseOrders);
+
+    List<RaiseOrders> queryByUserId();
+
+    RaiseOrders orderDetail(Integer id);
 
     List<?> queryByRaiseId(int raiseId);
 
