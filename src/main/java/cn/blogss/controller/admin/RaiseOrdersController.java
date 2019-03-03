@@ -4,16 +4,17 @@ package cn.blogss.controller.admin;/*
 
 import cn.blogss.common.util.pojo.Message;
 import cn.blogss.common.util.pojo.Page;
-import cn.blogss.pojo.RaiseOrders;
 import cn.blogss.service.RaiseOrdersService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,22 +25,23 @@ public class RaiseOrdersController {
     @Autowired
     private RaiseOrdersService raiseOrdersService;
 
-    @RequestMapping(value = "raiseOrders",method = {RequestMethod.GET,RequestMethod.POST})
-    public String raiseOrdersList(@ModelAttribute RaiseOrders raiseOrders,Model model,
-                              @RequestParam(value = "pageIndex",defaultValue = "1") int pageIndex){
-        List<RaiseOrders> raiseOrdersList = raiseOrdersService.selectRaiseOrdersByPage(pageIndex, Page.pageSize,raiseOrders);
+    @RequestMapping(value = "order",method = {RequestMethod.GET,RequestMethod.POST})
+    public String raiseOrdersList(@RequestParam(value = "username",required = false)String username,
+                                  @RequestParam(value = "pageIndex",defaultValue = "1") int pageIndex,
+                                  Model model){
+        List<?> raiseOrdersList = raiseOrdersService.selectRaiseOrdersByPage(pageIndex, Page.pageSize,username);
         String submitUrl = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
-                request.getContextPath()+"/admin/raiseOrders?pageIndex={0}";
+                request.getContextPath()+"/admin/order?pageIndex={0}";
 
-        if(raiseOrders.getStatus() != null)
-            submitUrl += "&status="+raiseOrders.getStatus();
+        if(StringUtils.isNotEmpty(username))
+            submitUrl += "&username="+username;
 
-        int totalNum = raiseOrdersService.totRecord(raiseOrders);
+        int totalNum = raiseOrdersService.totRecord(username);
         Page page = new Page();
         page.setPageIndex(pageIndex);
         page.setTotalNum(totalNum);
         page.setSubmitUrl(submitUrl);
-        model.addAttribute("raiseOrder",raiseOrders);
+        model.addAttribute("username",username);
         model.addAttribute("page",page);
         model.addAttribute("raiseOrders",raiseOrdersList);
 
@@ -48,25 +50,17 @@ public class RaiseOrdersController {
     
 
     //  删除单个订单
-    @RequestMapping(value = "raiseOrders/delOne",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "order/delOne",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Message raiseOrdersDelOne(@RequestParam("id")int id){
         raiseOrdersService.delOne(id);
         return new Message();
     }
 
-    @RequestMapping(value = "raiseOrders/delBatch",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "order/delBatch",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Message raiseOrdersDelBatch(@RequestParam("ids")String[] ids){
         raiseOrdersService.delBatch(ids);
-        return new Message();
-    }
-
-    //    订单修改
-    @RequestMapping(value = "raiseOrders/edit",method = {RequestMethod.POST,RequestMethod.GET})
-    @ResponseBody
-    public Message raiseOrdersEdit(@ModelAttribute RaiseOrders raiseOrders){
-        raiseOrdersService.edit(raiseOrders);
         return new Message();
     }
 }

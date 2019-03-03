@@ -16,7 +16,7 @@
                 <ul class="header-right topullist">
                     <li>
                         <a href="">
-                            <span>你好，欢迎来到知农之家！</span>
+                            <span>你好，欢迎来到知农之家 ^_^ </span>
                         </a>
                     </li>
                     <c:choose>
@@ -93,9 +93,6 @@
                             </a>
                             <ul class="dropdown-menu">
                             </ul>
-                        </li>
-                        <li>
-                            <a href="<%=basePath%>home/about" alt="关于我们" style="" class="">关于我们</a>
                         </li>
                         <li class="clear"></li>
                     </ul>

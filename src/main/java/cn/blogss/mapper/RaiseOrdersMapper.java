@@ -60,11 +60,11 @@ public interface RaiseOrdersMapper {
 
     List<?> querySomeByRaiseId(int raiseId);
 
-    public abstract List<RaiseOrders> selectRaiseOrdersByPage(@Param("pageIndex") int pageIndex,
-                  @Param("pageSize") int pageSize, @Param("raiseOrders") RaiseOrders raiseOrders);
+    public abstract List<?> selectRaiseOrdersByPage(@Param("pageIndex") int pageIndex,
+                  @Param("pageSize") int pageSize, @Param("username") String username);
 
     //订单批量删除
     public abstract void delBatch(String[] ids);
 
-    public int totRecord(RaiseOrders raiseOrders);
+    public int totRecord(@Param("username") String username);
 }

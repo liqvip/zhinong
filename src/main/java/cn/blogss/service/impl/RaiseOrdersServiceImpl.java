@@ -19,8 +19,8 @@ public class RaiseOrdersServiceImpl implements RaiseOrdersService{
     RaiseOrdersMapper raiseOrdersMapper;
 
     @Override
-    public List<RaiseOrders> selectRaiseOrdersByPage(int pageIndex, int pageSize, RaiseOrders raiseOrders) {
-        return raiseOrdersMapper.selectRaiseOrdersByPage((pageIndex-1)*pageSize,pageSize,raiseOrders);
+    public List<?> selectRaiseOrdersByPage(int pageIndex, int pageSize, String username) {
+        return raiseOrdersMapper.selectRaiseOrdersByPage((pageIndex-1)*pageSize,pageSize,username);
     }
 
     @Override
@@ -56,8 +56,8 @@ public class RaiseOrdersServiceImpl implements RaiseOrdersService{
     }
 
     @Override
-    public int totRecord(RaiseOrders raiseOrders) {
-        return raiseOrdersMapper.totRecord(raiseOrders);
+    public int totRecord(String username) {
+        return raiseOrdersMapper.totRecord(username);
     }
 
     public Users getUser() {

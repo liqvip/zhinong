@@ -46,7 +46,7 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="realm"/>
         <!--<property name="sessionManager" ref="customSessionManager"></property>-->
-        <property name="cacheManager" ref="cacheManager"></property>
+        <!--<property name="cacheManager" ref="cacheManager"></property>-->
         <property name="rememberMeManager" ref="cookieRememberMeManager"></property>
     </bean>
 
@@ -60,20 +60,20 @@
     </bean>
 
     <!-- SessionManager -->
-    <bean class="cn.blogss.session.CustomSessionManager" id="customSessionManager">
+    <!--<bean class="cn.blogss.session.CustomSessionManager" id="customSessionManager">
         <property name="sessionDAO" ref="redisSessionDao"></property>
-        <!-- session的失效时间，默认为30分钟。单位为milliseconds(毫秒) -->
+        &lt;!&ndash; session的失效时间，默认为30分钟。单位为milliseconds(毫秒) &ndash;&gt;
         <property name="globalSessionTimeout" value="1800000"></property>
-    </bean>
+    </bean>-->
 
     <!-- default sessionManager -->
     <!-- <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" id="sessionManager">
 		<property name="sessionDAO" ref="redisSessionDao"></property>
     </bean> -->
-    <bean class="cn.blogss.session.RedisSessionDao" id="redisSessionDao"></bean>
+    <!--<bean class="cn.blogss.session.RedisSessionDao" id="redisSessionDao"></bean>-->
 
     <!-- CacheManager -->
-    <bean class="cn.blogss.cache.RedisCacheManager" id="cacheManager"></bean>
+    <!--<bean class="cn.blogss.cache.RedisCacheManager" id="cacheManager"></bean>-->
 
     <!-- remember me -->
     <bean class="org.apache.shiro.web.mgt.CookieRememberMeManager" id="cookieRememberMeManager">

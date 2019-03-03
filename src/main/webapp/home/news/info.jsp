@@ -123,7 +123,7 @@
                         <span class="pre">
                             <c:choose>
                                 <c:when test="${empty preNews}">
-                                    <span>无</span>
+                                    <span>到顶啦 (ಥ﹏ಥ)</span>
                                 </c:when>
                                 <c:otherwise>
                                     <a href="<%=basePath%>home/news/${preNews.id}/selectNewsById">${preNews.title}</a>
@@ -135,7 +135,7 @@
                         <span class="next">
                             <c:choose>
                                 <c:when test="${empty nextNews}">
-                                    <span>无</span>
+                                    <span>到底啦 (ಥ﹏ಥ)</span>
                                 </c:when>
                                 <c:otherwise>
                                     <a href="<%=basePath%>home/news/${nextNews.id}/selectNewsById">${nextNews.title}</a>

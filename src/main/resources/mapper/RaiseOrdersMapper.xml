@@ -180,22 +180,26 @@
     </select>
 
     <!--后台订单查看,分页-->
-    <select id="selectRaiseOrdersByPage" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List" />
-        from raise_orders
+    <select id="selectRaiseOrdersByPage" resultType="Map">
+        select r.name,u.username,ro.amount,ro.payment,ro.create_time,ro.status,ro.id
+        from raise_orders ro
+        INNER join users u ON ro.user_id = u.id
+        INNER JOIN raise r on ro.raise_id = r.id
         where 1=1
-        <if test="raise_orders.status != null and raise_orders.status != ''">
-            and status = #{raise_orders.status}
+        <if test="username != null and username != ''">
+          and u.username like concat('%',#{username},'%')
         </if>
-        order by create_time DESC
+        order by ro.create_time DESC
         limit #{pageIndex},#{pageSize}
     </select>
 
     <!--总记录数-->
-    <select id="totRecord" parameterType="RaiseOrders" resultType="int">
-        SELECT count(*) from  raise_orders where 1=1
-        <if test="status != null and status != ''">
-            and status = #{status}
+    <select id="totRecord" parameterType="string" resultType="int">
+        SELECT count(*) from  raise_orders r INNER JOIN users u
+        on r.user_id = u.id
+        where 1=1
+        <if test="username != null and username != ''">
+          and u.username like concat('%',#{username},'%')
         </if>
     </select>
 

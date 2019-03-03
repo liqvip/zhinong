@@ -25,4 +25,16 @@ public class RaiseOrdersMapperTest extends BaseMapperTest{
         List<?> raiseOrders = raiseOrdersMapper.querySomeByRaiseId(2);
         System.out.println("raiseOrders:"+raiseOrders.toString());
     }
+
+    @Test
+    public void selectRaiseOrdersByPage() {
+        List<?> result = raiseOrdersMapper.selectRaiseOrdersByPage(0,5,"admin");
+        System.out.println("result:"+result.toString());
+    }
+
+    @Test
+    public void totRecord() {
+        int count = raiseOrdersMapper.totRecord("admin");
+        System.out.println("count:"+count);
+    }
 }

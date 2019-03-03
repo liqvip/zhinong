@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RaiseOrdersService {
 
-    public abstract List<RaiseOrders> selectRaiseOrdersByPage(int pageIndex, int pageSize, RaiseOrders raiseOrders);
+    public abstract List<?> selectRaiseOrdersByPage(int pageIndex, int pageSize, String username);
 
     List<RaiseOrders> queryByUserId();
 
@@ -26,6 +26,6 @@ public interface RaiseOrdersService {
     //    订单修改
     public abstract void edit(RaiseOrders raiseOrders);
 
-    public int totRecord(RaiseOrders raiseOrders);
+    public int totRecord(String username);
 
 }
